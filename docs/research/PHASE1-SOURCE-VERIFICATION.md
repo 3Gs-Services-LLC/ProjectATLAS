@@ -242,7 +242,7 @@ result:                     PARTIALLY_VERIFIED
 
 ---
 
-## Summary
+## Summary (Batch 1)
 
 | Source | Result | Category |
 |---|---|---|
@@ -251,4 +251,198 @@ result:                     PARTIALLY_VERIFIED
 | INDOT WZDx Feed | VERIFIED — new finding, strongest INDOT license to date | Event (traffic/work-zone) |
 | OpenTrafficCamMap | PARTIALLY_VERIFIED | Camera (aggregator) |
 
-Four sources moved from `UNRESEARCHED`/`CANDIDATE` to `POLICY_VERIFIED` (first three) or `TECHNICALLY_VERIFIED` (OpenTrafficCamMap, pending per-DOT policy work) this session. None reached `ADAPTER_IMPLEMENTED` — no adapter code exists yet (Phase 6/7), consistent with `docs/ATLAS-ASSESSMENT.md`'s confirmed empty-repository starting point. The remaining ~25+ source families in `projectatlas.md` §6 / `Project ATLAS-WebSite.md` §63 remain open for future sessions.
+Four sources moved from `UNRESEARCHED`/`CANDIDATE` to `POLICY_VERIFIED` (first three) or `TECHNICALLY_VERIFIED` (OpenTrafficCamMap, pending per-DOT policy work) this session. None reached `ADAPTER_IMPLEMENTED` — no adapter code exists yet (Phase 6/7), consistent with `docs/ATLAS-ASSESSMENT.md`'s confirmed empty-repository starting point.
+
+---
+
+## Batch 2 (2026-08-23, continued session)
+
+### 5. FEMA / OpenFEMA Disaster Declarations API
+
+```text
+source:                    OpenFEMA — Disaster Declarations Summaries v2
+provider:                  Federal Emergency Management Agency (FEMA)
+jurisdiction:              US (all states/territories)
+official_url:              https://www.fema.gov/about/openfema
+documentation_url:         https://www.fema.gov/about/openfema/api
+terms_url:                 https://www.fema.gov/about/openfema/terms-conditions
+license:                   Public domain / usa.gov/government-works. Citation of the endpoint
+                            name/URL and access date is recommended, not a hard legal requirement.
+                            Explicit contractual restriction: data must not be used to make
+                            determinations affecting individual rights or benefits.
+verification_date:         2026-08-23
+verification_method:       Direct HTTPS GET, real response inspected
+access_method:              GOVERNMENT_API
+authentication:             None required
+rate_limit:                 Not hit this session; OData-style paging documented (1,000-record
+                            default page size)
+observed_format:            application/json (OData-flavored: {metadata, DisasterDeclarationsSummaries: [...]})
+
+records_discovered:         5 (this session's test query; full dataset is far larger — not
+                            counted this session, only a bounded top-5 query was run)
+records_valid:               5 — real, current declarations (e.g. `FM-5673-AR` "PINE TREE ROAD
+                            FIRE", declared 2026-08-21; `FM-5672-AK` "MUKLUK FIRE", declared
+                            2026-08-18) with plausible FIPS codes, incident types, and dates
+records_invalid:              0
+source_id_uniqueness:       `id` (UUID) and `femaDeclarationString` both present — VERIFIED unique
+
+coordinate_validity:        N/A — this dataset is FIPS/county-coded, not point-geocoded
+coordinate_system:           N/A
+coverage:                    Nationwide
+
+still_available:             N/A (event source)
+video_available:             N/A
+stream_types:                N/A
+
+metadata_storage_policy:     Permitted (public domain)
+image_access_policy:          N/A
+image_redistribution_policy:  N/A
+video_access_policy:          N/A
+video_redistribution_policy:  N/A
+
+result:                     VERIFIED
+```
+
+Feeds `Project ATLAS-WebSite.md` §17's FEMA/IPAWS emergency-alert subsystem. Only disaster *declarations* were tested this session — IPAWS/CAP live alert feeds specifically (a related but separate FEMA data product) remain unverified and are a good next candidate.
+
+### 6. Open511 — no current US implementation found
+
+```text
+source:                    Open511 specification
+provider:                  N/A — this is a specification, not a single operator
+jurisdiction:              Evaluated for US applicability per projectatlas.md §6's checklist
+official_url:              https://www.open511.org (spec); live implementation checked:
+                            https://api.open511.gov.bc.ca
+documentation_url:         https://api.open511.gov.bc.ca/help
+terms_url:                 Open Government Licence – British Columbia (for the one live
+                            implementation checked)
+license:                   N/A for US purposes — no US source found implementing this spec
+verification_date:         2026-08-23
+verification_method:       WebFetch against the one documented live implementation's help page,
+                            plus web search for any US state DOT Open511 implementation
+access_method:              N/A
+authentication:             N/A
+rate_limit:                 N/A
+observed_format:            N/A
+
+records_discovered:         0 (US-applicable)
+result:                     DEFERRED — no US-jurisdiction candidate exists to verify
+```
+
+**Finding:** the only confirmed live Open511 implementation is DriveBC (British Columbia, Canada) — its own documentation states "As this is the only jurisdiction currently supported, this query returns all active events," and it explicitly does not reference any US state. A second implementation (City of Repentigny, Québec) is also non-US. No evidence of a US state/regional 511 system implementing Open511 was found. Per `projectatlas.md` §4's USA-only technical requirement, this specification has **no current candidate to pursue** — correctly recorded as `DEFERRED`, not `REJECTED` (the spec itself is real and could become relevant if a US agency adopts it later), and not silently skipped without explanation.
+
+### 7. OpenEye (`openeye.cam`) — endpoint claims did not verify live
+
+```text
+source:                    OpenEye public camera directory/API
+provider:                  OpenEye (independent operator)
+jurisdiction:              Claims US + international coverage (untested this session)
+official_url:              https://openeye.cam
+documentation_url:         https://openeye.cam/docs (client-rendered Next.js app — see finding below)
+terms_url:                 Not independently located this session
+license:                   UNKNOWN — not established
+verification_date:         2026-08-23
+verification_method:       Direct HTTPS GET against every endpoint path an initial WebFetch-based
+                            documentation summary described, plus common OpenAPI-discovery paths
+access_method:              UNKNOWN
+authentication:             UNKNOWN
+rate_limit:                 UNKNOWN
+observed_format:            UNKNOWN
+
+records_discovered:         0
+records_valid:               0
+result:                     FAILED_VALIDATION (this session) — see finding
+```
+
+**Important methodology finding, recorded per `MacEvil.md` §8's "do not treat search results/AI summaries as proof of an API":** an initial `WebFetch` call against `openeye.cam/docs` returned a plausible-looking, specific endpoint list (`/v1/catalog/map`, `/v1/catalog/featured`, `/v1/catalog/categories`, etc.) with authentication and payment-flow details. **Every one of those paths was then tested directly and returned HTTP 404**, including `/v1/catalog`, `/v1/catalog/map`, `/v1/catalog/featured`, and several standard OpenAPI-discovery paths (`/openapi.json`, `/api/openapi.json`, `/.well-known/openapi.json`, `/llms.txt`). The raw HTML of `/docs` is a client-side-rendered Next.js shell with no documentation content in the initial payload — meaning the earlier WebFetch summary was very likely synthesized/inferred by its underlying model from partial or non-authoritative signal, not read from real documented text. This is exactly the failure mode `MacEvil.md` §8 warns against ("do not invent an endpoint because another system uses a similar URL") — the difference here is the invention came from an AI-summarization tool in the research pipeline itself, not from this session directly guessing. **Recorded as `FAILED_VALIDATION`, not silently corrected or re-guessed further.** Re-investigation requires either a real browser session (rendering the JS and capturing actual network requests, per `MacEvil.md` §62's controlled-browser-automation allowance) or direct correspondence with the operator — not additional URL guessing.
+
+### 8. WSDOT Traffic Cameras (ArcGIS MapServer)
+
+```text
+source:                    WSDOT Traffic Cameras
+provider:                  Washington State DOT (layer also carries cross-border cameras credited
+                            to ODOT/Tripcheck — see finding below)
+jurisdiction:              US-WA (plus at least some US-OR records observed within the same layer)
+official_url:              https://www.wsdot.wa.gov/arcgis/rest/services/Production/WSDOTTrafficCameras/MapServer
+documentation_url:         Layer self-description (fetched directly, see below); separate official
+                            WSDOT Traveler Information API documented at wsdot.wa.gov/traffic/api/
+terms_url:                 Not located for this specific ArcGIS layer; the *separate*, official
+                            WSDOT Traveler Information API explicitly requires an access code and
+                            states third-party ("webflow") data redistribution "will require an
+                            agreement with the Washington State Department of Transportation" —
+                            strong signal to treat this ArcGIS mirror conservatively too, per
+                            MacEvil.md §12 (public accessibility ≠ redistribution permission)
+license:                   UNKNOWN/restrictive — layer declares `"copyrightText":"WSDOT @ 2023"`;
+                            no explicit open-data license found for this specific endpoint
+verification_date:         2026-08-23
+verification_method:       Direct HTTPS GET against the live ArcGIS REST layer metadata and query
+                            endpoints
+access_method:              GOVERNMENT_OPEN (technically open, no auth) but policy UNKNOWN — do not
+                            conflate technical openness with redistribution permission
+authentication:             None required for this ArcGIS endpoint (contrast with WSDOT's official
+                            API, which requires an access code — two different access postures for
+                            related data, a real and non-obvious finding)
+rate_limit:                 Not documented for this endpoint
+observed_format:            ArcGIS REST JSON (Esri feature service)
+
+records_discovered:         1,533 (via `returnCountOnly=true` — an exact server-reported count,
+                            not an estimate)
+records_valid:               5 spot-checked in full (`OBJECTID<6` query) — all carried real fields
+                            (CameraID, CameraTitl, Latitude, Longitude, ImageURL, CameraOwne)
+records_invalid:              not exhaustively validated this session
+source_id_uniqueness:       `CameraID` and `OBJECTID` both present — VERIFIED unique within sample
+
+coordinate_validity:        VERIFIED — sample coordinates (e.g. 45.620483, -122.673999) are
+                            plausible and within the Pacific Northwest
+coordinate_system:           Dual: `Latitude`/`Longitude` attribute fields appear to be plain
+                            decimal degrees, while the ArcGIS `geometry` block uses Web Mercator
+                            (wkid 102100/3857) — exactly the "Web Mercator mistakenly represented as
+                            lat/lon" risk `MacEvil.md` §33 calls out; an adapter must use the
+                            attribute lat/lon fields or explicitly reproject the geometry, never
+                            treat the two interchangeably
+coverage:                    Washington State highways, plus at least one confirmed cross-border
+                            camera credited to Oregon DOT/Tripcheck (I-5 at the Interstate Bridge)
+
+still_available:             Yes — `ImageURL` field present on sampled records, real snapshot URLs
+                            (e.g. tripcheck.com-hosted image for the cross-border camera)
+video_available:             Not established this session
+stream_types:                STILL_IMAGE (per `ImageURL`)
+
+metadata_storage_policy:     UNKNOWN — treat conservatively per license note above
+image_access_policy:          UNKNOWN
+image_redistribution_policy:  UNKNOWN
+video_access_policy:          N/A (no video established)
+video_redistribution_policy:  N/A
+
+result:                     PARTIALLY_VERIFIED
+```
+
+**Real, non-obvious finding:** this ArcGIS layer is **not exclusively Washington cameras** — the first sampled record (`OBJECTID 1`) is credited to `"CameraOwne":"Tripcheck (ODOT)"`, i.e. an Oregon DOT camera included because it sits at a Washington/Oregon border crossing (I-5 at the Interstate Bridge). An adapter must not assume every record in a state-named ArcGIS layer belongs to that state's jurisdiction — the `CameraOwne`/`CameraOw_1` fields must be read and respected per-record, consistent with `MacEvil.md` §33's "coordinates outside source jurisdiction" detection requirement. Also: the layer rejected `resultRecordCount`-based pagination (`"Pagination is not supported"`) — a real technical constraint the eventual adapter must design around (e.g. `OBJECTID`-range batching, as used for this session's spot-check), not assumed to work like a standard paginated ArcGIS service.
+
+---
+
+## Summary (all sources verified to date)
+
+| Source | Result | Category |
+|---|---|---|
+| NWS/NOAA Alerts API | VERIFIED | Event (weather) |
+| USGS Earthquake GeoJSON | VERIFIED | Event (environmental) |
+| INDOT WZDx Feed | VERIFIED — new finding, strongest INDOT license to date | Event (traffic/work-zone) |
+| OpenTrafficCamMap | PARTIALLY_VERIFIED | Camera (aggregator) |
+| FEMA/OpenFEMA Disaster Declarations | VERIFIED | Event (emergency) |
+| Open511 | DEFERRED — no US implementation exists | N/A |
+| OpenEye | FAILED_VALIDATION — documented endpoints don't resolve live; needs browser-based re-investigation | Camera (aggregator, unverified) |
+| WSDOT Traffic Cameras (ArcGIS) | PARTIALLY_VERIFIED | Camera (state DOT) |
+
+Eight sources researched across two batches this session. The remaining ~20+ source families in `projectatlas.md` §6 / `Project ATLAS-WebSite.md` §63 remain open for future sessions.
+
+## Raw evidence archive (Batch 2)
+
+| File | SHA-256 |
+|---|---|
+| `sources/wsdot-arcgis/layer-metadata-2026-08-23.json` | `0a0e230ddfafd3f0f673a30bd3d208b780c3f2308ff2661bbe94b8b124d8e42f` |
+| `sources/wsdot-arcgis/query-sample-2026-08-23.json` | `364f8e9aba36f690ce87edb1a0cea486c2e3dbbdeb165d7a714be02b293d66b2` |
+| `sources/fema-openfema/disaster-declarations-sample-2026-08-23.json` | `c853842215675f15c86ab247bf44df9f2de64e84fffa68e5c825f2dc27df9192` |
+| `sources/openeye-cam/docs-page-raw-2026-08-23.html` | `a379a0da4413ce6af78163bc0a45920143717ca9318498ae92a837e7016da33a` |
+
+The OpenEye raw HTML is archived specifically as evidence *for* the `FAILED_VALIDATION` finding above (proof the docs page is a client-rendered shell with no server-side documentation content), not as evidence of a working source.
