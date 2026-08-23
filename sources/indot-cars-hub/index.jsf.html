@@ -1,0 +1,100 @@
+﻿
+
+
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+
+   <head>
+      <link rel="stylesheet" type="text/css" href="includes/base.css" />
+      <title>CARS-Hub</title>
+   </head>
+   <body>
+      <div class="pageTitle">CARS-Hub</div>
+<div style="padding:20px 10px;">
+   This service is provided by the Indiana Department of Transportation.
+</div>
+      <table border="0" cellpadding="0" cellspacing="0">
+<thead>
+<tr>
+<th class="tablehead" scope="col">Document Type</th>
+<th class="tablehead" scope="col">Document Link</th>
+<th class="tablehead" scope="col">Document Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row1">
+<td class="col1">FEU-t</td>
+<td class="col2"><a href="data/feu-t.xml">data/feu-t.xml</a></td>
+<td class="col3"><a href="schemas/FEU-t.xsd">schemas/FEU-t.xsd</a></td>
+</tr>
+<tr class="row2">
+<td class="col1">FEU-g</td>
+<td class="col2"><a href="data/feu-g.xml">data/feu-g.xml</a></td>
+<td class="col3"><a href="schemas/FEU-g.xsd">schemas/FEU-g.xsd</a></td>
+</tr>
+<tr class="row1">
+<td class="col1">FEU-m</td>
+<td class="col2"><a href="data/feu-m.xml">data/feu-m.xml</a></td>
+<td class="col3"><a href="schemas/FEU-m.xsd">schemas/FEU-m.xsd</a></td>
+</tr>
+<tr class="row2">
+<td class="col1">FEU-w</td>
+<td class="col2"><a href="data/feu-w.xml">data/feu-w.xml</a></td>
+<td class="col3"><a href="schemas/FEU-w.xsd">schemas/FEU-w.xsd</a></td>
+</tr>
+<tr class="row1">
+<td class="col1">FEU-t (indexed)</td>
+<td class="col2"><a href="data/feu-t/index">data/feu-t/index</a></td>
+<td class="col3"><a href="schemas/FEU-index.xsd">schemas/FEU-index.xsd</a></td>
+</tr>
+<tr class="row2">
+<td class="col1">FEU-g (indexed)</td>
+<td class="col2"><a href="data/feu-g/index">data/feu-g/index</a></td>
+<td class="col3"><a href="schemas/FEU-index.xsd">schemas/FEU-index.xsd</a></td>
+</tr>
+<tr class="row1">
+<td class="col1">FEU-i (indexed)</td>
+<td class="col2"><a href="data/feu-i/index">data/feu-i/index</a></td>
+<td class="col3"><a href="schemas/FEU-index.xsd">schemas/FEU-index.xsd</a></td>
+</tr>
+<tr class="row2">
+<td class="col1">FEU-m (indexed)</td>
+<td class="col2"><a href="data/feu-m/index">data/feu-m/index</a></td>
+<td class="col3"><a href="schemas/FEU-index.xsd">schemas/FEU-index.xsd</a></td>
+</tr>
+<tr class="row1">
+<td class="col1">FEU-w (indexed)</td>
+<td class="col2"><a href="data/feu-w/index">data/feu-w/index</a></td>
+<td class="col3"><a href="schemas/FEU-index.xsd">schemas/FEU-index.xsd</a></td>
+</tr>
+<tr class="row2">
+<td class="col1">CCTV</td>
+<td class="col2"><a href="data/cctv.xml">data/cctv.xml</a></td>
+<td class="col3"><a href="schemas/CCTV.xsd">schemas/CCTV.xsd</a></td>
+</tr>
+<tr class="row1">
+<td class="col1">Waze CIFS Feed</td>
+<td class="col2"><a href="data/waze/cifs.xml">data/waze/cifs.xml</a></td>
+<td class="col3"><a href="schemas/Waze-CIFS.xsd">schemas/Waze-CIFS.xsd</a></td>
+</tr>
+</tbody>
+</table>
+
+      <script>
+         document.addEventListener('DOMContentLoaded', function () {
+            const hiddenTypes = ['FEU-w', 'FEU-w (indexed)']; // Add any values you want to hide
+            const rows = document.querySelectorAll('table tbody tr');
+
+            rows.forEach(row => {
+               const firstCell = row.querySelector('td');
+               if (!firstCell) return;
+                  const text = firstCell.textContent.trim();
+               if (hiddenTypes.includes(text)) {
+                  row.style.display = 'none';
+               }
+            });
+         });
+      </script>
+   </body>
+
+</html>

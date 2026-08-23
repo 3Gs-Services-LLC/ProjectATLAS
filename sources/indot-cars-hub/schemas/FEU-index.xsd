@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+      xmlns="http://www.feuevent"
+      xmlns:xs="http://www.w3.org/2001/XMLSchema"
+      targetNamespace="http://www.feuevent"
+      elementFormDefault="unqualified"
+      attributeFormDefault="unqualified"
+      version="1.3">
+
+   <xs:element name="FEUEvents" type="FEU-events"/>
+   <xs:complexType name="EventReference">
+      <xs:sequence>
+         <xs:element name="url" type="Url"/>
+         <xs:element name="file-update-time" type="xs:dateTime"/>
+         <xs:element name="event-update-time" type="xs:dateTime"/>
+         <xs:element name="event-id" type="Event-identifier"/>
+         <xs:element name="update" type="Event-update"/>
+         <xs:element name="status" type="Event-incident-status"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="FEU-events">
+      <xs:sequence>
+         <xs:element name="EventReference" type="EventReference" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="Url">
+      <xs:annotation>
+         <xs:documentation>
+            Definition: URL of the FEU file associated with this event. This URL will reference a non-existent file for
+            terminated events.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string"/>
+   </xs:simpleType>
+   <xs:simpleType name="Event-incident-status">
+      <xs:annotation>
+         <xs:appinfo>
+            updated
+            expired
+            deleted
+         </xs:appinfo>
+         <xs:documentation>
+            Definition: A code which indicates a status of the incident.
+            Remarks: This field contains an indication of whether the event has been modified or terminated (either
+            directly or via the expiration of the event end timer). The allowed values for this field are “deleted”,
+            “expired”, and “updated”. The meaning of these follows:
+            • updated - used for any event that was not deleted or expired. This includes events that were recently
+            created. A newly created event will be indicated by the first occurance of an event identifier in the file
+            • deleted - used to indicate that an event was deleted
+            • expired - used to indicate that an event reached it's natural expiration
+
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="updated"/>
+         <xs:enumeration value="expired"/>
+         <xs:enumeration value="deleted"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="Event-identifier">
+      <xs:annotation>
+         <xs:documentation>
+            Definition: An unique event identifier. This field is an alphanumeric field that contains both the source
+            and a unique alphanumeric identifier.
+            Remarks: Any set of alphanumeric characters up to 32
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="32"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="Event-update">
+      <xs:annotation>
+         <xs:documentation>
+            Definition: This field is incremented every time a change is made to the event record in the TMS.
+            Remarks: Is an INTEGER ranging from 1 .. 65535. If an event ever reaches 65535, the field shall not
+            return to zero. Instead, the event must be ended, and a new event created with the same details but a new
+            event ID number. This will ensure that later updates always have higher update numbers than earlier updates.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:unsignedInt">
+         <xs:minInclusive value="1"/>
+         <xs:maxInclusive value="65535"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>

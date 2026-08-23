@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+   targetNamespace="http://www.northamericanhub.org/cctv"
+   xmlns="http://www.northamericanhub.org/cctv"
+   xmlns:lrms="http://www.northamericanhub.org/lrms"
+   xmlns:feu="http://www.northamericanhub.org"
+   xmlns:ntcip="http://www.northamericanhub.org/ntcip-cctv"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   elementFormDefault="unqualified" 
+   attributeFormDefault="unqualified">
+
+   <xs:import namespace="http://www.northamericanhub.org" schemaLocation="FEU-g.xsd"/>
+   <xs:import namespace="http://www.northamericanhub.org/lrms" schemaLocation="LRMS.xsd"/>
+   <xs:import namespace="http://www.northamericanhub.org/ntcip-cctv" schemaLocation="NTCIP-CCTV.xsd"/>
+   
+   <xs:annotation>
+      <xs:documentation>
+         Edited by Zack Radick, Castle Rock Associates: March 19, 2010
+         Based on original content produced by Mini-Edit [v0.5.243] from TMDD Volume 2
+      </xs:documentation>
+   </xs:annotation>
+   
+   <xs:element name="cctvInventories" type="CctvInventories"/>
+   <xs:complexType name="CctvInventories">
+      <xs:sequence minOccurs="1" maxOccurs="unbounded">
+         <xs:element name="cctvInventory" type="CctvInventory"/>
+      </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="CctvInventory">
+      <xs:sequence>
+         <xs:element name="owner" type="feu:OrganizationInformation"/>
+         <xs:element name="network-id" type="Network-identifier" minOccurs="0"/>
+         <xs:element name="inventory">
+            <xs:complexType>
+               <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                  <xs:element name="inventory-item" type="CctvDetails"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="CctvDetails">
+      <xs:sequence>
+         <xs:element name="device-id" type="Device-identifier"/>
+         <xs:element name="device-updated" type="feu:DateTimeZone"/>
+         <xs:element name="device-name" type="Device-name" minOccurs="0"/>
+         <xs:element name="cctv-image" type="CCTV-image-supported" minOccurs="0"/>
+         <xs:element name="video-url" type="CCTV-url" minOccurs="0"/>
+         <xs:element name="still-images" minOccurs="0">
+            <xs:complexType>
+               <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                 <xs:element name="still-image" type="CctvStillImage" />
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="location" type="CctvLocation" minOccurs="0"/>
+         <xs:element name="views" minOccurs="0">
+            <xs:complexType>
+               <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                  <xs:element name="view" type="RoadwayView"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="range" type="CctvRange" minOccurs="0"/>
+         <xs:element name="timeouts" type="CctvTimeouts" minOccurs="0"/>
+         <xs:element name="presets" minOccurs="0">
+            <xs:complexType>
+               <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                  <xs:element name="preset" type="CctvPreset"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="panoramas" minOccurs="0">
+            <xs:complexType>
+               <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                  <xs:element name="panorama" type="CctvPanorama"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="CctvStillImage">
+      <xs:sequence>
+         <xs:element name="name" type="Still-image-name" minOccurs="0"/>
+         <xs:element name="url" type="CCTV-url"/>
+      </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="CctvLocation">
+      <xs:sequence>
+         <xs:element name="geo-location" type="feu:GeoLocation"/>
+         <xs:element name="link-ownership" type="feu:Link-ownership" minOccurs="0"/>
+         <xs:element name="route-designator" type="feu:Link-route-designator" minOccurs="0"/>
+         <xs:element name="linear-reference" type="feu:Link-location-linear-reference" minOccurs="0"/>
+         <xs:element name="linear-reference-version" type="feu:Link-location-linear-reference-version" minOccurs="0"/>
+         <xs:element name="link-direction" type="feu:Link-direction" minOccurs="0"/>
+         <xs:element name="link-id" type="Device-link-identifier" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="CctvPanorama">
+      <xs:sequence>
+         <xs:element name="panorama-url" type="CCTV-url" minOccurs="0"/>
+         <xs:element name="time-stamp" type="feu:DateTimeZone"/>
+         <xs:element name="position-details" type="PositionDetails"/>
+      </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="CctvPosition">
+      <xs:choice>
+         <xs:element name="preset-id" type="ntcip:PresetPosition"/>
+         <xs:element name="position-details" type="PositionDetails"/>
+      </xs:choice>
+   </xs:complexType>
+   
+   <xs:complexType name="CctvPreset">
+      <xs:sequence>
+         <xs:element name="preset-id" type="ntcip:PresetPosition"/>
+         <xs:element name="position-details" type="PositionDetails"/>
+      </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="CctvRange">
+      <xs:sequence>
+         <xs:element name="max-presets" type="ntcip:RangeMaximumPreset" minOccurs="0"/>
+         <xs:element name="pan-left-limit" type="ntcip:RangePanLeftLimit" minOccurs="0"/>
+         <xs:element name="pan-right-limit" type="ntcip:RangePanRightLimit" minOccurs="0"/>
+         <xs:element name="pan-home" type="ntcip:RangePanHomePosition" minOccurs="0"/>
+         <xs:element name="north-offset" type="ntcip:RangeTrueNorthOffset" minOccurs="0"/>
+         <xs:element name="tilt-up-limit" type="ntcip:RangeTiltUpLimit" minOccurs="0"/>
+         <xs:element name="tilt-down-limit" type="ntcip:RangeTiltDownLimit" minOccurs="0"/>
+         <xs:element name="zoom-limit" type="ntcip:RangeZoomLimit"/>
+         <xs:element name="focus-limit" type="ntcip:RangeFocusLimit" minOccurs="0"/>
+         <xs:element name="iris-limit" type="ntcip:RangeIrisLimit" minOccurs="0"/>
+         <xs:element name="min-pan-step" type="ntcip:RangeMinimumPanStepAngle" minOccurs="0"/>
+         <xs:element name="min-tilt-step" type="ntcip:RangeMinimumTiltStepAngle" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="CctvTimeouts">
+      <xs:sequence>
+         <xs:element name="timeout-pan" type="ntcip:TimeoutPan"/>
+         <xs:element name="timeout-tilt" type="ntcip:TimeoutTilt"/>
+         <xs:element name="timeout-zoom" type="ntcip:TimeoutZoom"/>
+         <xs:element name="timeout-focus" type="ntcip:TimeoutFocus"/>
+         <xs:element name="timeout-iris" type="ntcip:TimeoutIris" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="PositionDetails">
+      <xs:sequence>
+         <xs:element name="position-pan" type="ntcip:PositionPan"/>
+         <xs:element name="position-tilt" type="ntcip:PositionTilt"/>
+         <xs:element name="position-zoom" type="ntcip:PositionZoomLens"/>
+         <xs:element name="position-focus" type="ntcip:PositionFocusLens" minOccurs="0"/>
+         <xs:element name="position-iris" type="ntcip:PositionIrisLens" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="RoadwayView">
+      <xs:sequence>
+         <xs:element name="link-ownership" type="feu:Link-ownership"/>
+         <xs:element name="route-designator" type="feu:Link-route-designator"/>
+         <xs:element name="primary-location" type="ViewLimit"/>
+         <xs:element name="secondary-location" type="ViewLimit"/>
+      </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="ViewLimit">
+      <xs:sequence>
+         <xs:element name="linear-reference" type="feu:Link-location-linear-reference"/>
+         <xs:element name="linear-reference-version" type="feu:Link-location-linear-reference-version" minOccurs="0"/>
+         <xs:element name="link-direction" type="feu:Link-direction"/>
+      </xs:sequence>
+   </xs:complexType>
+   
+   <xs:simpleType name="CCTV-image-supported">
+      <xs:annotation>
+         <xs:appinfo>
+            jpeg (1)
+            tiff (2)
+            mpeg (3)
+            other (4)
+         </xs:appinfo>
+      </xs:annotation>
+      <xs:union>
+         <xs:simpleType>
+            <xs:restriction base="xs:unsignedInt">
+               <xs:minInclusive value="1"/>
+               <xs:maxInclusive value="4"/>
+            </xs:restriction>
+         </xs:simpleType>
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:enumeration value="jpeg"/>
+               <xs:enumeration value="tiff"/>
+               <xs:enumeration value="mpeg"/>
+               <xs:enumeration value="other"/>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:union>
+   </xs:simpleType>
+   
+   <xs:simpleType name="CCTV-url">
+      <xs:annotation>
+         <xs:documentation>
+            A URL comprised of any set of ASCII characters up to 256
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="256"/>
+      </xs:restriction>
+   </xs:simpleType>
+   
+   <xs:simpleType name="Device-identifier">
+      <xs:annotation>
+         <xs:documentation>
+            An identifier comrpised of a set of alphanumeric characters up to 32
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="32"/>
+      </xs:restriction>
+   </xs:simpleType>
+   
+   <xs:simpleType name="Device-link-identifier">
+      <xs:annotation>
+         <xs:documentation>
+            An identifier comrpised of a set of alphanumeric characters up to 32
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="32"/>
+      </xs:restriction>
+   </xs:simpleType>
+   
+   <xs:simpleType name="Device-name">
+      <xs:annotation>
+         <xs:documentation>
+            A name comrpised of a set of ASCII characters up to 128
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="32"/>
+      </xs:restriction>
+   </xs:simpleType>
+   
+   <xs:simpleType name="Network-identifier">
+      <xs:annotation>
+         <xs:documentation>
+            An identifier comrpised of a set of alphanumeric characters up to 32
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="32"/>
+      </xs:restriction>
+   </xs:simpleType>
+   
+   <xs:simpleType name="Still-image-name">
+      <xs:annotation>
+         <xs:documentation>
+            A name comrpised of a set of ASCII characters up to 128
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="128"/>
+      </xs:restriction>
+   </xs:simpleType>
+   
+</xs:schema>
