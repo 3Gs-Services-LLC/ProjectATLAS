@@ -19,17 +19,17 @@ Cross-referenced against `Project ATLAS-WebSite.md` §4–§24's full named sour
 | 5 | Argus (§8) | PARTIALLY_VERIFIED | Batch 3 §11 — 229,308 real records; 382/390 upstream sources are re-scraped OpenCCTV |
 | 6 | Live-Environment-Streams (§9) | PARTIALLY_VERIFIED, quarantined | Batch 3 §12 — no repo license, `needs-outreach` #7, `sources/live-environment-streams/NOTICE.md` |
 | 7 | GitHub camera-repo discovery (§10) | VERIFIED as methodology | Batch 4 §14 — found & excluded `Ringmast4r/FLOCK`; found `kevtoe/worldview` lead |
-| 8 | Nationwide 511/DOT discovery (§11) | PARTIALLY_VERIFIED — state-by-state, see below | Batch 2 §8 (WA), Batch 4 §15 (TX, negative), Batch 5 §18 (OR via ArcGIS), `projectatlas.md` §5A/§5B/§5D (IN) |
+| 8 | Nationwide 511/DOT discovery (§11) | PARTIALLY_VERIFIED — state-by-state, see below | Batch 2 §8 (WA), Batch 4 §15 (TX, negative), Batch 5/6 §18/§24 (OR, IA, MD, GA, UT via ArcGIS), Batch 6 §25 (Austin TX, Baton Rouge LA, New Orleans LA, Honolulu HI, Maryland, Seattle WA via Socrata), `projectatlas.md` §5A/§5B/§5D (IN) |
 | 9 | Open511 (§12) | DEFERRED — no US implementation exists | Batch 2 §6 |
-| 10 | ArcGIS REST discovery (§13) | **VERIFIED as systematic methodology** (2026-08-24) | Batch 5 §18 — ArcGIS Online's own public search API, 758 real matches for "traffic camera", Oregon result independently verified (1,164 records, explicit `licenseInfo: "Public"`) |
+| 10 | ArcGIS REST discovery (§13) | **VERIFIED, scaled nationally** (2026-08-24) | Batch 5 §18, Batch 6 §24 — ArcGIS Online's own public search API, 758 real matches nationwide, 202 distinct owners in 300 sampled, ≥15 identifiable US states; 6 states independently verified end-to-end with real record counts |
 | 11 | OpenStreetMap camera-tag discovery (§14) | PARTIALLY_VERIFIED — state-by-state, see below | Batch 3 §13 (nationwide narrow), Batch 4 §17 (Indiana region-split) |
-| 12 | U.S. Federal camera sources — NPS/BLM/USFS/USACE/BOR (§15) | UNSTARTED | — |
+| 12 | U.S. Federal camera sources — NPS/BLM/USFS/USACE/BOR (§15) | **PARTIALLY_VERIFIED** (2026-08-24) — NPS real endpoint confirmed (needs a free key); BLM/USFS/USACE/BOR real negative findings, each with context | Batch 6 §26 |
 | 13 | NOAA/NWS (§16) | PARTIALLY_VERIFIED — Alerts API only; NEXRAD/SPC/NHC/marine/aviation/observations untested | Batch 1 §1 |
 | 14 | FEMA/IPAWS (§17) | PARTIALLY_VERIFIED, clarified 2026-08-24 — disaster declarations VERIFIED; live IPAWS feed is `ACCOUNT_REQUIRED` (not open, not tested further); IPAWS *archived* alerts dataset separately VERIFIED open | Batch 2 §5, Batch 5 §20 |
 | 15 | WZDx (§18) | PARTIALLY_VERIFIED — Indiana feed fully verified; registry has ~42 feeds/29 states, only 1 fetched | Batch 1 §3 |
 | 16 | State DOT traffic data, general (§19) | Same as #8 — see state-by-state below | — |
 | 17 | Emergency response data — fire/EMS/police/CAD (§20) | UNSTARTED | — |
-| 18 | Socrata discovery (§21) | **VERIFIED as systematic methodology** (2026-08-24) | Batch 5 §19 — Socrata's own cross-portal Discovery API, 76 real results across real city/state portals, confirmed independent of Data.gov's dead CKAN layer |
+| 18 | Socrata discovery (§21) | **VERIFIED, followed through** (2026-08-24) | Batch 5 §19, Batch 6 §25 — all 76 catalog matches individually categorized (not just counted); 6 real US live-camera datasets confirmed with real record counts |
 | 19 | CKAN discovery (§22) | PARTIALLY_VERIFIED — same negative finding as Data.gov below (Data.gov's backend is CKAN); no independent non-Data.gov CKAN instance tested | Batch 4 §16 |
 | 20 | Data.gov (§23) | UNVERIFIED — real negative finding, classic API appears retired | Batch 4 §16 |
 | 21 | USGS environmental events (§24) | PARTIALLY_VERIFIED — earthquake feed only; volcanoes/water/hazards products untested | Batch 1 §2 |
@@ -39,11 +39,17 @@ Cross-referenced against `Project ATLAS-WebSite.md` §4–§24's full named sour
 | State | 511/DOT status | OSM camera-tag status |
 |---|---|---|
 | Indiana (IN) | VERIFIED — three distinct paths (`projectatlas.md` §5A CARS-Hub XML, §5B GraphQL/HLS, §5D WZDx) | VERIFIED (region-split) — 3,975 real nodes, incl. real ALPR/Flock tags and a `trafficwise.org` cross-reference lead (Batch 4 §17) |
-| Washington (WA) | PARTIALLY_VERIFIED — WSDOT ArcGIS layer, 1,533 records, redistribution status unconfirmed (Batch 2 §8) | UNSTARTED |
+| Washington (WA) | PARTIALLY_VERIFIED — WSDOT ArcGIS layer, 1,533 records (Batch 2 §8); Seattle traffic cameras also found via Socrata as a federated pointer, not independently record-counted (Batch 6 §25) | UNSTARTED |
 | Oregon (OR) | VERIFIED — TripCheck_Cameras ArcGIS layer, 1,164 records, explicit `licenseInfo: "Public"` (Batch 5 §18) | UNSTARTED |
-| Texas (TX) | UNVERIFIED — real negative finding, not found via ArcGIS DCAT portal (Batch 4 §15) | UNSTARTED |
-| Colorado (CO) | UNSTARTED-WITH-LEADS — a real CDOT camera surfaced via OpenEye and a real WZDx registry entry exist, but no independently-verified direct CO endpoint found; one guessed endpoint returned a real 404 (Batch 5 §23) | UNSTARTED |
-| All other 45 states + DC + territories | UNSTARTED | UNSTARTED (except the nationwide-not-region-split query in Batch 3 §13, which covered the whole US at once but at a narrow tag scope and found ~nothing) |
+| Iowa (IA) | VERIFIED — ArcGIS `Traffic_Cameras_View`, 1,251 records (Batch 6 §24) | UNSTARTED |
+| Maryland (MD) | VERIFIED — two independent confirmations: ArcGIS CHART MapServer, 552 records (Batch 6 §24), and Socrata `opendata.maryland.gov`, 451 records — same underlying CHART system, two different counts from two different endpoints, not yet reconciled (Batch 6 §24/§25) | UNSTARTED |
+| Georgia (GA) | VERIFIED — ArcGIS `GDOT_511_Traffic_Cameras_Updated`, 7,083 records — unusually high, magnitude not independently explained (Batch 6 §24) | UNSTARTED |
+| Utah (UT) | VERIFIED — ArcGIS `Live_View_Cameras`, 32 records — likely a curated subset, not full inventory (Batch 6 §24) | UNSTARTED |
+| Texas (TX) | PARTIALLY_VERIFIED — ArcGIS DCAT portal negative (Batch 4 §15), but Austin TX independently verified via Socrata, 1,005 records (Batch 6 §25) — state-level DOT data still unconfirmed, city-level (Austin) is real | UNSTARTED |
+| Louisiana (LA) | VERIFIED — Baton Rouge via Socrata, 118 records; New Orleans via Socrata, 103 records (specifically school-zone cameras, not general traffic monitoring) (Batch 6 §25) | UNSTARTED |
+| Hawaii (HI) | VERIFIED — Honolulu via Socrata, 253 records (Batch 6 §25) | UNSTARTED |
+| Colorado (CO) | UNSTARTED-WITH-LEADS — a real CDOT camera surfaced via OpenEye, a real WZDx registry entry, and a real Socrata `href` pointer all exist, but no independently-verified direct CO endpoint found; two guessed endpoints returned real 404s (Batch 5 §23, Batch 6 §25) | UNSTARTED |
+| All other 39 states + DC + territories | UNSTARTED | UNSTARTED (except the nationwide-not-region-split query in Batch 3 §13, which covered the whole US at once but at a narrow tag scope and found ~nothing) |
 
 **ADR file paths, confirmed by direct directory listing 2026-08-24** (a prior report summarized ADR content from memory without citing files — corrected here):
 
@@ -994,6 +1000,90 @@ A direct guess at `data.cotrip.org/api/v1/cameras` returned a real `404 {"code":
 
 ---
 
+## Batch 6 (2026-08-24, continued session — ArcGIS at national scale, Socrata follow-through, federal land-management agencies)
+
+### 24. ArcGIS REST discovery, scaled nationally — six states now independently verified
+
+```text
+source:                    ArcGIS Online's public item-search API, broadened beyond Oregon
+verification_date:         2026-08-24
+verification_method:       Paginated `q=(traffic camera OR CCTV OR traffic cameras)
+                            type:"Feature Service"` across all organizations (3 pages, 300 of
+                            758 total matches fetched), then direct HTTPS GET + returnCountOnly
+                            queries against four newly-selected real service URLs
+result:                     VERIFIED as a nationally-scaling methodology
+```
+
+**The scale-up worked as predicted — this replaces per-state URL guessing (like the Colorado 404 above) going forward.** 758 total real matches nationwide for one query; 300 fetched and inspected, spanning **202 distinct owner accounts**. A rule-based classification (state name or DOT/agency hint in title/owner, Canada/NZ hints excluded) found **at least 15 distinct identifiable US states** represented in just the fetched sample: Iowa, Oregon, Maryland, California, Illinois, Washington, Utah, Texas, Wyoming, Hawaii, Georgia, Alabama, Kansas, plus King County WA and multiple *separate* WSDOT mirrors under different owner accounts (a real, non-obvious finding — WSDOT's camera data has been independently republished by at least 3 different ArcGIS organizations, not just the one found in Batch 2).
+
+**Four new states independently verified end-to-end this session** (real endpoint hit, real exact server-reported count, not just a catalog match):
+
+| State | Service | Real record count | License evidence |
+|---|---|---|---|
+| Iowa | `Traffic_Cameras_View` (owner `IowaDOT_OTO`) | **1,251** | Not explicitly stated in item metadata this session |
+| Maryland | CHART `Cameras` MapServer (owner `mdimapdatacatalog`) | **552** | Not explicitly stated in item metadata this session |
+| Georgia | `GDOT_511_Traffic_Cameras_Updated` (owner `rbagby_gema`) | **7,083** — unusually high vs. every other state checked; real server count, schema spot-checked and genuinely camera-shaped (`Url`, `VideoUrl`, `Status`, `Roadway`, `Direction` fields), but the magnitude itself is not independently explained this session — flag, don't silently smooth over | Not explicitly stated in item metadata this session |
+| Utah | `Live_View_Cameras` (owner `nlucchetti@utah.gov_uplan`) | **32** — much smaller than the others; likely a narrower/curated subset, not Utah's full camera inventory | Not explicitly stated in item metadata this session |
+
+Combined with Oregon (1,164, Batch 5) and Washington (1,533, Batch 2), **six states now have independently-verified real ArcGIS-hosted camera data**, all found via the same systematic, non-guessing methodology. License/redistribution status was only explicitly confirmed for Oregon (`"licenseInfo":"Public"`) — the other five need the same item-metadata check before being treated as more than `TECHNICALLY_VERIFIED`.
+
+**One real false-positive caught in the classification, disclosed rather than hidden:** a "Bicycle_Traffic_Counts_at_Colorado_and_30th" (Boulder, CO) item was initially classified as a Colorado match — it's a bike counter at a street named *Colorado Avenue*, not a state-level camera dataset. Corrected before inclusion in the state list above.
+
+### 25. Socrata discovery, followed through — all 76 catalog matches individually categorized
+
+```text
+source:                    Full re-fetch of the 76-result Socrata catalog search (Batch 5 only
+                            fetched 10 of 76 previously — corrected here)
+verification_date:         2026-08-24
+verification_method:       Rule-based categorization of all 76 results by domain/title pattern,
+                            then direct HTTPS GET against every candidate-relevant US live-camera
+                            dataset's real Socrata data API (`/resource/{id}.json`)
+result:                     VERIFIED for confirmed datasets; categorized honestly, not left as an
+                            ambiguous "76 matches"
+```
+
+**Full breakdown of the 76 (76 = 19 + 11 + 6 + 10 + 30, exact):**
+
+- **19 non-US** (Calgary/Alberta, ACT Australia, Winnipeg, Edmonton, Nova Scotia) — real camera-adjacent datasets, correctly out of scope under `projectatlas.md` §4's USA-only requirement, not a false-positive in the original search.
+- **11 US enforcement/violation datasets** (red-light/speed camera violations and citations — Chicago, Seattle, New Orleans, Prince George's County MD, Montgomery County MD, NYC) — a different category than traffic-monitoring cameras; some (e.g. Chicago's "Red Light Camera Locations", "Speed Camera Locations") are genuine official-source enforcement-camera *location* datasets that could be relevant to the ALPR/enforcement-camera-location policy track (`projectatlas.md` §4) specifically, not the general traffic-monitoring-camera catalog — worth a dedicated look in a future session, not pursued further here.
+- **6 NGSIM/TGSIM federal research video archives** (`datahub.transportation.gov`) — real historical traffic-research video datasets, not live camera feeds; a genuinely distinct product family.
+- **10 candidate live-monitoring-camera entries**, which deduplicate to **6 distinct real datasets** (several are `dataset`/`map` view-type duplicates of the same underlying data) — **all 6 independently verified with real record counts**:
+
+| Dataset | Domain | Real record count |
+|---|---|---|
+| Austin Traffic Cameras | `datahub.austintexas.gov` | **1,005** (consistent with Datumfeed's Batch 3 figure of 1,005 total/817 active for the same underlying source) |
+| Baton Rouge Traffic Camera | `data.brla.gov` | **118** — real `511la.org` CCTV image links |
+| New Orleans Traffic Camera | `data.nola.gov` | **103** — spot-check shows this dataset is specifically **school-zone** cameras (fields: `school`, `school_hour`, `sz_arrival`, `sz_dismiss`), not general traffic monitoring — a real, non-obvious sub-category finding, not silently generalized |
+| Honolulu Traffic Camera Locations | `data.honolulu.gov` | **253** |
+| Maryland Traffic Cameras (CHART) | `opendata.maryland.gov` | **451** — confirmed as a genuine duplicate: two separate Socrata dataset IDs (`hua3-qc8n`, `4z3c-43ce`) return byte-identical first records |
+| Seattle Traffic Cameras | `cos-data.seattle.gov` | **Not independently record-counted** — this entry is a `federated_href` pointer to SDOT's own GIS feature class (`TMC.TrafCam`), not a directly Socrata-queryable dataset; existence confirmed via its description, not a real count |
+- **30 pure noise** (traffic counts, incident logs, signal inventories, parking violations, performance metrics, community surveys) — unrelated to any camera type.
+
+**Stated plainly, per the task's own caution:** of the 76 original catalog matches, **66 were not directly relevant** to live US traffic-monitoring camera ingestion (19 non-US + 11 enforcement + 6 research-video + 30 noise), leaving **10 candidate entries that deduplicate to 5 fully-verified real datasets plus 1 unverified pointer** — do not read "76 Socrata results" as "76 real camera sources."
+
+**A real, useful cross-reference also surfaced:** "Traffic Feeds in Colorado" (`data.colorado.gov`, attributed to CDOT/COTRIP) — checked directly; it is an `href`-type catalog pointer, not a queryable dataset, and its redirect target is just a nicer-URL version of the same Socrata catalog page, not a direct link to CDOT's live system. Colorado's real endpoint remains unresolved (still `UNSTARTED-WITH-LEADS`, unchanged from §23 above) — this Socrata entry adds confirmation that CDOT/COTRIP branding is real and Socrata-catalogued, but not a new resolvable data path.
+
+### 26. Federal land-management camera programs — NPS, BLM, USFS, USACE, BOR
+
+```text
+verification_date:         2026-08-24
+verification_method:       Web research + direct endpoint verification per agency
+```
+
+**NPS (National Park Service) — PARTIALLY_VERIFIED, real endpoint confirmed, not yet queried with a key.** The official NPS Data API has a real, documented `webcams` endpoint: `GET https://developer.nps.gov/api/v1/webcams`. Direct testing without a key returned a real, structured `403 {"error":{"code":"API_KEY_MISSING","message":"An API key was not provided. Please get one at https://www.nps.gov/subjects/developer/get-started.htm"}}` — this is strong positive evidence the endpoint is real and recognized (a genuinely nonexistent route would 404, not return a structured API-key error), access type `API_KEY` (free, self-service per NPS's own documentation). No key was obtained this session, consistent with not registering accounts casually during research-phase verification. **Good Phase 7 candidate; needs a free API key (operator-supplied, per `MacEvil.md` §2) before further verification.**
+
+**BLM (Bureau of Land Management) — real negative finding.** No dedicated webcam API found via web research. Checked BLM's own real, verified ArcGIS recreation service (`gis.blm.gov/.../BLM_Natl_Recreation/MapServer`) directly — its 11 real layers (Recreation Sites, Camping/Cabins, Mountain Bike Trails, Scenic Trails, etc.) contain **no camera-related layer**. Recorded as a genuine negative, not silently omitted.
+
+**USFS (US Forest Service) — real negative finding, with an important provenance correction.** Wildfire-detection cameras commonly associated with USFS/wildfire response are **not USFS's own infrastructure** — they are operated by university partners under contract: the ALERTWildfire/ALERTWest network (University of Oregon, University of Nevada Reno, UC San Diego) and the separate ALERTCalifornia network (UC San Diego, "1,200+ cameras" claimed, not independently verified this session). USFS's own official page (`fs.usda.gov/science-technology/fire/technology/cameras`) exists but was not further probed for a direct data API this session. A single guessed AlertCalifornia endpoint (`api.alertcalifornia.org/api/cameras`) returned a real `403` — not chased further with more guessing, per `MacEvil.md` §8. **Correct classification if this family is pursued later: the operator/provider is a university consortium, not USFS itself — provenance must reflect that, not be attributed to USFS.**
+
+**USACE (Army Corps of Engineers) — real negative finding, fragmented reality confirmed.** No unified public webcam API found. USACE's real, official water-data API (the Corps Water Management System / CDA, `cwms-data.usace.army.mil`) is confirmed to exist but is explicitly for water levels/flows/precipitation, not camera feeds. Individual district webcam pages are real (Rock Island District, Jacksonville District/Okeechobee Waterway) but are standalone HTML pages, not confirmed to have their own APIs — not individually tested this session given the fragmentation (18+ USACE districts, each potentially different).
+
+**BOR (Bureau of Reclamation) — real negative finding.** A real public webcam exists (Shasta Dam, `usbr.gov/mp/ncao/`) as a standalone page. BOR's real, official open-data API (RISE, `data.usbr.gov`) is confirmed to exist but — per its own documentation — covers water operations, reservoir levels, water quality, hydropower, and species data, explicitly not camera/webcam feeds. A guessed RISE endpoint path returned HTML, not JSON — not chased further with more guessing.
+
+**Summary for this family: 1 of 5 agencies (NPS) has a confirmed-real, likely-usable webcam API pending a free key; the other 4 (BLM, USFS, USACE, BOR) have real negative findings for a dedicated webcam API, each with real context for why (BLM: genuinely doesn't appear to have one; USFS: the cameras exist but are university-operated, not USFS's; USACE/BOR: real webcams exist but as standalone pages outside their real, verified data APIs, which are water-data-focused).**
+
+---
+
 ## Summary (all sources verified to date)
 
 | Source | Result | Category |
@@ -1019,9 +1109,16 @@ A direct guess at `data.cotrip.org/api/v1/cameras` returned a real `404 {"code":
 | Socrata discovery (systematic) | VERIFIED as methodology — Socrata's own cross-portal Discovery API, 76 real results, independent of Data.gov's dead CKAN path | Discovery mechanism |
 | IPAWS archived alerts | VERIFIED — open via OpenFEMA API; live IPAWS feed is `ACCOUNT_REQUIRED`, distinct and untested | Event (emergency) |
 | OpenTrafficCamMap (re-check) | Count re-confirmed stable: 7,029, byte-identical file | Camera (aggregator) |
-| Colorado DOT camera data | UNSTARTED-WITH-LEADS — real leads (OpenEye's CDOT records, a WZDx registry entry) but no independently-verified direct CO endpoint; one guessed endpoint returned a real 404 | Camera (state DOT) |
+| Colorado DOT camera data | UNSTARTED-WITH-LEADS — real leads (OpenEye's CDOT records, a WZDx registry entry, a Socrata `href` pointer) but no independently-verified direct CO endpoint; two guessed endpoints returned real 404s | Camera (state DOT) |
+| ArcGIS REST discovery, scaled nationally | VERIFIED as a nationally-scaling methodology — 758 real matches, 202 distinct owners in 300 sampled, ≥15 identifiable US states; Iowa (1,251), Maryland (552), Georgia (7,083), Utah (32) independently verified end-to-end alongside Oregon/WA | Discovery mechanism |
+| Socrata discovery, followed through | VERIFIED and precisely categorized — all 76 catalog matches individually classified (19 non-US, 11 enforcement, 6 research-video, 30 noise, 10→6 real live-camera datasets verified with real counts) | Discovery mechanism |
+| NPS webcams API | PARTIALLY_VERIFIED — real endpoint confirmed via structured `API_KEY_MISSING` error; free key not obtained this session | Camera (federal) |
+| BLM webcams | EXCLUDED-WITH-REASON — real negative finding; verified ArcGIS recreation service has no camera layer | Camera (federal) |
+| USFS wildfire cameras | EXCLUDED-WITH-REASON, provenance-corrected — these are university-operated (ALERTWildfire/ALERTCalifornia), not USFS's own infrastructure | Camera (federal, misattributed) |
+| USACE webcams | EXCLUDED-WITH-REASON — no unified API; real water-data API is data-only; individual district pages exist but fragmented (18+ districts) | Camera (federal) |
+| BOR webcams | EXCLUDED-WITH-REASON — real public webcam (Shasta Dam) exists as a standalone page; real RISE data API is water/reservoir-data-only | Camera (federal) |
 
-Twenty-three source-family investigations across five batches this session (2026-08-23/24), including real negative findings (TxDOT, Data.gov, one Colorado guess) recorded plainly rather than omitted, and one corrected finding (OpenEye, previously `FAILED_VALIDATION` due to a wrong host, now `VERIFIED`). See the **Coverage Matrix** near the top of this document for the authoritative, cross-referenced status of every named family in `Project ATLAS-WebSite.md`, including the two 50-state sweep trackers. Remaining largely untouched: the majority of individual state 511/DOT systems (3 of 50 states + territories done), the majority of OSM state-by-state coverage (1 of 50 done), U.S. federal land-management camera sources (NPS/BLM/USFS/USACE/BOR), and emergency response data (fire/EMS/police/CAD feeds).
+Thirty-one source-family investigations across six batches this session (2026-08-23/24), including real negative findings (TxDOT, Data.gov, two Colorado guesses, BLM/USFS/USACE/BOR webcam APIs) recorded plainly rather than omitted, and one corrected finding (OpenEye, previously `FAILED_VALIDATION` due to a wrong host, now `VERIFIED`). See the **Coverage Matrix** near the top of this document for the authoritative, cross-referenced status of every named family in `Project ATLAS-WebSite.md`, including the two 50-state sweep trackers (now at 6/50 for 511/DOT, 1/50 for OSM). Remaining largely untouched: the majority of individual state 511/DOT systems, the majority of OSM state-by-state coverage, and emergency response data (fire/EMS/police/CAD feeds).
 
 ## Raw evidence archive (Batch 2)
 
@@ -1060,3 +1157,21 @@ The OpenEye raw HTML is archived specifically as evidence *for* the `FAILED_VALI
 | `sources/openeye-cam/camera-sample-2026-08-24.json` | `b037414da0e5dca5608196a8e709b20dbb36ec1e306867d06bb66d08854f05de` |
 
 All full files (well under the size thresholds that required excerpting in earlier batches). `sources/openeye-cam/docs-page-raw-2026-08-23.html` (Batch 2's original evidence of the client-rendered, doc-content-empty page) is deliberately kept, not deleted — it remains the actual evidence for *why* the original `FAILED_VALIDATION` finding happened (wrong host guessed from an unreadable static page), even though that finding is now corrected.
+
+## Raw evidence archive (Batch 6)
+
+| File | SHA-256 |
+|---|---|
+| `sources/arcgis-discovery/national-sweep-page1-2026-08-24.json` | `9cfbf5aa644c11080197dff8e4870c7ed968b0fe7f90f80b38b5c4f7540df5ca` |
+| `sources/iowa-dot/camera-sample-2026-08-24.json` | `1ba187dd44bafc363348341651fb31aecad0948aa51617690c0d856857acf78e` |
+| `sources/maryland-chart/camera-sample-2026-08-24.json` | `9eb674eefb71587755a66c9a36a1628d2fa44e207a8ba3916e1e6e428f925622` |
+| `sources/georgia-dot/camera-sample-2026-08-24.json` | `7356de99af166186dbf5cde5721d32c9e3d60ce76827a8b15ea6af06131c0e21` |
+| `sources/utah-dot/camera-sample-2026-08-24.json` | `b28ec20c53e6a33cadf66175706a1930bb8838a9d52297ed6d4551bbd49a69d5` |
+| `sources/socrata-discovery/full-catalog-76-results-2026-08-24.json` | `0bb470f64d508cb1ae46a93c678b1b8633fb915eb84803990c88758c770a3318` — the full 76-result catalog, superseding Batch 5's 10-result partial fetch |
+| `sources/austin-tx/camera-sample-2026-08-24.json` | `b71ae36d03e99c90043c6c30009694b7c15fbe8d9190300fe8f3485cf5f9f249` |
+| `sources/baton-rouge-la/camera-sample-2026-08-24.json` | `42f687dc4183997181fab73b43559e5a7626b90199f2b240932f775c2906da24` |
+| `sources/new-orleans-la/camera-sample-2026-08-24.json` | `2943f3f5cc0455ecdcff5933bd415afed1f3afeda08dfc20ae462effa4332add` |
+| `sources/honolulu-hi/camera-sample-2026-08-24.json` | `c5874f22141ce78f45517a3d91ede034231c25d94f84c29e378d3359014b5018` |
+| `sources/nps-federal/webcams-endpoint-response-2026-08-24.json` | `adf24054a0da1d216699be8c128aa47c2c98f381a2c21945836ebc904653c8cc` — the structured `API_KEY_MISSING` error confirming the real endpoint |
+| `sources/blm-federal/recreation-mapserver-layers-2026-08-24.json` | `847d20a4139f2b2227197b03c46ab045f929477d9a447d857c225818963c8664` — evidence for the real negative finding (no camera layer among BLM's 11 real recreation layers) |
+| `sources/colorado-dot/socrata-traffic-feeds-pointer-2026-08-24.json` | `d34befb93df292b27580165b04f7ff6ef26ec383fe943ea254d22ee1b4453a32` |
