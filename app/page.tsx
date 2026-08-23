@@ -34,6 +34,8 @@ function loadStats() {
   return { total: geo.features.length, cameraCount, workzoneCount, states, sources };
 }
 
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export default function Home() {
   const { total, cameraCount, workzoneCount, states, sources } = loadStats();
 
@@ -41,7 +43,7 @@ export default function Home() {
     <div className="atlas-shell">
       <aside className="atlas-sidebar">
         <div className="atlas-brand">
-          <img src="/ProjectATLAS%20Main%20Logo.png" alt="ProjectATLAS" />
+          <img src={`${BASE_PATH}/ProjectATLAS%20Main%20Logo.png`} alt="ProjectATLAS" />
           <div>
             <h1>PROJECT ATLAS</h1>
             <div className="atlas-brand-sub">Phase 1 evidence preview</div>
@@ -127,7 +129,7 @@ export default function Home() {
         <div className="map-title-overlay">
           U.S. public camera &amp; work-zone locations — real, verified data
         </div>
-        <MapClient dataUrl="/data/cameras.geojson" />
+        <MapClient dataUrl={`${BASE_PATH}/data/cameras.geojson`} />
       </div>
     </div>
   );

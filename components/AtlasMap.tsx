@@ -1,9 +1,27 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, CircleMarker, Popup, useMap } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import "leaflet/dist/leaflet.css";
+
+// Leaflet measures its container's size once, synchronously, at construction
+// time. In a CSS Grid layout (.atlas-shell's 340px/1fr columns), that
+// measurement can race the grid finishing layout, leaving Leaflet convinced
+// the map is much smaller than it actually is -- tiles and clusters then
+// stay stuck at whatever tiny viewport it first measured. A ResizeObserver
+// on the real container size is the standard fix: it re-measures whenever
+// the container's actual size changes, not just once at mount.
+function ResizeHandler() {
+  const map = useMap();
+  useEffect(() => {
+    const container = map.getContainer();
+    const ro = new ResizeObserver(() => map.invalidateSize());
+    ro.observe(container);
+    return () => ro.disconnect();
+  }, [map]);
+  return null;
+}
 
 type CameraFeature = {
   type: "Feature";
@@ -35,6 +53,7 @@ export default function AtlasMap({ data }: { data: FC }) {
       maxZoom={17}
       style={{ height: "100%", width: "100%" }}
     >
+      <ResizeHandler />
       <TileLayer
         url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
         attribution='&copy; <a href="https://carto.com/attributions">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
