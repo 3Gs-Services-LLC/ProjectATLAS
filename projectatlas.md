@@ -21,7 +21,13 @@
 | `ASSETS.md` | What the logo/PSD brand files actually are and how they're meant to be used | Added 2026-08-23 so a future session doesn't have to guess. |
 | `ATLAS-KICKOFF-PROMPT.md` | The literal text to paste into Claude Code to start a session | Now just points here — see note in that file. |
 | `GIT-SYNC-PROMPT.md` | The prompt that brought this repo under git and pushed it to GitHub | One-time setup, kept for reference. |
+| `GITHUB-ISSUES-AND-SYNC-PROMPT.md` | The prompt that filed the three human-only GitHub Issues and did the first commit/push | One-time setup, kept for reference. |
 | `ATLAS-PROMPT-AMENDMENTS.md` | An earlier round of corrections | **Superseded.** Everything in it has been folded into this file. Kept on disk only as a dated historical record — do not treat it as authoritative going forward. |
+| `docs/ATLAS-ASSESSMENT.md` | Phase 0 repository/requirements audit, per `MacEvil.md` §7/§131 | Added 2026-08-23. Confirms the empty-repository starting state and classifies every existing file KEEP/CHANGE/REMOVE/ADD. |
+| `docs/adr/000*-*.md` | Initial Architecture Decision Record set (tech stack, adapter architecture, migrations, identity resolution, media retention, safe-fetch layer) | Added 2026-08-23 per `MacEvil.md` §131 — the first concrete technology-stack decision for this repository. |
+| `docs/research/PHASE1-SOURCE-VERIFICATION.md` | Phase 1 source-verification reports (first slice: NWS, USGS, INDOT WZDx, OpenTrafficCamMap), per `MacEvil.md` §10 | Added 2026-08-23. Discovered the INDOT WZDx path documented as new §5D below. |
+| `ChatGPT MacEvil to ProjectATLAS handoff.md` (root) | Original, pre-split raw handoff document | **Stale duplicate**, confirmed 2026-08-23 — `docs/INDOT-handoff-primary.md` is this same content plus one dated note. Flagged for removal pending operator confirmation; not deleted unilaterally. |
+| `video_api_captures.md` (root) | A duplicate copy of `docs/INDOT-handoff-supplemental.md`'s content | **Stale duplicate, and a misleading filename** — confirmed 2026-08-23 this is *not* the lost `video_api_captures.json` capture, just a markdown copy of the already-cataloged recovered-memory document. Flagged for removal pending operator confirmation; not deleted unilaterally. |
 
 `MacEvil.md` §92, §122, and §79 now each carry a short dated note pointing back to this file at the exact spot where a reader would otherwise hit a contradiction or a duplicate — added 2026-08-23 so the doctrine document is safe to read on its own, not just through the kickoff flow.
 
@@ -149,6 +155,16 @@ This is the path documented in `docs/INDOT-handoff-primary.md` and `docs/INDOT-h
 
 Whether CCTV XML `device-id` values correspond 1:1 with GraphQL camera identifiers (the `INDOT_<number>_<hash>` pattern) has **never been proven** by either investigation. Do not assume a simple string match works; this is real Phase 7 adapter work, not a lookup.
 
+### 5D. INDOT Work Zone Data Exchange (WZDx) feed — NEW, FRESHLY VERIFIED 2026-08-23
+
+A **third, distinct** INDOT/Castle Rock integration path, discovered during Phase 1 research (not previously known to this project). Full verification report: `docs/research/PHASE1-SOURCE-VERIFICATION.md` §3.
+
+- **Endpoint:** `https://in.carsprogram.org/carsapi_v1/api/wzdx` — a third `carsprogram.org` subdomain (alongside `inhub.carsprogram.org` in §5A and `public.carsprogram.org` in §5B), confirming Castle Rock/CARS is the common platform underlying all three paths.
+- **Discovered via** the official federal WZDx Feed Registry (`datahub.transportation.gov`), not guessed — Indiana is one of ~29 states with an active registry entry as of this session.
+- **Verified live:** HTTP 200, WZDx v4.0 GeoJSON (registry lists v4.1 — a real, minor version-string discrepancy worth noting, not resolved either way), 1,411 real work-zone-event features, no authentication required.
+- **License: CC0 1.0 Universal — declared explicitly inside the feed payload itself** (`road_event_feed_info.license`). This is the strongest, most explicit license status found for any INDOT source to date — stronger evidence than §5A (UNKNOWN) or §5B (undocumented terms), because it doesn't depend on separately locating a terms page.
+- This is a **traffic-event source** (work zones/lane closures), not a camera or video source — feeds the EVENT model (`MacEvil.md` §78, `Project ATLAS-WebSite.md` §28), not the camera catalog. Do not conflate with §5A/§5B.
+
 ---
 
 ## 6. Concrete Phase 1 research checklist (from `Project ATLAS-WebSite.txt`)
@@ -205,8 +221,11 @@ No mock numbers. No guessed URLs. No invented APIs. No claims of success without
 
 - [ ] Re-verify the 511IN GraphQL→HLS path via a fresh Playwright capture before relying on it in production; this time save the capture inside the repo (e.g. `docs/evidence/`) so it can't be lost again.
 - [ ] Reconcile CCTV XML `device-id` vs. GraphQL camera-id mapping (§5C).
-- [ ] Investigate whether other Castle Rock/CARS states expose an equivalent `<state>hub.carsprogram.org` (real lead from the shared `northamericanhub.org` schema namespace).
-- [ ] Complete the Phase 0 repository audit inside Claude Code itself (`docs/ATLAS-ASSESSMENT.md`) per `MacEvil.md` §7/§131 — this has not yet been run.
+- [ ] Investigate whether other Castle Rock/CARS states expose an equivalent `<state>hub.carsprogram.org` (real lead from the shared `northamericanhub.org` schema namespace) — now reinforced by §5D's discovery that Castle Rock also serves a per-state WZDx feed at `<state>.carsprogram.org`; check the WZDx Feed Registry's other Castle Rock-platform states for the same pattern.
+- [x] Complete the Phase 0 repository audit inside Claude Code itself (`docs/ATLAS-ASSESSMENT.md`) per `MacEvil.md` §7/§131 — **done 2026-08-23**, plus the initial ADR set (`docs/adr/`).
+- [ ] Continue Phase 1 research against the remaining ~25+ source families in §6 below / `Project ATLAS-WebSite.md` §63 — only NWS alerts, USGS earthquakes, INDOT WZDx, and OpenTrafficCamMap have been verified so far (`docs/research/PHASE1-SOURCE-VERIFICATION.md`).
+- [ ] Resolve the two stale duplicate root files (`ChatGPT MacEvil to ProjectATLAS handoff.md`, `video_api_captures.md`) flagged in `docs/ATLAS-ASSESSMENT.md` §1 — get explicit operator confirmation before deleting.
+- [ ] Independently re-verify OpenTrafficCamMap's per-origin-DOT stream redistribution policy before treating any of its 7,029 records as more than `TECHNICALLY_VERIFIED` (`docs/research/PHASE1-SOURCE-VERIFICATION.md` §4).
 
 ---
 
@@ -226,3 +245,4 @@ No mock numbers. No guessed URLs. No invented APIs. No claims of success without
 - **2026-08-23 (later same day):** Connected to GitHub remote `3Gs-Services-LLC/ProjectATLAS` (public). Operator explicitly chose to include the unverified-license CARS-Hub data in the public push after being told the risk — recorded above in §11, not to be silently revisited.
 - **2026-08-23 (later still):** Refined the FLOCK/ALPR policy in §4: vendor scope is ALPR-generally (not Flock-brand-only), coverage strategy is passive-only with zero outreach, and official-but-imprecise records are kept with an explicit low-accuracy flag rather than discarded.
 - **2026-08-23 (later still):** Operator confirmed the GitHub push succeeded. Added dated cross-reference notes directly into `MacEvil.md` at §92, §122 (FLOCK/ALPR contradiction) and §79 (duplicate of §27), so the doctrine document is self-explanatory on its own. Renamed `Project ATLAS-WebSite.txt` → `.md` for consistency. Added `ASSETS.md`. Split §9's open items into human-only items (now tracked as GitHub Issues, status-only, no dates) and ordinary engineering backlog. Recorded that the operator already has legal counsel engaged.
+- **2026-08-23 (Phase 0/1/2 session):** Produced `docs/ATLAS-ASSESSMENT.md` (Phase 0 repository audit, confirming the empty-repository state and classifying every file) and the initial ADR set (`docs/adr/0001`–`0006`: technology stack — Node.js/TypeScript, Fastify, Next.js, PostgreSQL+PostGIS, BullMQ/Redis — plus adapter architecture, migration strategy, identity resolution, media retention, and the safe-fetch layer). Identified two stale duplicate root files (`ChatGPT MacEvil to ProjectATLAS handoff.md`, `video_api_captures.md`) not previously catalogued. Began Phase 1 research: verified NWS/NOAA Alerts API, USGS Earthquake GeoJSON feed, and OpenTrafficCamMap (`docs/research/PHASE1-SOURCE-VERIFICATION.md`), and discovered a new INDOT integration path — the WZDx work-zone feed at `in.carsprogram.org`, CC0-licensed, documented as new §5D.
