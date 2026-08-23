@@ -2351,19 +2351,7 @@ Do not store full media unless explicitly authorized.
 
 # 79. SOURCE RUN MODEL
 
-Every ingestion is a source run.
-
-Track:
-
-* duration;
-* counts;
-* errors;
-* warnings;
-* adapter version;
-* schema version;
-* completeness;
-* schema fingerprint;
-* commit decision.
+Duplicate of §27 — same title, same content. Consolidated there on 2026-08-23 to stop the two copies drifting apart; see §27 for the actual field list. This section intentionally left as a pointer rather than renumbering the rest of the document.
 
 ---
 
@@ -2594,6 +2582,8 @@ Do not implement:
 * person re-identification.
 
 Do not infer identities of people appearing in imagery.
+
+**Note (2026-08-23):** this section, taken alone, appears to conflict with the top-level project brief's inclusion of "FLOCK systems and cameras" — Flock's core product is license plate recognition. That conflict is real and is resolved, not ignored: see `projectatlas.md` §4. ATLAS may catalog the *location* of ALPR infrastructure (any vendor, not just Flock) from official public-records sources only; it must never process plate-read data, images, or logs. The prohibition above is unchanged and still absolute for actual LPR processing — only camera-location cataloging is carved out.
 
 ---
 
@@ -3295,6 +3285,8 @@ Do not extend the system into:
 * biometric analysis;
 * behavioral tracking;
 * individual surveillance.
+
+**Note (2026-08-23):** see the same note under §92 — the FLOCK/ALPR carve-out (location cataloging only, official sources only, no plate-read data ever) is documented in full in `projectatlas.md` §4, not here. This boundary is not weakened by that carve-out.
 
 ---
 
