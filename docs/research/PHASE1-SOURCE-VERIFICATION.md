@@ -21,7 +21,7 @@ Cross-referenced against `Project ATLAS-WebSite.md` §4–§24's full named sour
 | 7 | GitHub camera-repo discovery (§10) | VERIFIED as methodology | Batch 4 §14 — found & excluded `Ringmast4r/FLOCK`; found `kevtoe/worldview` lead |
 | 8 | Nationwide 511/DOT discovery (§11) | PARTIALLY_VERIFIED — state-by-state, see below | Batch 2 §8 (WA), Batch 4 §15 (TX, negative), Batch 5/6 §18/§24 (OR, IA, MD, GA, UT via ArcGIS), Batch 6 §25 (Austin TX, Baton Rouge LA, New Orleans LA, Honolulu HI, Maryland, Seattle WA via Socrata), `projectatlas.md` §5A/§5B/§5D (IN) |
 | 9 | Open511 (§12) | DEFERRED — no US implementation exists | Batch 2 §6 |
-| 10 | ArcGIS REST discovery (§13) | **VERIFIED, fully mined and audited** (2026-08-24) | Batch 5 §18, Batch 6 §24, Batch 7 §28, Batch 8 §30/§31 — all 758 real matches classified; every prior state audited for the Georgia-style status-filter issue (5 confirmed clean, 2 corrected); 9 states independently verified end-to-end; 1 false positive caught (PA/billboards); 1 real dead-link finding (NC) |
+| 10 | ArcGIS REST discovery (§13) | **VERIFIED, fully mined and audited** (2026-08-24) | Batch 5 §18, Batch 6 §24, Batch 7 §28, Batch 8 §30/§31, Batch 9 §32-34 — all 758 real matches classified; every prior state audited for the Georgia-style status-filter issue; 11 states independently verified end-to-end; 1 false positive caught (PA/billboards); real negative findings for NC (dead link), TX (credential-gated), OH (non-representative) |
 | 11 | OpenStreetMap camera-tag discovery (§14) | PARTIALLY_VERIFIED — state-by-state, see below | Batch 3 §13 (nationwide narrow), Batch 4 §17 (Indiana region-split) |
 | 12 | U.S. Federal camera sources — NPS/BLM/USFS/USACE/BOR (§15) | **PARTIALLY_VERIFIED** (2026-08-24) — NPS real endpoint confirmed (needs a free key); BLM/USFS/USACE/BOR real negative findings, each with context | Batch 6 §26 |
 | 13 | NOAA/NWS (§16) | PARTIALLY_VERIFIED — Alerts API only; NEXRAD/SPC/NHC/marine/aviation/observations untested | Batch 1 §1 |
@@ -42,19 +42,22 @@ Cross-referenced against `Project ATLAS-WebSite.md` §4–§24's full named sour
 | Washington (WA) | PARTIALLY_VERIFIED — WSDOT ArcGIS layer, 1,533 records (Batch 2 §8); Seattle traffic cameras also found via Socrata as a federated pointer, not independently record-counted (Batch 6 §25) | UNSTARTED |
 | Oregon (OR) | VERIFIED — TripCheck_Cameras ArcGIS layer, 1,164 records, explicit `licenseInfo: "Public"` (Batch 5 §18) | UNSTARTED |
 | Iowa (IA) | VERIFIED — ArcGIS `Traffic_Cameras_View`, 1,251 records (Batch 6 §24) | UNSTARTED |
-| Maryland (MD) | VERIFIED — two independent confirmations: ArcGIS CHART MapServer, 552 records (Batch 6 §24), and Socrata `opendata.maryland.gov`, 451 records — same underlying CHART system, two different counts from two different endpoints, not yet reconciled (Batch 6 §24/§25) | UNSTARTED |
+| Maryland (MD) | VERIFIED — **three** independent confirmations, still unreconciled: ArcGIS CHART MapServer 552 (Batch 6 §24), Socrata `opendata.maryland.gov` 451 (Batch 6 §25), ArcGIS `MDOT_Traffic_Cameras` (ESRI government account) 535, confirmed via sampled `chart.maryland.gov` links to genuinely be Maryland despite the ambiguous MDOT abbreviation (Batch 9 §33) | UNSTARTED |
 | Georgia (GA) | VERIFIED, audited — ArcGIS `GDOT_511_Traffic_Cameras_Updated`; **3,676 active / 7,083 total** (Enabled/Disabled split confirmed and explained, Batch 7 §27; re-confirmed clean in the Batch 8 §30 full audit) | UNSTARTED |
 | Utah (UT) | VERIFIED, audited and corrected twice — the originally-reported `Live_View_Cameras` layer (32 records) is **not a camera-location dataset at all** (it's a UDOT camera-installation procurement/budget dataset — `Est__Cost`, `Master_Pla`, `Package` fields); the real comparable layer is `CCTV`, and its own status field further corrects the figure to **1,188 active / 1,437 total** (Batch 7 §28, Batch 8 §30) | UNSTARTED |
-| Florida (FL) | VERIFIED, audited — ArcGIS `FL511_Traffic_Cameras`, **4,057 real records**, no status field present, confirmed clean (Batch 7 §28, Batch 8 §30) | UNSTARTED |
+| Florida (FL) | VERIFIED, audited — ArcGIS `FL511_Traffic_Cameras`, **4,057 real records**, no status field present, confirmed clean (Batch 7 §28, Batch 8 §30). A second real source (`FDOT_Traffic_Cameras`, ESRI government account) gives **3,651**, unreconciled with the first (Batch 9 §33) | UNSTARTED |
 | Missouri (MO) | VERIFIED — new state, ArcGIS `MODOT_Traffic_Cameras`, **871 real records**; schema has a `STREAM_ERROR` health flag (831 currently error-free), a different concept from Georgia/Utah's active/retired split, reported as an informative sub-figure not a corrected count (Batch 8 §31) | UNSTARTED |
 | Virginia (VA) | VERIFIED — new state, ArcGIS `CameraLocationVDOT`, **1,231 active / 1,293 total**, `active` field checked and applied immediately per the new audit discipline (Batch 8 §31) | UNSTARTED |
-| Texas (TX) | PARTIALLY_VERIFIED — ArcGIS DCAT portal negative (Batch 4 §15), but Austin TX independently verified via Socrata, 1,005 records (Batch 6 §25) — state-level DOT data still unconfirmed, city-level (Austin) is real | UNSTARTED |
+| Texas (TX) | PARTIALLY_VERIFIED — ArcGIS DCAT portal negative (Batch 4 §15), but Austin TX independently verified via Socrata, 1,005 records (Batch 6 §25) — state-level DOT data still unconfirmed, city-level (Austin) is real. A real, specific state-level source (`Skyline_TxDot_Cameras`) was found this session but is credential-gated, not bypassed (Batch 9 §34) | UNSTARTED |
 | Louisiana (LA) | VERIFIED — Baton Rouge via Socrata, 118 records (Batch 6 §25). New Orleans's 103-record dataset is **excluded from this camera-monitoring count** — confirmed to be automated speed/red-light/school-zone enforcement (ticketing) infrastructure, not passive traffic monitoring; tracked separately under the enforcement-camera policy track (Batch 7 §29) | UNSTARTED |
 | Hawaii (HI) | VERIFIED — Honolulu via Socrata, 253 records (Batch 6 §25) | UNSTARTED |
 | Pennsylvania (PA) | EXCLUDED — real false positive: the matched ArcGIS item ("PENNDOT_20240325") is actually a billboard/sign-permit database (`PA_BILLBOARDS`), not traffic cameras; caught before being counted (Batch 8 §31) | UNSTARTED |
 | North Carolina (NC) | UNVERIFIED — real negative finding; an own-domain NCDOT catalog entry (`gis11.services.ncdot.gov`) 404s at both FeatureServer and MapServer; not chased with further guessing (Batch 8 §31) | UNSTARTED |
-| Colorado (CO) | UNSTARTED-WITH-LEADS — a real CDOT camera surfaced via OpenEye, a real WZDx registry entry, and a real Socrata `href` pointer all exist, but no independently-verified direct CO endpoint found; two guessed endpoints returned real 404s (Batch 5 §23, Batch 6 §25) | UNSTARTED |
-| All other 36 states + DC + territories | UNSTARTED | UNSTARTED (except the nationwide-not-region-split query in Batch 3 §13, which covered the whole US at once but at a narrow tag scope and found ~nothing) |
+| Alabama (AL) | VERIFIED — new state, ArcGIS `ALDOT_Traffic_Cameras_011323`, **539 real records**, status field checked immediately (all active, confirmed clean) (Batch 9 §32) | UNSTARTED |
+| Kentucky (KY) | VERIFIED — new state, **254 real records**, cross-confirmed by two independent endpoints (KYTC's own domain + an ArcGIS mirror, exact agreement) (Batch 9 §32) | UNSTARTED |
+| Colorado (CO) | UNSTARTED-WITH-LEADS — a real CDOT camera surfaced via OpenEye, a real WZDx registry entry, and a real Socrata `href` pointer all exist, but no independently-verified direct CO endpoint found; three guessed endpoints returned real 404s/errors (Batch 5 §23, Batch 6 §25) | UNSTARTED |
+| Ohio (OH) | UNSTARTED-WITH-LEADS — a real but tiny (7-record), likely-local (Marysville) layer found; Ohio's real statewide ODOT source not yet found (Batch 9 §34) | UNSTARTED |
+| All other 34 states + DC + territories | UNSTARTED | UNSTARTED (except the nationwide-not-region-split query in Batch 3 §13, which covered the whole US at once but at a narrow tag scope and found ~nothing) |
 
 **ADR file paths, confirmed by direct directory listing 2026-08-24** (a prior report summarized ADR content from memory without citing files — corrected here):
 
@@ -1190,6 +1193,48 @@ result:                     2 new states verified end-to-end; 1 false positive c
 
 ---
 
+## Batch 9 (2026-08-24, continued session — two more states, cross-confirmations, one credential-gated Texas lead)
+
+### 32. Alabama and Kentucky — two new states, audited immediately on discovery
+
+```text
+verification_date:         2026-08-24
+verification_method:       Mined the already-fetched 758-result ArcGIS set for state-DOT
+                            abbreviation patterns not yet checked (ALDOT, KYTC, and others);
+                            verified each new hit with a real endpoint query and immediately
+                            checked for a status/active field, per the Batch 8 audit discipline
+result:                     Both VERIFIED; both confirmed clean (no correction needed)
+```
+
+**Alabama — NEW STATE.** `ALDOT_Traffic_Cameras_011323` (hosted on an ESRI "government" showcase account, `services7.arcgis.com/33Tmvrm3G2UZLFK9`, which turns out to host camera mirrors for several states — see below) — **539 real records**. Schema includes `entries__disabled` (string `"TRUE"`/`"FALSE"`); checked immediately: `'FALSE'` → **539**, `'TRUE'` → **0**. All 539 records are active; no correction needed, confirmed clean on first check.
+
+**Kentucky — NEW STATE, cross-confirmed by two independent endpoints.** Found both `maps.kytc.ky.gov/.../TrafficCameras_Ext_Prd` (Kentucky's own domain — a strong authoritative-source signal, same pattern as North Carolina's dead link but this one works) and a mirror at `services2.arcgis.com/CcI36Pduqd0OR4W9/.../trafficCamerasCur_Prd`. **Both independently return exactly 254** — real agreement between two separately-hosted endpoints, stronger evidence than a single-source count. Schema includes a `status` field, checked immediately: sampled values are all `null` (unpopulated on this layer) — no filtering possible or needed, confirmed clean.
+
+### 33. Cross-confirmations found for two already-verified states (not new coverage, but real triangulation data)
+
+The same ESRI government showcase account (`services7.arcgis.com/33Tmvrm3G2UZLFK9`, owner `mtucker@esri.com_government`) that surfaced Alabama also hosts additional mirrors for two states already verified via other endpoints:
+
+- **Florida, second source:** `FDOT_Traffic_Cameras` — **3,651 real records**, no status field. This differs from the `FL511_Traffic_Cameras` figure already verified (4,057, Batch 7 §28) by a real, unreconciled margin — two different real endpoints, two different real counts, same underlying state. Not reconciled this session; flagged for future work rather than silently averaged or picked.
+- **Maryland, third source:** `MDOT_Traffic_Cameras` — **535 real records**, confirmed via sampled data to be genuine Maryland CHART camera links (`chart.maryland.gov/video/...`), not a Michigan DOT dataset despite the ambiguous "MDOT" abbreviation (Michigan's DOT is also commonly abbreviated MDOT — this was checked directly against real sampled records, not assumed). This is a **third** independent Maryland count, joining the ArcGIS CHART figure (552) and the Socrata figure (451) from earlier batches — three real, unreconciled counts for the same underlying state system.
+
+### 34. Texas — a real, specific TxDOT camera source found, but credential-gated
+
+```text
+verification_date:         2026-08-24
+verification_method:       Direct HTTPS GET against a real ArcGIS item URL found in the existing
+                            758-result set
+result:                     Real service confirmed to exist; access blocked by a real,
+                            self-identifying credential requirement — not bypassed
+```
+
+`Skyline_TxDot_Cameras` (owner `brett_rapiddeployza`) returned a real, structured error rather than data or a generic failure: `{"error":{"code":500,"messageCode":"CONT_0044","message":"Error invoking service","details":["Unable to generate token with the credentials provided with username: Skyline_nct911 and source_url:..."]}}`. This confirms the service is real and actively gated behind credentials belonging to a specific named account (`Skyline_nct911`) — not publicly accessible, and not attempted to bypass, per `MacEvil.md` §2's absolute prohibition on credential extraction/bypass. **This does not close the standing Texas gap** (§15, Batch 4) — it adds one more real, specific, named data point confirming Texas camera data exists on this platform but remains inaccessible through this particular path. The "Skyline" vendor name matches the same vendor tag seen in Georgia's `Source: "SKYLINE"` field (Batch 7 §27) — a real, likely non-coincidental cross-reference (same camera-platform vendor serving multiple state DOTs), not chased further this session.
+
+**Ohio — real, small, likely-non-representative finding, not counted as statewide coverage.** `ODOT_Highway_Cameras_` (owner `GISAutomation_Marysville`) returned only **7 real records** — consistent with a single local-government (Marysville, Ohio) layer rather than Ohio DOT's actual statewide camera network. Recorded as a real but non-representative data point; Ohio's real statewide ODOT camera source remains unfound this session, not claimed as verified from this 7-record layer.
+
+**Eleven states now independently verified via the ArcGIS methodology:** WA, OR, IA, MD, GA, UT, FL, MO, VA, AL, KY.
+
+---
+
 ## Summary (all sources verified to date)
 
 | Source | Result | Category |
@@ -1230,8 +1275,13 @@ result:                     2 new states verified end-to-end; 1 false positive c
 | Virginia (VDOT) | VERIFIED — new state, 1,293 total / 1,231 active via ArcGIS (`active` field checked immediately per the new audit discipline) | Camera (state DOT) |
 | Pennsylvania (PennDOT) — false positive | EXCLUDED-WITH-REASON — the matched "PENNDOT_20240325" service is actually `PA_BILLBOARDS`, a sign-permit database, not traffic cameras; caught before being counted | Camera (state DOT, false positive) |
 | North Carolina (NCDOT) | UNVERIFIED — real negative finding; a promising own-domain catalog entry (`gis11.services.ncdot.gov`) 404s at both FeatureServer and MapServer; not chased with further guessing | Camera (state DOT) |
+| Alabama (ALDOT) | VERIFIED — new state, 539 real records, status field checked immediately (all active, confirmed clean) | Camera (state DOT) |
+| Kentucky (KYTC) | VERIFIED — new state, 254 real records, cross-confirmed by two independent endpoints (own domain + ArcGIS mirror), status field present but unpopulated | Camera (state DOT) |
+| Florida, Maryland cross-confirmations | Real additional endpoints found for two already-verified states: FL second source 3,651 (vs. 4,057 already verified — unreconciled); MD third source 535 (vs. 552 and 451 already verified — unreconciled, three real counts now) | Camera (state DOT, triangulation) |
+| Texas — Skyline_TxDot_Cameras | UNVERIFIED — real service confirmed to exist, credential-gated (`Skyline_nct911` account required); not bypassed; does not close the standing Texas gap | Camera (state DOT) |
+| Ohio — ODOT Highway Cameras (Marysville) | UNVERIFIED — real but tiny (7 records), appears to be a single local-government layer, not Ohio's statewide network; Ohio's real statewide source remains unfound | Camera (state DOT) |
 
-Thirty-eight source-family investigations across eight batches this session (2026-08-23/24). Real negative findings recorded plainly throughout (TxDOT, Data.gov, two Colorado guesses, BLM/USFS/USACE/BOR webcam APIs, North Carolina's dead catalog link). Three corrected findings this session (OpenEye: wrong host, now `VERIFIED`; Utah CCTV: 1,437→1,188 active; Utah's original layer: reclassified as not a camera dataset at all). Two real anomalies/misclassifications resolved (Georgia's 7,083 vs. 3,676-active split; New Orleans moved from monitoring to enforcement). One real false positive caught before being counted (Pennsylvania/billboards). See the **Coverage Matrix** near the top of this document for the authoritative, cross-referenced status of every named family in `Project ATLAS-WebSite.md`, including the two 50-state sweep trackers (now at 9/50 for 511/DOT, 1/50 for OSM). Remaining largely untouched: the majority of individual state 511/DOT systems, the majority of OSM state-by-state coverage, and emergency response data (fire/EMS/police/CAD feeds).
+Forty-four source-family investigations across nine batches this session (2026-08-23/24). Real negative findings recorded plainly throughout (TxDOT's original ArcGIS-portal gap, Data.gov, three Colorado guesses, BLM/USFS/USACE/BOR webcam APIs, North Carolina's dead catalog link, Texas's credential-gated Skyline source, Ohio's non-representative local layer). Three corrected findings (OpenEye: wrong host, now `VERIFIED`; Utah CCTV: 1,437→1,188 active; Utah's original layer: reclassified as not a camera dataset at all). Two real anomalies/misclassifications resolved (Georgia's 7,083 vs. 3,676-active split; New Orleans moved from monitoring to enforcement). One real false positive caught before being counted (Pennsylvania/billboards). Two real cross-confirmations found without resolving to a single authoritative count (Florida, Maryland — Maryland now has three unreconciled real counts). See the **Coverage Matrix** near the top of this document for the authoritative, cross-referenced status of every named family in `Project ATLAS-WebSite.md`, including the two 50-state sweep trackers (now at 11/50 for 511/DOT, 1/50 for OSM). Remaining largely untouched: the majority of individual state 511/DOT systems, the majority of OSM state-by-state coverage, and emergency response data (fire/EMS/police/CAD feeds).
 
 ## Raw evidence archive (Batch 2)
 
@@ -1312,3 +1362,16 @@ All full files (well under the size thresholds that required excerpting in earli
 | `sources/north-carolina-dot/negative-finding-2026-08-24.json` | `96a4fecc6de2e0898dd904127d2cbab4a24f251809a034c259258c0438431a10` — both real 404 responses, hand-recorded since the raw HTTP responses were not saved to separate files at fetch time |
 | `sources/utah-dot/cctv-online-count-2026-08-24.json` | `0dac362aa1389572dbcd62cbf4ae876be63fa35b9ae3eb22661258acc5f21435` — the real `{"count":1188}` response |
 | `sources/utah-dot/live-view-cameras-actually-a-planning-dataset-2026-08-24.json` | `3b6d5499cdd9440b3ae9678711a8c71395049eecbd21d5e9ab2fcb0100c47198` — real sample records showing `Est__Cost`/`Master_Pla`/`Package` fields, evidencing this is a procurement dataset, not camera locations |
+
+## Raw evidence archive (Batch 9)
+
+| File | SHA-256 |
+|---|---|
+| `sources/alabama-dot/camera-sample-2026-08-24.json` | `ca45678fdafbc721daff93a8d13b433947d362756c85754c384199032fcc6f57` |
+| `sources/alabama-dot/active-count-2026-08-24.json` | `772c5c96abeebd7cc9e5a74321b1ca0ad65f7db53606558cc103002f6cc72f8a` — the real `{"count":539}` response confirming all records active |
+| `sources/kentucky-dot/camera-sample-own-domain-2026-08-24.json` | `4b0aa32a30247116c851f69050b4e37ff66d55220e56b5663cbe5291ebeba549` — sampled from Kentucky's own domain (`maps.kytc.ky.gov`) |
+| `sources/kentucky-dot/arcgis-mirror-count-2026-08-24.json` | `d8c7ab3dc4f255e3969695f88ce19610b2a00c29863b22f16ec2c83f49519802` — the real `{"count":254}` response from the independent ArcGIS mirror, matching the own-domain count exactly |
+| `sources/florida-dot/second-source-count-2026-08-24.json` | `d9d946dc3bedc1f80f1add55cc859a0710e30bace6fa2668feb2bcaea94befce` — the real `{"count":3651}` second-source response |
+| `sources/maryland-chart/third-source-sample-2026-08-24.json` | `0c44b37235c9789d2be33090627450c64ae25b6d9143d6a9768bd40fd5db63da` — real `chart.maryland.gov` links confirming this "MDOT" service is Maryland, not Michigan |
+| `sources/texas-dot/skyline-credential-gated-2026-08-24.json` | `ef1687bad8b012274c27534a9d171f4b8f1f02f05715b95f5fe682c0692ba993` — the real, structured credential-required error, hand-recorded since it's a single small JSON error response |
+| `sources/ohio-dot/marysville-layer-sample-2026-08-24.json` | `73c410ad097fd07e22a33316d928d89e14d84949632ddf255769681835f1a655` — all 7 real records from the small, likely-local layer |
