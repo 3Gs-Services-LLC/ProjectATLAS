@@ -21,7 +21,7 @@ Cross-referenced against `Project ATLAS-WebSite.md` §4–§24's full named sour
 | 7 | GitHub camera-repo discovery (§10) | VERIFIED as methodology | Batch 4 §14 — found & excluded `Ringmast4r/FLOCK`; found `kevtoe/worldview` lead |
 | 8 | Nationwide 511/DOT discovery (§11) | PARTIALLY_VERIFIED — state-by-state, see below | Batch 2 §8 (WA), Batch 4 §15 (TX, negative), Batch 5/6 §18/§24 (OR, IA, MD, GA, UT via ArcGIS), Batch 6 §25 (Austin TX, Baton Rouge LA, New Orleans LA, Honolulu HI, Maryland, Seattle WA via Socrata), `projectatlas.md` §5A/§5B/§5D (IN) |
 | 9 | Open511 (§12) | DEFERRED — no US implementation exists | Batch 2 §6 |
-| 10 | ArcGIS REST discovery (§13) | **VERIFIED, fully mined** (2026-08-24) | Batch 5 §18, Batch 6 §24, Batch 7 §28 — all 758 real matches classified (not just 300); 7 states independently verified end-to-end with real record counts; 1 real anomaly resolved (Georgia), 1 real correction made (Utah) |
+| 10 | ArcGIS REST discovery (§13) | **VERIFIED, fully mined and audited** (2026-08-24) | Batch 5 §18, Batch 6 §24, Batch 7 §28, Batch 8 §30/§31 — all 758 real matches classified; every prior state audited for the Georgia-style status-filter issue (5 confirmed clean, 2 corrected); 9 states independently verified end-to-end; 1 false positive caught (PA/billboards); 1 real dead-link finding (NC) |
 | 11 | OpenStreetMap camera-tag discovery (§14) | PARTIALLY_VERIFIED — state-by-state, see below | Batch 3 §13 (nationwide narrow), Batch 4 §17 (Indiana region-split) |
 | 12 | U.S. Federal camera sources — NPS/BLM/USFS/USACE/BOR (§15) | **PARTIALLY_VERIFIED** (2026-08-24) — NPS real endpoint confirmed (needs a free key); BLM/USFS/USACE/BOR real negative findings, each with context | Batch 6 §26 |
 | 13 | NOAA/NWS (§16) | PARTIALLY_VERIFIED — Alerts API only; NEXRAD/SPC/NHC/marine/aviation/observations untested | Batch 1 §1 |
@@ -43,14 +43,18 @@ Cross-referenced against `Project ATLAS-WebSite.md` §4–§24's full named sour
 | Oregon (OR) | VERIFIED — TripCheck_Cameras ArcGIS layer, 1,164 records, explicit `licenseInfo: "Public"` (Batch 5 §18) | UNSTARTED |
 | Iowa (IA) | VERIFIED — ArcGIS `Traffic_Cameras_View`, 1,251 records (Batch 6 §24) | UNSTARTED |
 | Maryland (MD) | VERIFIED — two independent confirmations: ArcGIS CHART MapServer, 552 records (Batch 6 §24), and Socrata `opendata.maryland.gov`, 451 records — same underlying CHART system, two different counts from two different endpoints, not yet reconciled (Batch 6 §24/§25) | UNSTARTED |
-| Georgia (GA) | VERIFIED — ArcGIS `GDOT_511_Traffic_Cameras_Updated`; **3,676 active / 7,083 total (Enabled/Disabled split confirmed and explained, Batch 7 §27)** | UNSTARTED |
-| Utah (UT) | VERIFIED — **corrected 2026-08-24 (Batch 7 §28):** a second, more complete ArcGIS layer (`CCTV`) found with **1,437 real records**; the originally-reported `Live_View_Cameras` layer (32 records) is a narrower, separate public-facing product, not Utah's full inventory — both real, 1,437 is the coverage-relevant figure | UNSTARTED |
-| Florida (FL) | VERIFIED — new state, ArcGIS `FL511_Traffic_Cameras`, **4,057 real records** (Batch 7 §28) | UNSTARTED |
+| Georgia (GA) | VERIFIED, audited — ArcGIS `GDOT_511_Traffic_Cameras_Updated`; **3,676 active / 7,083 total** (Enabled/Disabled split confirmed and explained, Batch 7 §27; re-confirmed clean in the Batch 8 §30 full audit) | UNSTARTED |
+| Utah (UT) | VERIFIED, audited and corrected twice — the originally-reported `Live_View_Cameras` layer (32 records) is **not a camera-location dataset at all** (it's a UDOT camera-installation procurement/budget dataset — `Est__Cost`, `Master_Pla`, `Package` fields); the real comparable layer is `CCTV`, and its own status field further corrects the figure to **1,188 active / 1,437 total** (Batch 7 §28, Batch 8 §30) | UNSTARTED |
+| Florida (FL) | VERIFIED, audited — ArcGIS `FL511_Traffic_Cameras`, **4,057 real records**, no status field present, confirmed clean (Batch 7 §28, Batch 8 §30) | UNSTARTED |
+| Missouri (MO) | VERIFIED — new state, ArcGIS `MODOT_Traffic_Cameras`, **871 real records**; schema has a `STREAM_ERROR` health flag (831 currently error-free), a different concept from Georgia/Utah's active/retired split, reported as an informative sub-figure not a corrected count (Batch 8 §31) | UNSTARTED |
+| Virginia (VA) | VERIFIED — new state, ArcGIS `CameraLocationVDOT`, **1,231 active / 1,293 total**, `active` field checked and applied immediately per the new audit discipline (Batch 8 §31) | UNSTARTED |
 | Texas (TX) | PARTIALLY_VERIFIED — ArcGIS DCAT portal negative (Batch 4 §15), but Austin TX independently verified via Socrata, 1,005 records (Batch 6 §25) — state-level DOT data still unconfirmed, city-level (Austin) is real | UNSTARTED |
 | Louisiana (LA) | VERIFIED — Baton Rouge via Socrata, 118 records (Batch 6 §25). New Orleans's 103-record dataset is **excluded from this camera-monitoring count** — confirmed to be automated speed/red-light/school-zone enforcement (ticketing) infrastructure, not passive traffic monitoring; tracked separately under the enforcement-camera policy track (Batch 7 §29) | UNSTARTED |
 | Hawaii (HI) | VERIFIED — Honolulu via Socrata, 253 records (Batch 6 §25) | UNSTARTED |
+| Pennsylvania (PA) | EXCLUDED — real false positive: the matched ArcGIS item ("PENNDOT_20240325") is actually a billboard/sign-permit database (`PA_BILLBOARDS`), not traffic cameras; caught before being counted (Batch 8 §31) | UNSTARTED |
+| North Carolina (NC) | UNVERIFIED — real negative finding; an own-domain NCDOT catalog entry (`gis11.services.ncdot.gov`) 404s at both FeatureServer and MapServer; not chased with further guessing (Batch 8 §31) | UNSTARTED |
 | Colorado (CO) | UNSTARTED-WITH-LEADS — a real CDOT camera surfaced via OpenEye, a real WZDx registry entry, and a real Socrata `href` pointer all exist, but no independently-verified direct CO endpoint found; two guessed endpoints returned real 404s (Batch 5 §23, Batch 6 §25) | UNSTARTED |
-| All other 38 states + DC + territories | UNSTARTED | UNSTARTED (except the nationwide-not-region-split query in Batch 3 §13, which covered the whole US at once but at a narrow tag scope and found ~nothing) |
+| All other 36 states + DC + territories | UNSTARTED | UNSTARTED (except the nationwide-not-region-split query in Batch 3 §13, which covered the whole US at once but at a narrow tag scope and found ~nothing) |
 
 **ADR file paths, confirmed by direct directory listing 2026-08-24** (a prior report summarized ADR content from memory without citing files — corrected here):
 
@@ -1135,6 +1139,57 @@ result:                     CONFIRMED enforcement/ticketing infrastructure, not 
 
 ---
 
+## Batch 8 (2026-08-24, continued session — status-filter audit of every ArcGIS state, two more states verified, one false positive caught)
+
+### 30. Status-filter audit — every previously-reported ArcGIS state checked, not just Georgia
+
+```text
+verification_date:         2026-08-24
+verification_method:       Fetched each layer's full field list; where a status/active-like field
+                            existed, queried the true/false or enabled/disabled split directly;
+                            where none existed, confirmed via the field list itself (not assumed)
+result:                     Real corrections found for 2 of 9 states; the rest confirmed clean
+```
+
+**Full audit result, state by state — every one checked, not just the ones with problems:**
+
+| State | Fields checked | Status field found? | Audit result |
+|---|---|---|---|
+| Oregon (TripCheck) | `geometry_y/x, attributes_title, attributes_route, attributes_videoId, attributes_filename, attributes_cameraId, attributes_publishedImageId, attributes_latitude/longitude, attributes_iconType, ObjectId` | **No** | **Already correct** — 1,164 stands, no filter possible or needed |
+| Washington (WSDOT) | `FID, Shape, ImageURL, OBJECTID, CameraID, CameraTitl, WSDOTSRID, StateRoute, CompassDir, Latitude, Longitude, CameraOwne, CameraOw_1, ImageWidth, ImageHeigh` | **No** | **Already correct** — 1,533 stands |
+| Iowa | `device_id, Desc_, UpdateDate, UpdateTime, UTCoffset, linear_reference, Route, ImageName, ImageURL, VideoURL, ORG, latitude, longitude, Type, FID, REGION, RECORDED, COMMON_ID, FUNCTION` | No status field — `RECORDED` exists but is a **recording-policy** flag ("Is Camera Recorded?", values `N`/`E`), not an active/inactive flag; a real, separate, policy-relevant finding worth keeping for later media-retention work (ADR-0005), not a count correction | **Already correct** — 1,251 stands |
+| Maryland (CHART) | `rowid, ID, location, url, CCTVPublicURL, hlsurl, Latitude, Longitude, Shape` | **No** | **Already correct** — 552 stands |
+| Georgia | `Id, Url, Status, Description, VideoUrl, SortId, Source, SourceId, Roadway, Direction, Latitude, Longitude, SortOrder, ObjectId` | **Yes** (`Status`) | **Already corrected in Batch 7 §27** — 3,676 active / 7,083 total |
+| Utah — `Live_View_Cameras` (originally-reported layer) | `FID, Site__, Route, MP, Device, County, Est__Cost, Master_Pla, Remarks, UDOT_Maint, Package` | N/A — **this is not a camera-location dataset at all.** Sampled records show real dollar figures (`Est__Cost`: $15,818.75, $26,210.91, $33,815.31), a `Master_Pla` (master plan) field, and a `Package` (construction/procurement package) field — this is a **UDOT camera installation/procurement planning dataset**, not a live camera inventory. | **CORRECTED, more fundamentally than a status filter** — the 32-record figure should not be treated as a camera-location count at all; superseded entirely by the `CCTV` layer below |
+| Utah — `CCTV` (Batch 7's replacement layer) | `OBJECTID, MotionUrl, LastUpdated, ImageUrl, TrafficDirection, ExtId, IntId, IsOnline, DisplayName, RotationAngleDegrees, IsCommFailed, GlobalID` | **Yes** (`IsOnline`, string-typed `"True"`/`"False"`) | **CORRECTED** — `IsOnline='True'`: **1,188**; `'False'`: **249**; sum 1,437 (exact match). Utah's real comparable figure is **1,188 active**, not 1,437 total |
+| Florida (FL511) | `OBJECTID_1, ID, DESCRIPT, COUNTY, HIGHWAY, DIRECTION, LATITUDE, LONGITUDE, TIMESTAMP, IMAGE` | **No** | **Already correct** — 4,057 stands |
+
+**Net effect of this audit:** two real corrections (Utah's CCTV layer: 1,437 → 1,188 active; Utah's originally-reported layer reclassified as not-a-camera-dataset), one already-known correction reconfirmed (Georgia), five states confirmed clean on first check. The status-filter issue was real but not universal — most services simply don't carry the concept, which is itself useful to know rather than assume.
+
+### 31. Continuing the state sweep — abbreviation-based re-scan of the existing 758-match set
+
+```text
+verification_date:         2026-08-24
+verification_method:       Re-scanned all 758 previously-fetched ArcGIS Online catalog rows (no
+                            new discovery query) for common state-DOT abbreviation patterns
+                            (NCDOT, MODOT, VDOT, PennDOT, MnDOT, etc.) that the original
+                            full-state-name-only filter missed
+result:                     2 new states verified end-to-end; 1 false positive caught and
+                            excluded; 1 real dead-link negative finding
+```
+
+**Missouri — NEW STATE, verified.** `MODOT_Traffic_Cameras` (owner `WUFPM_EM9`/`creaml_MOSEMA`, two catalog entries for the same real service). Real layer index is `1`, not `0` (the default guess failed with a real, disclosed error before being corrected) — **871 total records**. Schema includes a `STREAM_ERROR` field (`N`=831, `Y`=39, sum 870 of 871) — this is a **stream-health indicator** (is the camera currently erroring), not a retired/disabled flag like Georgia's, so it is *not* treated as an active/inactive split the way Georgia and Utah were; reported as **871 total**, noting 831 currently error-free as an informative, not authoritative, sub-figure.
+
+**Virginia — NEW STATE, verified, with a real status-filter finding applied immediately.** `CameraLocationVDOT` (owner `johnfry10`) — **1,293 total**, with a real `active` field (string `"true"`/`"false"`): `active='true'`: **1,231**; `'false'`: **62**. Virginia's real comparable figure is **1,231 active**.
+
+**Pennsylvania — real false positive, caught and excluded, not counted.** `PENNDOT_20240325` (owner `Jesse_Eckenrode`) returned a real, large count (20,219) — but its actual layer name is `PA_BILLBOARDS` and its full field list (`SIGN_APPL_ID`, `PERMIT_NUMBER`, `SIGNFACE_WIDTH/HEIGHT/AREA`, `SIGN_OWNER_NAME`, etc.) confirms this is a **billboard/outdoor-advertising permit database**, not a traffic camera dataset. The PennDOT-abbreviation keyword match was a genuine false positive — recorded explicitly so a future session doesn't recount it, consistent with the earlier Boulder/Colorado bike-counter false-positive catch (Batch 6 §24).
+
+**North Carolina — real negative finding, dead catalog link.** `NCDOT_TIMSCameras` (hosted on NCDOT's own domain, `gis11.services.ncdot.gov` — a strong authoritative-source signal if it had worked) returned a real `404` at both the documented `FeatureServer` and a guessed `MapServer` fallback. Not chased with further guessing, per `MacEvil.md` §8. The catalog entry is real; the service behind it appears to be gone or moved. A real lead for a future session to re-search rather than re-guess.
+
+**Nine states now independently verified via the ArcGIS methodology:** WA (1,533), OR (1,164), IA (1,251), MD (552), GA (3,676 active/7,083 total), UT (1,188 active/1,437 total via `CCTV`), FL (4,057), MO (871), VA (1,231 active/1,293 total).
+
+---
+
 ## Summary (all sources verified to date)
 
 | Source | Result | Category |
@@ -1170,8 +1225,13 @@ result:                     CONFIRMED enforcement/ticketing infrastructure, not 
 | USFS wildfire cameras | EXCLUDED-WITH-REASON, provenance-corrected — these are university-operated (ALERTWildfire/ALERTCalifornia), not USFS's own infrastructure; captured as a new lead in `Project ATLAS-WebSite.md` §15 | Camera (federal, misattributed) |
 | USACE webcams | EXCLUDED-WITH-REASON — no unified API; real water-data API is data-only; individual district pages exist but fragmented (18+ districts) | Camera (federal) |
 | BOR webcams | EXCLUDED-WITH-REASON — real public webcam (Shasta Dam) exists as a standalone page; real RISE data API is water/reservoir-data-only | Camera (federal) |
+| ArcGIS status-filter audit (all prior states) | COMPLETE — every previously-reported ArcGIS state checked, not just Georgia; 5 confirmed already-correct (OR, WA, IA, MD, FL), 2 real corrections found (Utah's `CCTV` layer 1,437→1,188 active; Utah's original layer reclassified as a non-camera planning dataset) | Audit |
+| Missouri (MODOT) | VERIFIED — new state, 871 real records via ArcGIS (real layer-index error caught and corrected: `/1`, not `/0`) | Camera (state DOT) |
+| Virginia (VDOT) | VERIFIED — new state, 1,293 total / 1,231 active via ArcGIS (`active` field checked immediately per the new audit discipline) | Camera (state DOT) |
+| Pennsylvania (PennDOT) — false positive | EXCLUDED-WITH-REASON — the matched "PENNDOT_20240325" service is actually `PA_BILLBOARDS`, a sign-permit database, not traffic cameras; caught before being counted | Camera (state DOT, false positive) |
+| North Carolina (NCDOT) | UNVERIFIED — real negative finding; a promising own-domain catalog entry (`gis11.services.ncdot.gov`) 404s at both FeatureServer and MapServer; not chased with further guessing | Camera (state DOT) |
 
-Thirty-three source-family investigations across seven batches this session (2026-08-23/24), including real negative findings recorded plainly (TxDOT, Data.gov, two Colorado guesses, BLM/USFS/USACE/BOR webcam APIs) and two corrected findings (OpenEye, previously `FAILED_VALIDATION` due to a wrong host, now `VERIFIED`; Utah, corrected from 32 to 1,437 real records after finding a second, more complete ArcGIS layer). One real anomaly investigated and resolved (Georgia's 7,083 vs. 3,676-active split) and one real misclassification caught and corrected (New Orleans, moved from monitoring to enforcement). See the **Coverage Matrix** near the top of this document for the authoritative, cross-referenced status of every named family in `Project ATLAS-WebSite.md`, including the two 50-state sweep trackers (now at 7/50 for 511/DOT, 1/50 for OSM). Remaining largely untouched: the majority of individual state 511/DOT systems, the majority of OSM state-by-state coverage, and emergency response data (fire/EMS/police/CAD feeds).
+Thirty-eight source-family investigations across eight batches this session (2026-08-23/24). Real negative findings recorded plainly throughout (TxDOT, Data.gov, two Colorado guesses, BLM/USFS/USACE/BOR webcam APIs, North Carolina's dead catalog link). Three corrected findings this session (OpenEye: wrong host, now `VERIFIED`; Utah CCTV: 1,437→1,188 active; Utah's original layer: reclassified as not a camera dataset at all). Two real anomalies/misclassifications resolved (Georgia's 7,083 vs. 3,676-active split; New Orleans moved from monitoring to enforcement). One real false positive caught before being counted (Pennsylvania/billboards). See the **Coverage Matrix** near the top of this document for the authoritative, cross-referenced status of every named family in `Project ATLAS-WebSite.md`, including the two 50-state sweep trackers (now at 9/50 for 511/DOT, 1/50 for OSM). Remaining largely untouched: the majority of individual state 511/DOT systems, the majority of OSM state-by-state coverage, and emergency response data (fire/EMS/police/CAD feeds).
 
 ## Raw evidence archive (Batch 2)
 
@@ -1241,3 +1301,14 @@ All full files (well under the size thresholds that required excerpting in earli
 | `sources/utah-dot/cctv-layer-count-2026-08-24.json` | `d9dcab48fa09d23f946b3cd9562ef457b7aa09ce54eba5fb5cb95d5a30419b49` — the real `{"count":1437}` response, correcting the earlier 32-record figure |
 | `sources/new-orleans-la/dataset-metadata-2026-08-24.json` | `99f6ca792a343cfea393dc291267cafbbda4359e6bd72cac89b2de63753abe13` — the dataset's own description, directly evidencing the enforcement-camera reclassification |
 | `sources/arcgis-discovery/national-sweep-page4-2026-08-24.json` | `6cb7961d4121ec44f815c2e4501ec5ed266672264f1b8f71b823db52ff0292eb` — results 301-400 of the full 758-match sweep (pages 5-8, results 401-758, not individually archived — the classification output is fully recorded in §28 above and is reproducible by re-running the same paginated query) |
+
+## Raw evidence archive (Batch 8)
+
+| File | SHA-256 |
+|---|---|
+| `sources/missouri-dot/camera-sample-2026-08-24.json` | `e54951e582fa12aae7d234dbaa4c61dc3794f3aeadfc5a40c38faf5c66853a5c` |
+| `sources/virginia-dot/camera-sample-2026-08-24.json` | `a116f507972ce80ec9839c471688878836000a1ea301d145b90ca8885af91027` |
+| `sources/pennsylvania-dot/layer-metadata-false-positive-2026-08-24.json` | `59c8254f1bc4a384dc0643635218ccee2c5de03d465e0e046d7fb3b69b25a56e` — the layer metadata proving this is `PA_BILLBOARDS`, not a camera dataset |
+| `sources/north-carolina-dot/negative-finding-2026-08-24.json` | `96a4fecc6de2e0898dd904127d2cbab4a24f251809a034c259258c0438431a10` — both real 404 responses, hand-recorded since the raw HTTP responses were not saved to separate files at fetch time |
+| `sources/utah-dot/cctv-online-count-2026-08-24.json` | `0dac362aa1389572dbcd62cbf4ae876be63fa35b9ae3eb22661258acc5f21435` — the real `{"count":1188}` response |
+| `sources/utah-dot/live-view-cameras-actually-a-planning-dataset-2026-08-24.json` | `3b6d5499cdd9440b3ae9678711a8c71395049eecbd21d5e9ab2fcb0100c47198` — real sample records showing `Est__Cost`/`Master_Pla`/`Package` fields, evidencing this is a procurement dataset, not camera locations |
