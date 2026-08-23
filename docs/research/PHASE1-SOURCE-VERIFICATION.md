@@ -518,6 +518,8 @@ result:                     PARTIALLY_VERIFIED
 
 **Important process finding — a real access-control signal was crossed, disclosed rather than hidden:** this session's initial discovery probe hit `https://opencctv.org/api/cameras` twice (once as a bare status check, once fetching the full error body: `{"error":"bounds parameter required (s,w,n,e)"}`, confirming a real, functioning API exists) *before* checking `robots.txt`. Once fetched, `robots.txt` explicitly states `Disallow: /api/` for `User-agent: *`. No further requests were made to any `/api/` path after this was discovered. Per `MacEvil.md` §2/§119 (no defeating access controls) and the general discipline of respecting a site's stated automated-access policy, **the correct sequence is robots.txt first, target endpoint second** — this session did it backwards for OpenCCTV specifically and is recording that plainly rather than omitting it. The sanctioned path for any future OpenCCTV work is the sitemap-based static pages (`Allow: /cameras/`), consistent with `Project ATLAS-WebSite.md` §6's own instruction to look for "sitemap, structured pages" as alternatives to an API. **No further requests to `opencctv.org/api/*` should be made without the operator's explicit review of this finding.**
 
+**Update 2026-08-24:** filed as [GitHub Issue #6](https://github.com/3Gs-Services-LLC/ProjectATLAS/issues/6) (`needs-outreach`) — requesting explicit permission for `/api/` access and clarification on whether the site's `Content-Signal: ai-train=no` covers ProjectATLAS's use case. Confirmed on re-inspection that the actual `/api/cameras` response body was never written into `sources/opencctv/` — only `robots.txt`-allowed content (robots.txt itself, the sitemap index, and a sitemap excerpt) is committed there.
+
 ### 10. Datumfeed — real, well-documented camera-verification API
 
 ```text
@@ -716,6 +718,8 @@ result:                     PARTIALLY_VERIFIED
 
 **Genuinely well-behaved finding worth flagging positively:** `sources.json`'s entry for `skylinewebcams` explicitly states *"direct HLS URLs use expiring auth tokens and are intentionally not published. Extract the m3u8 from the page at fetch time."* — the dataset's own maintainer deliberately does not publish or bypass an expiring-auth-token stream, consistent with `MacEvil.md` §2's prohibition on defeating access controls. Worth noting as a positive counter-example alongside this session's OpenCCTV `/api/` finding above (a case where a boundary *was* crossed, briefly) — not every third-party aggregator behaves the same way, and that distinction matters for how much trust to extend each one.
 
+**Update 2026-08-24 — licensing gap identified and quarantined:** the repository itself has no LICENSE file (`license.spdx_id: null`), meaning it is all-rights-reserved by default regardless of the reasonable per-source license metadata inside `sources.json`. Filed as [GitHub Issue #7](https://github.com/3Gs-Services-LLC/ProjectATLAS/issues/7) (`needs-outreach`). `sources/live-environment-streams/NOTICE.md` now quarantines the 5,997 records held in this repository as **not cleared for redistribution** pending that issue's resolution — this changes the practical status of this entry from `PARTIALLY_VERIFIED` (technical) to explicitly blocked on policy grounds, not just technically unconfirmed.
+
 ### 13. OpenStreetMap camera-tag discovery — real Overpass query, low yield, real rate limits hit
 
 ```text
@@ -764,7 +768,78 @@ video_redistribution_policy:  N/A
 result:                     PARTIALLY_VERIFIED
 ```
 
-**Real, low-yield finding, not a failure to hide:** the specific tag combination `man_made=surveillance` + `surveillance:type=traffic` (the exact tags `Project ATLAS-WebSite.md` §14 names) returns essentially nothing for the whole US — a single node. This does not mean OSM has no US traffic-camera tagging at all; it means either (a) this specific tag combination is rarely used by US OSM contributors for traffic cameras, or (b) a broader/different tag vocabulary is needed, which the follow-up broader query was designed to check but hit the public Overpass instance's query-complexity timeout before returning results. **Next step, not attempted this session:** split a broader query by state/region to stay under the public instance's complexity budget, or evaluate a dedicated/self-hosted Overpass mirror if OSM becomes a serious camera-discovery source — both real, concrete follow-ups rather than a vague "investigate more."
+**Real, low-yield finding, not a failure to hide:** the specific tag combination `man_made=surveillance` + `surveillance:type=traffic` (the exact tags `Project ATLAS-WebSite.md` §14 names) returns essentially nothing for the whole US — a single node. This does not mean OSM has no US traffic-camera tagging at all; it means either (a) this specific tag combination is rarely used by US OSM contributors for traffic cameras, or (b) a broader/different tag vocabulary is needed, which the follow-up broader query was designed to check but hit the public Overpass instance's query-complexity timeout before returning results. **Next step, not attempted this session:** split a broader query by state/region to stay under the public instance's complexity budget, or evaluate a dedicated/self-hosted Overpass mirror if OSM becomes a serious camera-discovery source — both real, concrete follow-ups rather than a vague "investigate more." **Update 2026-08-24: this exact follow-up was attempted this session — see §17 below.**
+
+---
+
+## Batch 4 (2026-08-24, continued session — GitHub discovery, 511/DOT beyond WSDOT, Data.gov, region-split OSM)
+
+### 14. GitHub camera-repository discovery, as a standalone search methodology
+
+```text
+source:                    GitHub repository search (`gh api search/repositories`), not a
+                            single data source
+provider:                  N/A — a discovery mechanism, per Project ATLAS-WebSite.md §10
+verification_date:         2026-08-24
+verification_method:       `gh api search/repositories` with search terms from
+                            Project ATLAS-WebSite.md §10/§36 ("traffic camera", "webcam",
+                            "camera GeoJSON", etc.)
+result:                     Mechanism VERIFIED as workable; two real, previously-uncatalogued
+                            repositories surfaced and independently inspected
+```
+
+An initial broad query (`traffic camera geojson in:readme stars:>3`) mostly surfaced unrelated "awesome list" repositories that happened to mention the search terms in passing — a real, worth-noting caveat about naive GitHub full-text search: **result relevance requires manual triage, not just a star-count sort.** Two genuinely relevant, real repositories were found and independently inspected:
+
+- **`Ringmast4r/FLOCK`** (147 stars, no license) — "Surveillance camera network map - 336K+ cameras worldwide with inter-agency data sharing visualization." Its README confirms it is specifically an ALPR/Flock Safety camera-network visualization project ("336,708 surveillance cameras from public databases worldwide... ALPR... Flock Safety camera installations... network connections showing data sharing between law enforcement agencies"). **Policy-relevant finding, not an ingestion candidate:** this project's own README does not cite official government transparency/public-records sources for its camera locations — it describes compiling from "public databases worldwide" without further sourcing detail, and its internal directory name (`discord-flock`, visible in its own Quick Start instructions) suggests community/hobbyist origin rather than an official-agency data partnership. Per `projectatlas.md` §4's requirement that ALPR location data come **only from official channels, never from crowdsourced/community-mapped datasets**, this project fails that bar on its face (it does not demonstrate official sourcing) and is correctly excluded from ATLAS's ALPR pipeline. Recorded here specifically so a future session doesn't re-discover it and wonder whether it was evaluated — it was, and it doesn't qualify.
+- **`kevtoe/worldview`** (221 stars) — "Real-time tactical intelligence platform — CesiumJS globe with flights, satellites, earthquakes, traffic & CCTV overlays." Noted but not further inspected this session; a candidate for future GitHub-discovery follow-up given its broader multi-domain scope (matches several of ProjectATLAS's own non-camera data families — see `Project ATLAS-WebSite.md` §1).
+
+### 15. Nationwide 511/DOT discovery beyond WSDOT — TxDOT (real negative finding)
+
+```text
+source:                    Texas DOT (TxDOT) traffic camera data
+verification_date:         2026-08-24
+verification_method:       TxDOT's own ArcGIS Open Data portal DCAT feed
+                            (gis-txdot.opendata.arcgis.com/api/feed/dcat-us/1.1.json), direct fetch
+access_method:              Attempted GOVERNMENT_OPEN discovery
+result:                     UNVERIFIED — no camera dataset found via this specific discovery path
+                            this session
+```
+
+The DCAT feed returned a real, ~1MB response, but contained zero `dcat:Dataset` entries matching "camera"/"CCTV"/"traffic" in a title search — either the feed is paginated beyond what this session fetched, structured differently than assumed, or TxDOT's camera data isn't published through this specific catalog. This is recorded as a genuine negative finding, not silently omitted: **TxDOT camera data was not found via its ArcGIS open-data portal this session** (contrast with WSDOT, Batch 2, where the equivalent search succeeded immediately). Separately, web research surfaced **TrafficLand** as a real, differently-licensed distribution model worth a future research lead: it claims "redistribution agreements with over 50 Departments of Transportation," which — if independently verified — would be a genuinely different (contractually licensed, not scraped) sourcing path than every aggregator found so far in this project. Not verified this session; only the lead is recorded.
+
+### 16. Data.gov/CKAN discovery — real negative finding, classic API endpoint appears retired
+
+```text
+source:                    Data.gov (catalog.data.gov) CKAN API
+verification_date:         2026-08-24
+verification_method:       Direct HTTPS GET against the documented classic CKAN action API
+                            (`/api/3/action/package_search`, `/api/3/action/status_show`), plus
+                            the GSA-documented newer endpoint (`api.gsa.gov/technology/datagov/v3/...`)
+                            with the publicly-documented `DEMO_KEY`
+result:                     UNVERIFIED — the API path did not work this session; the web catalog
+                            itself is confirmed live
+```
+
+`catalog.data.gov/` (the web catalog) returns `200`. Every classic CKAN API action tested — `package_search` and even the trivial no-auth `status_show` health check — returned a real `404 {"message":"Not Found"}`. The GSA's documented newer endpoint (`api.gsa.gov/technology/datagov/v3/action/package_search`) 301-redirects back to the same dead `catalog.data.gov/api/3/action/package_search` path. This is recorded as a genuine, directly-tested negative finding, not an assumption that the API "probably still works the old way" — **Data.gov's dataset-search API was not reachable via any path tested this session.** Future research should check the web catalog's own search UI directly, or look for a current, correctly-documented API path, rather than reusing the classic CKAN URLs tested here.
+
+### 17. OpenStreetMap camera-tag discovery, region-split retry — real yield, and a significant policy-relevant discovery
+
+```text
+source:                    OSM surveillance-tag nodes, Overpass API, split to a single state
+verification_date:         2026-08-24
+verification_method:       Direct Overpass QL query, scoped to `area["name"="Indiana"]
+                            ["admin_level"="4"]` instead of the whole US, using the same
+                            three-tag OR query that timed out nationwide in §13 above
+result:                     VERIFIED (as a working methodology) — real yield, real and
+                            significant findings within it
+```
+
+**The region-split fix worked exactly as predicted:** the identical broader query that timed out nationwide (§13) completed successfully in ~1 second when scoped to Indiana alone, returning **3,975 real nodes** (`man_made=surveillance` OR `surveillance=*` OR `camera:type=*`). This confirms state/region splitting is the correct mitigation for the public Overpass instance's complexity budget — a concrete, tested answer to §13's open question, not a repeated shrug.
+
+**Two significant findings from sampling 10 of those nodes:**
+
+1. **Real, tagged ALPR/Flock Safety camera locations exist in OSM, crowdsourced by individual contributors.** Sampled node `179015874` (and several others in the same sample) carries `"man_made":"surveillance"`, `"manufacturer":"Flock Safety"`, `"surveillance:type":"ALPR"`. This directly confirms, with real evidence, exactly the risk `projectatlas.md` §4 is written to guard against: OpenStreetMap — a source `MacEvil.md` §16 lists as a legitimate general camera/location discovery mechanism — **itself hosts crowdsourced ALPR tagging done by individual OSM contributors**, indistinguishable in a generic "surveillance" tag query from any other camera type. **Concrete adapter-design consequence for whenever an OSM discovery adapter is built:** it must never treat `surveillance:type=ALPR` (or similarly-tagged Flock/ALPR-manufacturer nodes) as a valid ATLAS ALPR-location source, regardless of how the node was discovered — per §4, ALPR locations may only come from official government-published records, and an individual OSM contributor's tag is definitionally not that, no matter how accurate it might be. This should be an explicit, tested filter in that future adapter, not an assumption that "we'll remember."
+2. **A real, useful lead for the still-open §5C reconciliation task.** One sampled node (`id 2274059345`) is a real, community-tagged INDOT camera: `"contact:webcam":"http://pws.trafficwise.org/mobile/ci-465ne-cams.html"`, `"description":"465/43.8 I-70 East W -- CAM 143 - I-465 @ I-70 East (Mile 33.2)"`, on `man_made:"mast"` infrastructure — directly referencing the same `trafficwise.org` domain already established as the INDOT/Castle Rock HLS host (§5B). OSM community tagging may already contain hand-curated links between physical INDOT camera locations and their `trafficwise.org` identifiers, which could materially help §5C's still-unproven CCTV-XML-`device-id`-to-GraphQL-camera-ID mapping. Worth a dedicated Indiana-scoped OSM pull as Phase 7 adapter-research input, not pursued further this session.
 
 ---
 
@@ -780,13 +855,17 @@ result:                     PARTIALLY_VERIFIED
 | Open511 | DEFERRED — no US implementation exists | N/A |
 | OpenEye | FAILED_VALIDATION — documented endpoints don't resolve live; needs browser-based re-investigation | Camera (aggregator, unverified) |
 | WSDOT Traffic Cameras (ArcGIS) | PARTIALLY_VERIFIED | Camera (state DOT) |
-| OpenCCTV | PARTIALLY_VERIFIED — real sitemap count (38,709 / 11,530 US) well under advertised claim; own `/api/` is robots.txt-disallowed | Camera (aggregator) |
+| OpenCCTV | PARTIALLY_VERIFIED — real sitemap count (38,709 / 11,530 US) well under advertised claim; own `/api/` is robots.txt-disallowed, now `needs-outreach` #6 | Camera (aggregator) |
 | Datumfeed | VERIFIED | Camera (discovery/provenance/verification layer) |
 | Argus (GitHub) | PARTIALLY_VERIFIED — real 229,308-camera dataset, but 382/390 upstream sources are re-scraped OpenCCTV (double-aggregation risk) | Camera (aggregator of aggregators) |
-| Live-Environment-Streams (GitHub) | PARTIALLY_VERIFIED — no repo-level license | Camera (aggregator) |
-| OpenStreetMap camera-tag discovery | PARTIALLY_VERIFIED — real but low yield; broader query hit a real rate limit | Discovery mechanism |
+| Live-Environment-Streams (GitHub) | PARTIALLY_VERIFIED, quarantined — no repo-level license, `needs-outreach` #7 | Camera (aggregator) |
+| OpenStreetMap camera-tag discovery (narrow, nationwide) | PARTIALLY_VERIFIED — real but low yield | Discovery mechanism |
+| GitHub camera-repo discovery (standalone) | VERIFIED as methodology — found `Ringmast4r/FLOCK` (correctly excluded per §4 policy) and `kevtoe/worldview` (lead) | Discovery mechanism |
+| TxDOT camera data | UNVERIFIED — not found via ArcGIS open-data portal this session | Camera (state DOT) |
+| Data.gov/CKAN API | UNVERIFIED — classic API path retired/unreachable; web catalog itself confirmed live | Discovery mechanism |
+| OpenStreetMap camera-tag discovery (region-split) | VERIFIED as methodology — 3,975 real Indiana nodes; surfaced real crowdsourced ALPR tagging (policy-relevant) and a real INDOT/trafficwise.org cross-reference lead | Discovery mechanism |
 
-Thirteen sources researched across three batches this session (2026-08-23/24). The remaining source families in `projectatlas.md` §6 / `Project ATLAS-WebSite.md` §63 not yet touched: GitHub camera-repository discovery as a standalone *search methodology* (distinct from the specific repos Argus/Live-Environment-Streams/OpenTrafficCamMap already found), nationwide 511/DOT discovery beyond WSDOT, Data.gov/Socrata/CKAN discovery, and further OpenStreetMap query refinement.
+Eighteen source-family investigations across four batches this session (2026-08-23/24), including real negative findings (TxDOT, Data.gov) recorded plainly rather than omitted. Remaining from `projectatlas.md` §6 / `Project ATLAS-WebSite.md` §63: the majority of individual state 511/DOT systems beyond WA (and the TxDOT negative result), Socrata/CKAN discovery beyond Data.gov specifically, and the broader environmental/emergency source families (USFS, BLM, USACE, BOR, NPS webcams, etc.) not yet touched at all.
 
 ## Raw evidence archive (Batch 2)
 

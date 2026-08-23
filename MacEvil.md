@@ -1,3 +1,7 @@
+> **Proprietary document — all rights reserved.** This document is proprietary to 3Gs Services LLC. Unlike the code in this repository, it is **not** licensed under AGPL-3.0 or any other open license. No permission is granted to copy, redistribute, or create derivative works from this document without written permission from 3Gs Services LLC. See `LICENSE` (repo root) for the code's actual license terms, and `README.md`'s "License" section for the full split.
+
+---
+
 # A.T.L.A.S.
 
 ## America Through Lenses And Surveillance
