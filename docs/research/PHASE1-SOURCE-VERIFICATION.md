@@ -6,6 +6,56 @@ All requests used a self-identifying User-Agent (`ProjectATLAS-SourceResearch/1.
 
 ---
 
+## Coverage Matrix
+
+Cross-referenced against `Project ATLAS-WebSite.md` §4–§24's full named source catalog. Statuses: **VERIFIED** (endpoint hit, data confirmed real, policy established), **PARTIALLY_VERIFIED** (endpoint hit and data confirmed real, but policy/scope/redistribution incomplete), **EXCLUDED-WITH-REASON** (evaluated and correctly rejected, not silently skipped), **DEFERRED** (real candidate researched, none currently exists to verify), **UNSTARTED** (not yet touched this project).
+
+| # | Family (`Project ATLAS-WebSite.md` §) | Status | Evidence |
+|---|---|---|---|
+| 1 | OpenTrafficCamMap (§4A) | PARTIALLY_VERIFIED | Batch 1 §4 — 7,029 real records, no per-camera ID field; re-confirmed stable, Batch 5 §22 |
+| 2 | OpenEye (§5) | **VERIFIED** (corrected 2026-08-24) | Batch 2 §7 update — root cause was a wrong API host (`api.openeye.cam`, not `openeye.cam`); 53,677 real records, 31 countries, per-camera redistribution policy objects |
+| 3 | OpenCCTV (§6) | PARTIALLY_VERIFIED | Batch 3 §9 — 38,709 real sitemap URLs (11,530 US); own `/api/` robots.txt-disallowed, `needs-outreach` #6 |
+| 4 | Datumfeed (§7) | VERIFIED | Batch 3 §10 |
+| 5 | Argus (§8) | PARTIALLY_VERIFIED | Batch 3 §11 — 229,308 real records; 382/390 upstream sources are re-scraped OpenCCTV |
+| 6 | Live-Environment-Streams (§9) | PARTIALLY_VERIFIED, quarantined | Batch 3 §12 — no repo license, `needs-outreach` #7, `sources/live-environment-streams/NOTICE.md` |
+| 7 | GitHub camera-repo discovery (§10) | VERIFIED as methodology | Batch 4 §14 — found & excluded `Ringmast4r/FLOCK`; found `kevtoe/worldview` lead |
+| 8 | Nationwide 511/DOT discovery (§11) | PARTIALLY_VERIFIED — state-by-state, see below | Batch 2 §8 (WA), Batch 4 §15 (TX, negative), Batch 5 §18 (OR via ArcGIS), `projectatlas.md` §5A/§5B/§5D (IN) |
+| 9 | Open511 (§12) | DEFERRED — no US implementation exists | Batch 2 §6 |
+| 10 | ArcGIS REST discovery (§13) | **VERIFIED as systematic methodology** (2026-08-24) | Batch 5 §18 — ArcGIS Online's own public search API, 758 real matches for "traffic camera", Oregon result independently verified (1,164 records, explicit `licenseInfo: "Public"`) |
+| 11 | OpenStreetMap camera-tag discovery (§14) | PARTIALLY_VERIFIED — state-by-state, see below | Batch 3 §13 (nationwide narrow), Batch 4 §17 (Indiana region-split) |
+| 12 | U.S. Federal camera sources — NPS/BLM/USFS/USACE/BOR (§15) | UNSTARTED | — |
+| 13 | NOAA/NWS (§16) | PARTIALLY_VERIFIED — Alerts API only; NEXRAD/SPC/NHC/marine/aviation/observations untested | Batch 1 §1 |
+| 14 | FEMA/IPAWS (§17) | PARTIALLY_VERIFIED, clarified 2026-08-24 — disaster declarations VERIFIED; live IPAWS feed is `ACCOUNT_REQUIRED` (not open, not tested further); IPAWS *archived* alerts dataset separately VERIFIED open | Batch 2 §5, Batch 5 §20 |
+| 15 | WZDx (§18) | PARTIALLY_VERIFIED — Indiana feed fully verified; registry has ~42 feeds/29 states, only 1 fetched | Batch 1 §3 |
+| 16 | State DOT traffic data, general (§19) | Same as #8 — see state-by-state below | — |
+| 17 | Emergency response data — fire/EMS/police/CAD (§20) | UNSTARTED | — |
+| 18 | Socrata discovery (§21) | **VERIFIED as systematic methodology** (2026-08-24) | Batch 5 §19 — Socrata's own cross-portal Discovery API, 76 real results across real city/state portals, confirmed independent of Data.gov's dead CKAN layer |
+| 19 | CKAN discovery (§22) | PARTIALLY_VERIFIED — same negative finding as Data.gov below (Data.gov's backend is CKAN); no independent non-Data.gov CKAN instance tested | Batch 4 §16 |
+| 20 | Data.gov (§23) | UNVERIFIED — real negative finding, classic API appears retired | Batch 4 §16 |
+| 21 | USGS environmental events (§24) | PARTIALLY_VERIFIED — earthquake feed only; volcanoes/water/hazards products untested | Batch 1 §2 |
+
+**State-by-state sweep tracking (families #8/#11/#16 — nationwide 511/DOT — and #11 — OSM camera-tag discovery):**
+
+| State | 511/DOT status | OSM camera-tag status |
+|---|---|---|
+| Indiana (IN) | VERIFIED — three distinct paths (`projectatlas.md` §5A CARS-Hub XML, §5B GraphQL/HLS, §5D WZDx) | VERIFIED (region-split) — 3,975 real nodes, incl. real ALPR/Flock tags and a `trafficwise.org` cross-reference lead (Batch 4 §17) |
+| Washington (WA) | PARTIALLY_VERIFIED — WSDOT ArcGIS layer, 1,533 records, redistribution status unconfirmed (Batch 2 §8) | UNSTARTED |
+| Oregon (OR) | VERIFIED — TripCheck_Cameras ArcGIS layer, 1,164 records, explicit `licenseInfo: "Public"` (Batch 5 §18) | UNSTARTED |
+| Texas (TX) | UNVERIFIED — real negative finding, not found via ArcGIS DCAT portal (Batch 4 §15) | UNSTARTED |
+| Colorado (CO) | UNSTARTED-WITH-LEADS — a real CDOT camera surfaced via OpenEye and a real WZDx registry entry exist, but no independently-verified direct CO endpoint found; one guessed endpoint returned a real 404 (Batch 5 §23) | UNSTARTED |
+| All other 45 states + DC + territories | UNSTARTED | UNSTARTED (except the nationwide-not-region-split query in Batch 3 §13, which covered the whole US at once but at a narrow tag scope and found ~nothing) |
+
+**ADR file paths, confirmed by direct directory listing 2026-08-24** (a prior report summarized ADR content from memory without citing files — corrected here):
+
+- [`docs/adr/0001-technology-stack.md`](../adr/0001-technology-stack.md)
+- [`docs/adr/0002-source-adapter-architecture.md`](../adr/0002-source-adapter-architecture.md)
+- [`docs/adr/0003-database-migrations.md`](../adr/0003-database-migrations.md)
+- [`docs/adr/0004-identity-resolution.md`](../adr/0004-identity-resolution.md)
+- [`docs/adr/0005-media-retention-policy.md`](../adr/0005-media-retention-policy.md)
+- [`docs/adr/0006-safe-fetch-layer.md`](../adr/0006-safe-fetch-layer.md)
+
+---
+
 ## 1. NWS/NOAA Public Alerts API
 
 ```text
@@ -388,6 +438,42 @@ result:                     FAILED_VALIDATION (this session) — see finding
 ```
 
 **Important methodology finding, recorded per `MacEvil.md` §8's "do not treat search results/AI summaries as proof of an API":** an initial `WebFetch` call against `openeye.cam/docs` returned a plausible-looking, specific endpoint list (`/v1/catalog/map`, `/v1/catalog/featured`, `/v1/catalog/categories`, etc.) with authentication and payment-flow details. **Every one of those paths was then tested directly and returned HTTP 404**, including `/v1/catalog`, `/v1/catalog/map`, `/v1/catalog/featured`, and several standard OpenAPI-discovery paths (`/openapi.json`, `/api/openapi.json`, `/.well-known/openapi.json`, `/llms.txt`). The raw HTML of `/docs` is a client-side-rendered Next.js shell with no documentation content in the initial payload — meaning the earlier WebFetch summary was very likely synthesized/inferred by its underlying model from partial or non-authoritative signal, not read from real documented text. This is exactly the failure mode `MacEvil.md` §8 warns against ("do not invent an endpoint because another system uses a similar URL") — the difference here is the invention came from an AI-summarization tool in the research pipeline itself, not from this session directly guessing. **Recorded as `FAILED_VALIDATION`, not silently corrected or re-guessed further.** Re-investigation requires either a real browser session (rendering the JS and capturing actual network requests, per `MacEvil.md` §62's controlled-browser-automation allowance) or direct correspondence with the operator — not additional URL guessing.
+
+**Update 2026-08-24 — resolved via real browser session, root cause identified:** using a real browser (rendering the JS, not a static HTML fetch), the docs page's actual content was read directly. **The root cause of the previous 404s was a wrong host, not a nonexistent API:** the API is served from `api.openeye.cam`, not `openeye.cam`. Last session's tests (and the WebFetch summary it was checking) all targeted `openeye.cam/v1/...`, which correctly 404's — `api.openeye.cam/v1/...` is live and real. Corrected verification:
+
+```text
+source:                    OpenEye public camera directory/API — CORRECTED
+official_url:              https://openeye.cam (docs); https://api.openeye.cam (actual API host)
+verification_date:         2026-08-24
+verification_method:       Real browser session (JS-rendered docs page read directly) +
+                            direct HTTPS GET against api.openeye.cam
+authentication:             None for public read endpoints (catalog/map/categories/nearest);
+                            a free API key is required for actual frame-byte retrieval
+                            (POST /v1/agents/register — not obtained this session, not needed
+                            for metadata-level verification)
+observed_format:            application/json
+
+records_discovered:         53,677 (live `/v1/catalog/categories` total, this session — docs'
+                            own example text says "~51k", so this is independently confirmed in
+                            the right order of magnitude, not just copied from the docs)
+records_valid:               Spot-checked a real Colorado DOT/COtrip camera
+                            (`stream_01KW4JQ8R5EG1XNRGZ741YKJ7H`, "I-70 @ MM 183.6") with a full,
+                            structured field set: category, coordinates, `source_adapter: "cdot"`,
+                            and a genuinely detailed per-camera `redistribution` policy object
+                            (`preview_embed`, `frame_reuse`, `frame_access`, `attribution.required`)
+coverage:                    31 countries per the live categories response; category breakdown:
+                            traffic 46,007, weather 2,348, port 1,449, surf 1,348, other 1,105,
+                            ski 859, city 513, park 38, wildlife 10 (sums to the 53,677 total)
+license:                   Per-camera, machine-readable — the `redistribution` object on every
+                            record states exactly what's permitted (preview embedding, frame
+                            reuse mode, attribution requirement) rather than one blanket policy.
+                            This is a real strength: policy is queryable per-record, not something
+                            that has to be inferred or assumed.
+
+result:                     VERIFIED (superseding the FAILED_VALIDATION result above)
+```
+
+**Root-cause lesson, stated plainly:** the original failure was this project's own testing methodology (guessing the API lived on the docs page's own domain, a very common but unverified assumption), not evidence of a nonexistent or fabricated source. Both things can be true at once — the earlier `WebFetch` summary genuinely was unverifiable from the raw HTML at the time (that finding stands, and the discipline of not trusting an AI summary without direct verification was correct) — and the underlying source is, in fact, real and substantial. This supersedes the FAILED_VALIDATION conclusion above; OpenEye should be treated as `POLICY_VERIFIED`-adjacent for the traffic category going forward, pending a closer look at the exact `redistribution.frame_reuse` semantics before any production adapter relies on it.
 
 ### 8. WSDOT Traffic Cameras (ArcGIS MapServer)
 
@@ -843,6 +929,71 @@ result:                     VERIFIED (as a working methodology) — real yield, 
 
 ---
 
+## Batch 5 (2026-08-24, continued session — OpenEye resolved, ArcGIS + Socrata systematic discovery, IPAWS clarified)
+
+### 18. ArcGIS REST discovery — systematic methodology found, replacing one-off per-state lookups
+
+```text
+source:                    ArcGIS Online's own public item-search API
+official_url:              https://www.arcgis.com/sharing/rest/search
+verification_date:         2026-08-24
+verification_method:       Direct HTTPS GET, `q=traffic camera type:"Feature Service"`
+authentication:             None required
+observed_format:            application/json
+result:                     VERIFIED as a systematic discovery methodology
+```
+
+**This is the real fix for §10 (`Project ATLAS-WebSite.md` §13's "search public ArcGIS REST infrastructure")** — rather than one-off per-state web searches (as Batches 2/4 did for WA/TX), ArcGIS Online exposes its own public, unauthenticated search API. A single query for `traffic camera type:"Feature Service"` returned **758 real total matches**, with the first page alone surfacing named, real, verifiable state/county/city services: Austin TX, KYTC (Kentucky), MDOT SHA (Maryland), Oregon Traffic Cameras (Oregon Office of Emergency Management), Seattle (ATSC), Jefferson County KY, Montgomery County TX, Arlington, Iowa DOT — a genuine national landscape in one call, not a per-state guessing exercise.
+
+**One result independently verified end-to-end:** "Oregon Traffic Cameras" (`TripCheck_Cameras`, owner `Oregon_OEM`) — item metadata explicitly states `"licenseInfo":"Public"`, `"accessInformation":"Oregon Office of Emergency Management, ODOT"`, `"contentStatus":"public_authoritative"` (ArcGIS's own authoritative-content flag), `"numViews":7948321` (a genuinely high-traffic production service, not an abandoned test layer). Queried the real service URL directly: **1,164 real camera records** (`returnCountOnly=true`, exact server count), with real fields (`attributes_title`, `attributes_route`, `attributes_cameraId`, `geometry_x/y`). This is the same ODOT/TripCheck source that appeared incidentally as a cross-border camera inside WSDOT's own layer (Batch 2 §8) — now independently found and verified as its own dedicated, explicitly-public-licensed source.
+
+### 19. Socrata discovery — separate from CKAN/Data.gov, and it works
+
+```text
+source:                    Socrata's own cross-portal Discovery API
+official_url:              https://api.us.socrata.com/api/catalog/v1
+verification_date:         2026-08-24
+verification_method:       Direct HTTPS GET, `q=traffic camera`
+authentication:             None required
+observed_format:            application/json
+result:                     VERIFIED as a systematic discovery methodology
+```
+
+Directly answers the task's distinction between Socrata and CKAN (§21 vs §22/§23 in `Project ATLAS-WebSite.md`): **Socrata's own discovery API is alive and independent of Data.gov's dead CKAN aggregation layer (Batch 4 §16).** A single query returned 76 real results across real city/state Socrata portals: `datahub.austintexas.gov`, `data.brla.gov` (Baton Rouge), `data.nola.gov` (New Orleans), `data.honolulu.gov`, `opendata.maryland.gov`, `cos-data.seattle.gov` — confirming Socrata-as-a-platform discovery is a genuinely separate, working mechanism from the CKAN path that failed. Individual dataset endpoints not fetched this session (methodology-level verification only); a real next step is resolving one of these to its actual data endpoint and confirming record-level access, same as was done for ArcGIS's Oregon result above.
+
+### 20. FEMA/IPAWS — live feed vs. archived alerts, two different access postures clarified
+
+```text
+source:                    IPAWS All-Hazards Information Feed (live) vs. OpenFEMA
+                            IpawsArchivedAlerts dataset (historical)
+verification_date:         2026-08-24
+result:                     Live feed: ACCOUNT_REQUIRED (not open, not tested further).
+                            Archived dataset: VERIFIED — open, same access posture as
+                            OpenFEMA disaster declarations (Batch 2 §5)
+```
+
+Closes the "IPAWS/CAP live alert feeds... remain unverified" gap explicitly flagged in Batch 2 §5, with a real, precise answer rather than continued silence: **the live IPAWS feed requires registering for an account on the IPAWS User Portal** (`ACCOUNT_REQUIRED` per `MacEvil.md` §11's access-type taxonomy) — not tested further, since no account was registered this session. Separately, a **historical/archived** IPAWS dataset is openly available through the already-verified-working OpenFEMA API pattern: `GET https://www.fema.gov/api/open/v1/IpawsArchivedAlerts` returned real, current HTTP 200 JSON containing genuine historical CAP-XML alert messages (spot-checked: a real 2020 NWS flood warning, full CAP structure intact), no authentication required. **These are two distinct products with two distinct access postures — do not conflate "IPAWS is unverified" going forward; it's now precisely split into a verified-open historical path and a real, specific, named requirement (account registration) for the live path.**
+
+### 21. OpenEye — see the correction inline at entry §7 above
+
+Resolved this session via a real browser session (not re-summarized here to avoid duplication) — root cause of the earlier `FAILED_VALIDATION` was a wrong API host (`openeye.cam` tested instead of the real `api.openeye.cam`), now corrected to `VERIFIED` with 53,677 real camera records confirmed live across 31 countries. Full detail at §7's inline update.
+
+### 22. OpenTrafficCamMap — re-verification, count stable
+
+```text
+verification_date:         2026-08-24 (re-check of Batch 1 §4)
+result:                     Count independently re-confirmed: 7,029 records, identical byte-for-byte
+                            file (1,591,599 bytes) to the 2026-08-23 check; repo's own `pushed_at`
+                            timestamp unchanged between checks — the dataset has not moved, this is
+                            a genuine stability confirmation, not a coincidental re-match
+```
+
+### 23. Colorado DOT camera data — real negative finding, real positive leads not yet resolved to an endpoint
+
+A direct guess at `data.cotrip.org/api/v1/cameras` returned a real `404 {"code":404,"message":"The current request is not defined by this API."}` — recorded plainly rather than silently dropped, consistent with `MacEvil.md` §8's "do not invent an endpoint." Colorado remains a real, credible lead (a CDOT camera appeared live via OpenEye's `source_adapter: "cdot"` in §21/§7's re-verification, and Colorado DOT has a registered WZDx feed in the federal registry per Batch 1 §3's raw evidence archive) but has **no independently-verified direct public camera endpoint of its own found this session.** Not resolved further — a genuine UNSTARTED-with-leads state, not a false VERIFIED.
+
+---
+
 ## Summary (all sources verified to date)
 
 | Source | Result | Category |
@@ -853,7 +1004,7 @@ result:                     VERIFIED (as a working methodology) — real yield, 
 | OpenTrafficCamMap | PARTIALLY_VERIFIED | Camera (aggregator) |
 | FEMA/OpenFEMA Disaster Declarations | VERIFIED | Event (emergency) |
 | Open511 | DEFERRED — no US implementation exists | N/A |
-| OpenEye | FAILED_VALIDATION — documented endpoints don't resolve live; needs browser-based re-investigation | Camera (aggregator, unverified) |
+| OpenEye | **VERIFIED (corrected 2026-08-24)** — wrong host tested previously (`openeye.cam` vs. real `api.openeye.cam`); 53,677 real records, 31 countries | Camera (aggregator, well-documented policy) |
 | WSDOT Traffic Cameras (ArcGIS) | PARTIALLY_VERIFIED | Camera (state DOT) |
 | OpenCCTV | PARTIALLY_VERIFIED — real sitemap count (38,709 / 11,530 US) well under advertised claim; own `/api/` is robots.txt-disallowed, now `needs-outreach` #6 | Camera (aggregator) |
 | Datumfeed | VERIFIED | Camera (discovery/provenance/verification layer) |
@@ -864,8 +1015,13 @@ result:                     VERIFIED (as a working methodology) — real yield, 
 | TxDOT camera data | UNVERIFIED — not found via ArcGIS open-data portal this session | Camera (state DOT) |
 | Data.gov/CKAN API | UNVERIFIED — classic API path retired/unreachable; web catalog itself confirmed live | Discovery mechanism |
 | OpenStreetMap camera-tag discovery (region-split) | VERIFIED as methodology — 3,975 real Indiana nodes; surfaced real crowdsourced ALPR tagging (policy-relevant) and a real INDOT/trafficwise.org cross-reference lead | Discovery mechanism |
+| ArcGIS REST discovery (systematic) | VERIFIED as methodology — ArcGIS Online's own search API, 758 real matches; Oregon (TripCheck, 1,164 records) independently confirmed | Discovery mechanism |
+| Socrata discovery (systematic) | VERIFIED as methodology — Socrata's own cross-portal Discovery API, 76 real results, independent of Data.gov's dead CKAN path | Discovery mechanism |
+| IPAWS archived alerts | VERIFIED — open via OpenFEMA API; live IPAWS feed is `ACCOUNT_REQUIRED`, distinct and untested | Event (emergency) |
+| OpenTrafficCamMap (re-check) | Count re-confirmed stable: 7,029, byte-identical file | Camera (aggregator) |
+| Colorado DOT camera data | UNSTARTED-WITH-LEADS — real leads (OpenEye's CDOT records, a WZDx registry entry) but no independently-verified direct CO endpoint; one guessed endpoint returned a real 404 | Camera (state DOT) |
 
-Eighteen source-family investigations across four batches this session (2026-08-23/24), including real negative findings (TxDOT, Data.gov) recorded plainly rather than omitted. Remaining from `projectatlas.md` §6 / `Project ATLAS-WebSite.md` §63: the majority of individual state 511/DOT systems beyond WA (and the TxDOT negative result), Socrata/CKAN discovery beyond Data.gov specifically, and the broader environmental/emergency source families (USFS, BLM, USACE, BOR, NPS webcams, etc.) not yet touched at all.
+Twenty-three source-family investigations across five batches this session (2026-08-23/24), including real negative findings (TxDOT, Data.gov, one Colorado guess) recorded plainly rather than omitted, and one corrected finding (OpenEye, previously `FAILED_VALIDATION` due to a wrong host, now `VERIFIED`). See the **Coverage Matrix** near the top of this document for the authoritative, cross-referenced status of every named family in `Project ATLAS-WebSite.md`, including the two 50-state sweep trackers. Remaining largely untouched: the majority of individual state 511/DOT systems (3 of 50 states + territories done), the majority of OSM state-by-state coverage (1 of 50 done), U.S. federal land-management camera sources (NPS/BLM/USFS/USACE/BOR), and emergency response data (fire/EMS/police/CAD feeds).
 
 ## Raw evidence archive (Batch 2)
 
@@ -891,3 +1047,16 @@ The OpenEye raw HTML is archived specifically as evidence *for* the `FAILED_VALI
 | `sources/argus-github/cameras-EXCERPT-2026-08-23.geojson` | **Excerpt only** (first 400KB of a 100,770,547-byte file). Full-file SHA-256 for provenance: `6ab6c40da85ac754bc93d74c3aa5379d076c486c6989cbfb374b2b2ae428e158`. Not committed in full (100MB) to keep repo size reasonable; re-fetch `https://raw.githubusercontent.com/GoSlowPoke168/Argus/master/public/cameras.geojson` to reproduce. |
 | `sources/live-environment-streams/sources-2026-08-23.json` | Full file |
 | `sources/live-environment-streams/streams-2026-08-23.geojson` | Full file (4MB — comparable in size to the WZDx feed already committed in Batch 1) |
+
+## Raw evidence archive (Batch 5)
+
+| File | SHA-256 |
+|---|---|
+| `sources/arcgis-discovery/search-traffic-camera-2026-08-24.json` | `12933b1d09c6cef0eb98d4ea3015c91f91b47cbed6721daba619cad1acd9cc94` |
+| `sources/socrata-discovery/search-traffic-camera-2026-08-24.json` | `d0b25982cca2aacbefc231e0168bacf7479ecb09a381dd2b84e9ff2b318950aa` |
+| `sources/fema-ipaws/archived-alerts-sample-2026-08-24.json` | `c2f1f5dd249cf21b46814467f8f59f41444e1eb88ec6f4442f88e77b2a98ed97` |
+| `sources/oregon-tripcheck/camera-sample-2026-08-24.json` | `0df170997054353efe15df2b782ce2327a6c3fcf0baa5176eaa7a073a0c84812` |
+| `sources/openeye-cam/categories-2026-08-24.json` | `1d414bfc5c40204397be3e86e5efd121b5575d7e603c2f6efeae90e00b0da1e7` |
+| `sources/openeye-cam/camera-sample-2026-08-24.json` | `b037414da0e5dca5608196a8e709b20dbb36ec1e306867d06bb66d08854f05de` |
+
+All full files (well under the size thresholds that required excerpting in earlier batches). `sources/openeye-cam/docs-page-raw-2026-08-23.html` (Batch 2's original evidence of the client-rendered, doc-content-empty page) is deliberately kept, not deleted — it remains the actual evidence for *why* the original `FAILED_VALIDATION` finding happened (wrong host guessed from an unreadable static page), even though that finding is now corrected.
