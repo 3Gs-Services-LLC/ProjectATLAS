@@ -1,0 +1,1315 @@
+{
+  "id" : "te2d-4txp",
+  "name" : "Traffic Camera",
+  "assetType" : "dataset",
+  "attribution" : "Public Works (DPW)",
+  "attributionLink" : "https://nola.gov/find-safety-camera-locations/",
+  "averageRating" : 0,
+  "category" : "Transportation and Infrastructure",
+  "createdAt" : 1639429018,
+  "description" : "This map service is currently being updated and may not reflect accurate location information. At this time please reference the following URL for a more current listing of active camera locations and time ranges for those in School Zones. \n\nhttps://nola.gov/find-safety-camera-locations/",
+  "diciBackend" : false,
+  "displayType" : "table",
+  "downloadCount" : 1322,
+  "hideFromCatalog" : false,
+  "hideFromDataJson" : false,
+  "licenseId" : "CC0_10",
+  "locked" : false,
+  "newBackend" : true,
+  "numberOfComments" : 0,
+  "oid" : 40985024,
+  "provenance" : "official",
+  "publicationAppendEnabled" : false,
+  "publicationDate" : 1732826345,
+  "publicationGroup" : 18530293,
+  "publicationStage" : "published",
+  "rowsUpdatedAt" : 1732826348,
+  "tableId" : 19704209,
+  "totalTimesRated" : 0,
+  "viewCount" : 2574,
+  "viewLastModified" : 1732826345,
+  "viewType" : "tabular",
+  "approvals" : [ {
+    "reviewedAt" : 1639429019,
+    "reviewedAutomatically" : true,
+    "state" : "approved",
+    "submissionId" : 6635878,
+    "submissionObject" : "public_audience_request",
+    "submissionOutcome" : "change_audience",
+    "submittedAt" : 1639429019,
+    "targetAudience" : "public",
+    "workflowId" : 2032,
+    "submissionDetails" : {
+      "permissionType" : "READ"
+    },
+    "submissionOutcomeApplication" : {
+      "endedAt" : 1639429019,
+      "failureCount" : 0,
+      "startedAt" : 1639429019,
+      "status" : "success"
+    },
+    "submitter" : {
+      "id" : "guap-8ddq",
+      "displayName" : "City of New Orleans GIS Department"
+    }
+  } ],
+  "clientContext" : {
+    "clientContextVariables" : [ ],
+    "inheritedVariables" : { }
+  },
+  "columns" : [ {
+    "id" : 602287244,
+    "name" : "the_geom",
+    "dataTypeName" : "point",
+    "fieldName" : "the_geom",
+    "position" : 1,
+    "renderTypeName" : "point",
+    "tableColumnId" : 140303371,
+    "cachedContents" : {
+      "non_null" : "103",
+      "null" : "0",
+      "top" : [ {
+        "item" : {
+          "coordinates" : [ -90.110327999794, 29.920317000093 ],
+          "type" : "Point"
+        },
+        "count" : "2"
+      }, {
+        "item" : {
+          "coordinates" : [ -90.087022999624, 29.982195999455 ],
+          "type" : "Point"
+        },
+        "count" : "2"
+      }, {
+        "item" : {
+          "coordinates" : [ -90.07960600044, 29.963133000028 ],
+          "type" : "Point"
+        },
+        "count" : "2"
+      }, {
+        "item" : {
+          "coordinates" : [ -90.087094999143, 29.941727000146 ],
+          "type" : "Point"
+        },
+        "count" : "2"
+      }, {
+        "item" : {
+          "coordinates" : [ -89.984420000193, 29.917518000469 ],
+          "type" : "Point"
+        },
+        "count" : "2"
+      }, {
+        "item" : {
+          "coordinates" : [ -89.968539500838, 30.023323962307 ],
+          "type" : "Point"
+        },
+        "count" : "1"
+      }, {
+        "item" : {
+          "coordinates" : [ -90.085315515096, 29.945848638803 ],
+          "type" : "Point"
+        },
+        "count" : "1"
+      }, {
+        "item" : {
+          "coordinates" : [ -90.104463000837, 29.979890999136 ],
+          "type" : "Point"
+        },
+        "count" : "1"
+      }, {
+        "item" : {
+          "coordinates" : [ -90.100355831094, 29.975016382741 ],
+          "type" : "Point"
+        },
+        "count" : "1"
+      }, {
+        "item" : {
+          "coordinates" : [ -90.004005029357, 30.021555644083 ],
+          "type" : "Point"
+        },
+        "count" : "1"
+      }, {
+        "item" : {
+          "coordinates" : [ -89.968407339083, 30.0224692759 ],
+          "type" : "Point"
+        },
+        "count" : "1"
+      }, {
+        "item" : {
+          "coordinates" : [ -89.930640876233, 30.043725462766 ],
+          "type" : "Point"
+        },
+        "count" : "1"
+      }, {
+        "item" : {
+          "coordinates" : [ -90.115748214742, 29.932316236035 ],
+          "type" : "Point"
+        },
+        "count" : "1"
+      }, {
+        "item" : {
+          "coordinates" : [ -90.11528893063, 29.960528630763 ],
+          "type" : "Point"
+        },
+        "count" : "1"
+      }, {
+        "item" : {
+          "coordinates" : [ -90.127028193505, 29.949665371904 ],
+          "type" : "Point"
+        },
+        "count" : "1"
+      }, {
+        "item" : {
+          "coordinates" : [ -90.120599661955, 29.945345485191 ],
+          "type" : "Point"
+        },
+        "count" : "1"
+      }, {
+        "item" : {
+          "coordinates" : [ -90.069312000041, 29.98205500022 ],
+          "type" : "Point"
+        },
+        "count" : "1"
+      }, {
+        "item" : {
+          "coordinates" : [ -90.076387946158, 29.92919462923 ],
+          "type" : "Point"
+        },
+        "count" : "1"
+      }, {
+        "item" : {
+          "coordinates" : [ -90.080037163559, 29.977395888616 ],
+          "type" : "Point"
+        },
+        "count" : "1"
+      }, {
+        "item" : {
+          "coordinates" : [ -90.050231326114, 30.002263909314 ],
+          "type" : "Point"
+        },
+        "count" : "1"
+      } ],
+      "count" : "103",
+      "cardinality" : "98"
+    },
+    "format" : { }
+  }, {
+    "id" : 602287245,
+    "name" : "OBJECTID",
+    "dataTypeName" : "number",
+    "fieldName" : "objectid",
+    "position" : 2,
+    "renderTypeName" : "number",
+    "tableColumnId" : 140303372,
+    "cachedContents" : {
+      "non_null" : "103",
+      "largest" : "103",
+      "null" : "0",
+      "top" : [ {
+        "item" : "8",
+        "count" : "1"
+      }, {
+        "item" : "33",
+        "count" : "1"
+      }, {
+        "item" : "70",
+        "count" : "1"
+      }, {
+        "item" : "19",
+        "count" : "1"
+      }, {
+        "item" : "55",
+        "count" : "1"
+      }, {
+        "item" : "29",
+        "count" : "1"
+      }, {
+        "item" : "14",
+        "count" : "1"
+      }, {
+        "item" : "3",
+        "count" : "1"
+      }, {
+        "item" : "74",
+        "count" : "1"
+      }, {
+        "item" : "17",
+        "count" : "1"
+      }, {
+        "item" : "91",
+        "count" : "1"
+      }, {
+        "item" : "64",
+        "count" : "1"
+      }, {
+        "item" : "7",
+        "count" : "1"
+      }, {
+        "item" : "52",
+        "count" : "1"
+      }, {
+        "item" : "73",
+        "count" : "1"
+      }, {
+        "item" : "37",
+        "count" : "1"
+      }, {
+        "item" : "34",
+        "count" : "1"
+      }, {
+        "item" : "77",
+        "count" : "1"
+      }, {
+        "item" : "82",
+        "count" : "1"
+      }, {
+        "item" : "78",
+        "count" : "1"
+      } ],
+      "smallest" : "1",
+      "count" : "103",
+      "cardinality" : "103"
+    },
+    "format" : { }
+  }, {
+    "id" : 602287247,
+    "name" : "Direction",
+    "dataTypeName" : "text",
+    "fieldName" : "dir",
+    "position" : 4,
+    "renderTypeName" : "text",
+    "tableColumnId" : 140303374,
+    "cachedContents" : {
+      "non_null" : "103",
+      "largest" : "WB",
+      "null" : "0",
+      "top" : [ {
+        "item" : "SB",
+        "count" : "28"
+      }, {
+        "item" : "EB",
+        "count" : "26"
+      }, {
+        "item" : "NB",
+        "count" : "26"
+      }, {
+        "item" : "WB",
+        "count" : "23"
+      } ],
+      "smallest" : "EB",
+      "count" : "103",
+      "cardinality" : "4"
+    },
+    "format" : { }
+  }, {
+    "id" : 602287249,
+    "name" : "CAMID",
+    "dataTypeName" : "text",
+    "fieldName" : "camid",
+    "position" : 5,
+    "renderTypeName" : "text",
+    "tableColumnId" : 155719163,
+    "cachedContents" : {
+      "non_null" : "103",
+      "largest" : "NO98",
+      "null" : "0",
+      "top" : [ {
+        "item" : "NO120",
+        "count" : "2"
+      }, {
+        "item" : "NO179",
+        "count" : "2"
+      }, {
+        "item" : "NO102",
+        "count" : "2"
+      }, {
+        "item" : "NO129",
+        "count" : "2"
+      }, {
+        "item" : "NO176",
+        "count" : "2"
+      }, {
+        "item" : "NO156",
+        "count" : "2"
+      }, {
+        "item" : "NO158",
+        "count" : "2"
+      }, {
+        "item" : "NO140",
+        "count" : "2"
+      }, {
+        "item" : "NO126",
+        "count" : "2"
+      }, {
+        "item" : "NO177",
+        "count" : "2"
+      }, {
+        "item" : "NO178",
+        "count" : "2"
+      }, {
+        "item" : "NO155",
+        "count" : "2"
+      }, {
+        "item" : "NO169",
+        "count" : "2"
+      }, {
+        "item" : "NO173",
+        "count" : "1"
+      }, {
+        "item" : "NO53",
+        "count" : "1"
+      }, {
+        "item" : "NO127",
+        "count" : "1"
+      }, {
+        "item" : "NO121",
+        "count" : "1"
+      }, {
+        "item" : "NO118",
+        "count" : "1"
+      }, {
+        "item" : "NO160",
+        "count" : "1"
+      }, {
+        "item" : "NO05",
+        "count" : "1"
+      } ],
+      "smallest" : "NO01",
+      "count" : "103",
+      "cardinality" : "90"
+    },
+    "format" : { }
+  }, {
+    "id" : 602287250,
+    "name" : "ACTIVE",
+    "dataTypeName" : "text",
+    "fieldName" : "active",
+    "position" : 6,
+    "renderTypeName" : "text",
+    "tableColumnId" : 155719164,
+    "cachedContents" : {
+      "non_null" : "103",
+      "largest" : "Yes",
+      "null" : "0",
+      "top" : [ {
+        "item" : "No",
+        "count" : "61"
+      }, {
+        "item" : "Yes",
+        "count" : "42"
+      } ],
+      "smallest" : "No",
+      "count" : "103",
+      "cardinality" : "2"
+    },
+    "format" : { }
+  }, {
+    "id" : 602287251,
+    "name" : "CAMERA LOCATION",
+    "dataTypeName" : "text",
+    "fieldName" : "camloc",
+    "position" : 7,
+    "renderTypeName" : "text",
+    "tableColumnId" : 155719165,
+    "cachedContents" : {
+      "non_null" : "103",
+      "largest" : "St Charles Ave @ Jena St 4500 Blk St Charles",
+      "null" : "0",
+      "top" : [ {
+        "item" : "4900 Louisa St",
+        "count" : "3"
+      }, {
+        "item" : "Earhart Blvd @ S Carrollton Ave",
+        "count" : "2"
+      }, {
+        "item" : "5600 Freret St",
+        "count" : "2"
+      }, {
+        "item" : "2000 Bienville St",
+        "count" : "2"
+      }, {
+        "item" : "3900 Canal St",
+        "count" : "2"
+      }, {
+        "item" : "1700 Nashville Ave",
+        "count" : "2"
+      }, {
+        "item" : "5200 Bullard Ave",
+        "count" : "2"
+      }, {
+        "item" : "3300 Esplanade Ave",
+        "count" : "2"
+      }, {
+        "item" : "2000 S Carrollton Ave",
+        "count" : "2"
+      }, {
+        "item" : "2700 Esplanade Ave",
+        "count" : "2"
+      }, {
+        "item" : "1300 Magnolia St",
+        "count" : "2"
+      }, {
+        "item" : "4500 Wilson Ave",
+        "count" : "2"
+      }, {
+        "item" : "5300 Michoud Blvd",
+        "count" : "2"
+      }, {
+        "item" : "3100 Martin Luther King Jr Blvd",
+        "count" : "2"
+      }, {
+        "item" : "1800 N Dorgenois St",
+        "count" : "2"
+      }, {
+        "item" : "Read Blvd @ Hammond St 4800 Block of Read",
+        "count" : "2"
+      }, {
+        "item" : "S Carrollton Ave @ Earhart Blvd",
+        "count" : "2"
+      }, {
+        "item" : "Canal Blvd @ French St 6200 Blk Canal",
+        "count" : "2"
+      }, {
+        "item" : "6500 Berkley Dr",
+        "count" : "2"
+      }, {
+        "item" : "2400 Jackson Ave",
+        "count" : "2"
+      } ],
+      "smallest" : "1000 Jackson Ave",
+      "count" : "103",
+      "cardinality" : "70"
+    },
+    "format" : { }
+  }, {
+    "id" : 602287252,
+    "name" : "INSTALL",
+    "dataTypeName" : "text",
+    "fieldName" : "install",
+    "position" : 8,
+    "renderTypeName" : "text",
+    "tableColumnId" : 155719166,
+    "cachedContents" : {
+      "non_null" : "91",
+      "largest" : "9/9/2017",
+      "null" : "12",
+      "top" : [ {
+        "item" : "3/12/2012",
+        "count" : "18"
+      }, {
+        "item" : "10/16/2009",
+        "count" : "12"
+      }, {
+        "item" : "3/3/2020",
+        "count" : "6"
+      }, {
+        "item" : "1/25/2008",
+        "count" : "5"
+      }, {
+        "item" : "7/11/2017",
+        "count" : "3"
+      }, {
+        "item" : "6/20/2017",
+        "count" : "3"
+      }, {
+        "item" : "7/25/2017",
+        "count" : "3"
+      }, {
+        "item" : "9/22/2017",
+        "count" : "2"
+      }, {
+        "item" : "8/2/2017",
+        "count" : "2"
+      }, {
+        "item" : "7/12/2017",
+        "count" : "2"
+      }, {
+        "item" : "3/2/2020",
+        "count" : "2"
+      }, {
+        "item" : "3/20/2009",
+        "count" : "2"
+      }, {
+        "item" : "8/23/2017",
+        "count" : "2"
+      }, {
+        "item" : "9/11/2017",
+        "count" : "2"
+      }, {
+        "item" : "9/5/2017",
+        "count" : "2"
+      }, {
+        "item" : "8/21/2017",
+        "count" : "2"
+      }, {
+        "item" : "7/19/2017",
+        "count" : "2"
+      }, {
+        "item" : "8/17/2017",
+        "count" : "2"
+      }, {
+        "item" : "8/7/2017",
+        "count" : "1"
+      }, {
+        "item" : "8/24/2017",
+        "count" : "1"
+      } ],
+      "smallest" : "10/16/2009",
+      "count" : "103",
+      "cardinality" : "37"
+    },
+    "format" : { }
+  }, {
+    "id" : 602287253,
+    "name" : "FUNCTION",
+    "dataTypeName" : "text",
+    "fieldName" : "function",
+    "position" : 9,
+    "renderTypeName" : "text",
+    "tableColumnId" : 155719167,
+    "cachedContents" : {
+      "non_null" : "103",
+      "largest" : "TFS",
+      "null" : "0",
+      "top" : [ {
+        "item" : "TFS",
+        "count" : "95"
+      }, {
+        "item" : "RLC",
+        "count" : "6"
+      }, {
+        "item" : "FS",
+        "count" : "2"
+      } ],
+      "smallest" : "FS",
+      "count" : "103",
+      "cardinality" : "3"
+    },
+    "format" : { }
+  }, {
+    "id" : 602287254,
+    "name" : "SCHOOL",
+    "dataTypeName" : "text",
+    "fieldName" : "school",
+    "position" : 10,
+    "renderTypeName" : "text",
+    "tableColumnId" : 155719168,
+    "cachedContents" : {
+      "non_null" : "103",
+      "largest" : "Willow Middle School",
+      "null" : "0",
+      "top" : [ {
+        "item" : "None",
+        "count" : "8"
+      }, {
+        "item" : "Hynes-Coghill School",
+        "count" : "5"
+      }, {
+        "item" : "Willow Middle School",
+        "count" : "4"
+      }, {
+        "item" : "N.O. Science & Math High School",
+        "count" : "2"
+      }, {
+        "item" : "Algires Charter Martin Berham",
+        "count" : "2"
+      }, {
+        "item" : "Willow Lower School",
+        "count" : "2"
+      }, {
+        "item" : "Morris Jeff Community School",
+        "count" : "2"
+      }, {
+        "item" : "Ecole Bilingue de la Nouvelle-Orleans",
+        "count" : "2"
+      }, {
+        "item" : "Lycee Francais",
+        "count" : "2"
+      }, {
+        "item" : "Fannie C Williams Charter School",
+        "count" : "2"
+      }, {
+        "item" : "Cabrini High School/New Harmony High",
+        "count" : "2"
+      }, {
+        "item" : "Academy of the Sacred Heart",
+        "count" : "2"
+      }, {
+        "item" : "Christian Brothers",
+        "count" : "2"
+      }, {
+        "item" : "ReNEW Laurel            PRK-8",
+        "count" : "2"
+      }, {
+        "item" : "International School of Louisiana",
+        "count" : "2"
+      }, {
+        "item" : "Stuart Hall School for Boys",
+        "count" : "2"
+      }, {
+        "item" : "Livingston Collegiate Academy",
+        "count" : "2"
+      }, {
+        "item" : "Success Preparatory Academy",
+        "count" : "2"
+      }, {
+        "item" : "St John Lutheran School",
+        "count" : "2"
+      }, {
+        "item" : "The Bridge Middle School",
+        "count" : "2"
+      } ],
+      "smallest" : "Academy of the Sacred Heart",
+      "count" : "103",
+      "cardinality" : "49"
+    },
+    "format" : { }
+  }, {
+    "id" : 602287255,
+    "name" : "SCHOOL_HOUR",
+    "dataTypeName" : "text",
+    "fieldName" : "school_hour",
+    "position" : 11,
+    "renderTypeName" : "text",
+    "tableColumnId" : 155719169,
+    "cachedContents" : {
+      "non_null" : "89",
+      "largest" : "8:40 - 3:30",
+      "null" : "14",
+      "top" : [ {
+        "item" : "8:00 - 3:30",
+        "count" : "7"
+      }, {
+        "item" : "7:35 - 3:00",
+        "count" : "7"
+      }, {
+        "item" : "7:30 - 3:35",
+        "count" : "6"
+      }, {
+        "item" : "7:15 - 2:45",
+        "count" : "5"
+      }, {
+        "item" : "7:30 - 2:45",
+        "count" : "4"
+      }, {
+        "item" : "7:45 - 3:30",
+        "count" : "4"
+      }, {
+        "item" : "7:15 - 3:00",
+        "count" : "4"
+      }, {
+        "item" : "8:15 - 4:00",
+        "count" : "4"
+      }, {
+        "item" : "7:00 - 3:00",
+        "count" : "4"
+      }, {
+        "item" : "8:00 - 3:15",
+        "count" : "3"
+      }, {
+        "item" : "7:30 - 3:15",
+        "count" : "2"
+      }, {
+        "item" : "7:55 - 3:50",
+        "count" : "2"
+      }, {
+        "item" : "7:15 - 7:45",
+        "count" : "2"
+      }, {
+        "item" : "7:10 - 3:00",
+        "count" : "2"
+      }, {
+        "item" : "7:15 - 5:45",
+        "count" : "2"
+      }, {
+        "item" : "8:00 - 2:00",
+        "count" : "2"
+      }, {
+        "item" : "8:00 - 4:00",
+        "count" : "2"
+      }, {
+        "item" : "7:10 - 3:45",
+        "count" : "2"
+      }, {
+        "item" : "8:30 - 4:15",
+        "count" : "2"
+      }, {
+        "item" : "7:00 - 2:40",
+        "count" : "2"
+      } ],
+      "smallest" : "7:00 - 2:40",
+      "count" : "103",
+      "cardinality" : "31"
+    },
+    "format" : { }
+  }, {
+    "id" : 602287256,
+    "name" : "SZ_ARRIVAL",
+    "dataTypeName" : "text",
+    "fieldName" : "sz_arrival",
+    "position" : 12,
+    "renderTypeName" : "text",
+    "tableColumnId" : 155719170,
+    "cachedContents" : {
+      "non_null" : "89",
+      "largest" : "7:40am-9:40am",
+      "null" : "14",
+      "top" : [ {
+        "item" : "7:00am-9:00am",
+        "count" : "23"
+      }, {
+        "item" : "6:15am-8:15am",
+        "count" : "11"
+      }, {
+        "item" : "6:00am-8:00am",
+        "count" : "10"
+      }, {
+        "item" : "6:30am-8:30am",
+        "count" : "10"
+      }, {
+        "item" : "6:35am-8:35am",
+        "count" : "7"
+      }, {
+        "item" : "6:45am-9:15am",
+        "count" : "4"
+      }, {
+        "item" : "7:15am-9:15am",
+        "count" : "4"
+      }, {
+        "item" : "6:30am-9:00am",
+        "count" : "4"
+      }, {
+        "item" : "6:45am-8:45am",
+        "count" : "4"
+      }, {
+        "item" : "7:30am-9:30am",
+        "count" : "2"
+      }, {
+        "item" : "6:10am-8:10am",
+        "count" : "2"
+      }, {
+        "item" : "6:55am-8:55am",
+        "count" : "2"
+      }, {
+        "item" : "6:50am-8:50am",
+        "count" : "2"
+      }, {
+        "item" : "6:20am-8:20am",
+        "count" : "2"
+      }, {
+        "item" : "7:40am-9:40am",
+        "count" : "2"
+      } ],
+      "smallest" : "6:00am-8:00am",
+      "count" : "103",
+      "cardinality" : "15"
+    },
+    "format" : { }
+  }, {
+    "id" : 602287257,
+    "name" : "SZ_DISMISS",
+    "dataTypeName" : "text",
+    "fieldName" : "sz_dismiss",
+    "position" : 13,
+    "renderTypeName" : "text",
+    "tableColumnId" : 155719171,
+    "cachedContents" : {
+      "non_null" : "89",
+      "largest" : "4:45pm-6:45pm",
+      "null" : "14",
+      "top" : [ {
+        "item" : "2:00pm-4:00pm",
+        "count" : "23"
+      }, {
+        "item" : "2:30pm-4:30pm",
+        "count" : "10"
+      }, {
+        "item" : "2:45pm-4:45pm",
+        "count" : "10"
+      }, {
+        "item" : "2:00pm-4:30pm",
+        "count" : "8"
+      }, {
+        "item" : "2:15pm-4:15pm",
+        "count" : "7"
+      }, {
+        "item" : "3:00pm-5:00pm",
+        "count" : "6"
+      }, {
+        "item" : "2:35pm-4:35pm",
+        "count" : "6"
+      }, {
+        "item" : "1:45pm-3:45pm",
+        "count" : "5"
+      }, {
+        "item" : "2:50pm-4:50pm",
+        "count" : "4"
+      }, {
+        "item" : "2:00pm-5:00pm",
+        "count" : "4"
+      }, {
+        "item" : "4:45pm-6:45pm",
+        "count" : "2"
+      }, {
+        "item" : "1:40pm-3:40pm",
+        "count" : "2"
+      }, {
+        "item" : "3:15pm-5:15pm",
+        "count" : "2"
+      } ],
+      "smallest" : "1:40pm-3:40pm",
+      "count" : "103",
+      "cardinality" : "13"
+    },
+    "format" : { }
+  }, {
+    "id" : 602287258,
+    "name" : "SIGNID",
+    "dataTypeName" : "text",
+    "fieldName" : "signid",
+    "position" : 14,
+    "renderTypeName" : "text",
+    "tableColumnId" : 155719172,
+    "cachedContents" : {
+      "non_null" : "50",
+      "largest" : "85-2",
+      "null" : "53",
+      "top" : [ {
+        "item" : "79-1",
+        "count" : "2"
+      }, {
+        "item" : "28-3",
+        "count" : "2"
+      }, {
+        "item" : "73-2",
+        "count" : "2"
+      }, {
+        "item" : "81-1",
+        "count" : "2"
+      }, {
+        "item" : "52-2",
+        "count" : "1"
+      }, {
+        "item" : "19-2",
+        "count" : "1"
+      }, {
+        "item" : "52-1",
+        "count" : "1"
+      }, {
+        "item" : "78-3",
+        "count" : "1"
+      }, {
+        "item" : "82-2",
+        "count" : "1"
+      }, {
+        "item" : "61-3",
+        "count" : "1"
+      }, {
+        "item" : "22-4",
+        "count" : "1"
+      }, {
+        "item" : "65-4",
+        "count" : "1"
+      }, {
+        "item" : "65-2",
+        "count" : "1"
+      }, {
+        "item" : "61-1",
+        "count" : "1"
+      }, {
+        "item" : "82-1",
+        "count" : "1"
+      }, {
+        "item" : "55-3",
+        "count" : "1"
+      }, {
+        "item" : "22-1",
+        "count" : "1"
+      }, {
+        "item" : "55-2",
+        "count" : "1"
+      }, {
+        "item" : "56-4",
+        "count" : "1"
+      }, {
+        "item" : "66-2",
+        "count" : "1"
+      } ],
+      "smallest" : "19-1",
+      "count" : "103",
+      "cardinality" : "46"
+    },
+    "format" : { }
+  }, {
+    "id" : 602287259,
+    "name" : "CAT",
+    "dataTypeName" : "text",
+    "fieldName" : "cat",
+    "position" : 15,
+    "renderTypeName" : "text",
+    "tableColumnId" : 155719173,
+    "cachedContents" : {
+      "non_null" : "101",
+      "largest" : "REM",
+      "null" : "2",
+      "top" : [ {
+        "item" : "IND",
+        "count" : "85"
+      }, {
+        "item" : "REM",
+        "count" : "16"
+      } ],
+      "smallest" : "IND",
+      "count" : "103",
+      "cardinality" : "2"
+    },
+    "format" : { }
+  }, {
+    "id" : 602287260,
+    "name" : "OPERATIONAL",
+    "dataTypeName" : "text",
+    "fieldName" : "operational",
+    "position" : 16,
+    "renderTypeName" : "text",
+    "tableColumnId" : 155719174,
+    "cachedContents" : {
+      "non_null" : "103",
+      "largest" : "Yes",
+      "null" : "0",
+      "top" : [ {
+        "item" : "Yes",
+        "count" : "85"
+      }, {
+        "item" : "No",
+        "count" : "18"
+      } ],
+      "smallest" : "No",
+      "count" : "103",
+      "cardinality" : "2"
+    },
+    "format" : { }
+  }, {
+    "id" : 602287261,
+    "name" : "SCHOOL START",
+    "dataTypeName" : "date",
+    "fieldName" : "school_start",
+    "position" : 17,
+    "renderTypeName" : "date",
+    "tableColumnId" : 155719175,
+    "cachedContents" : {
+      "non_null" : "66",
+      "largest" : "2024-08-20T00:00:00.000Z",
+      "null" : "37",
+      "top" : [ {
+        "item" : "2024-08-05T00:00:00.000Z",
+        "count" : "12"
+      }, {
+        "item" : "2024-08-07T00:00:00.000Z",
+        "count" : "9"
+      }, {
+        "item" : "2024-08-15T00:00:00.000Z",
+        "count" : "8"
+      }, {
+        "item" : "2024-08-16T00:00:00.000Z",
+        "count" : "7"
+      }, {
+        "item" : "2024-08-13T00:00:00.000Z",
+        "count" : "6"
+      }, {
+        "item" : "2024-08-12T00:00:00.000Z",
+        "count" : "6"
+      }, {
+        "item" : "2024-08-14T00:00:00.000Z",
+        "count" : "5"
+      }, {
+        "item" : "2024-08-06T00:00:00.000Z",
+        "count" : "5"
+      }, {
+        "item" : "2024-08-19T00:00:00.000Z",
+        "count" : "3"
+      }, {
+        "item" : "2024-08-08T00:00:00.000Z",
+        "count" : "3"
+      }, {
+        "item" : "2024-08-01T00:00:00.000Z",
+        "count" : "1"
+      }, {
+        "item" : "2024-08-20T00:00:00.000Z",
+        "count" : "1"
+      } ],
+      "smallest" : "2024-08-01T00:00:00.000Z",
+      "count" : "103",
+      "cardinality" : "12"
+    },
+    "format" : { }
+  }, {
+    "id" : 602287262,
+    "name" : "SCHOOL END",
+    "dataTypeName" : "number",
+    "fieldName" : "school_end",
+    "position" : 18,
+    "renderTypeName" : "number",
+    "tableColumnId" : 155719176,
+    "cachedContents" : {
+      "non_null" : "0",
+      "null" : "103",
+      "count" : "103",
+      "cardinality" : "0"
+    },
+    "format" : { }
+  }, {
+    "id" : 602287263,
+    "name" : "GlobalID",
+    "dataTypeName" : "text",
+    "fieldName" : "globalid",
+    "position" : 19,
+    "renderTypeName" : "text",
+    "tableColumnId" : 155719177,
+    "cachedContents" : {
+      "non_null" : "103",
+      "largest" : "{FEB05F4D-18FF-4D95-9F32-8DD02333CBCA}",
+      "null" : "0",
+      "top" : [ {
+        "item" : "{045D99AD-D81B-409C-B02B-CFB40FF5CB97}",
+        "count" : "1"
+      }, {
+        "item" : "{26852ABD-51DA-4043-ADB3-BF2CBB7641B3}",
+        "count" : "1"
+      }, {
+        "item" : "{DBEDAB43-B032-481B-A338-CC30167FF93F}",
+        "count" : "1"
+      }, {
+        "item" : "{23299082-3ECA-450D-9F55-620EBBD77C16}",
+        "count" : "1"
+      }, {
+        "item" : "{F2BEEF5F-1622-4989-A054-E8BFD6ED8C5A}",
+        "count" : "1"
+      }, {
+        "item" : "{7E1F0EB4-00B7-43BD-BB29-A6DA14A13E5D}",
+        "count" : "1"
+      }, {
+        "item" : "{96FFA356-A078-419B-8F87-F1335159FBC4}",
+        "count" : "1"
+      }, {
+        "item" : "{4E2D973B-3A6A-4F46-8133-8D55A5AA9E5C}",
+        "count" : "1"
+      }, {
+        "item" : "{EDD1BFB1-1B8C-4D6F-B137-A5EC98C3E1C4}",
+        "count" : "1"
+      }, {
+        "item" : "{EDB7D711-0A9E-4006-AFAB-A4409B75186F}",
+        "count" : "1"
+      }, {
+        "item" : "{ED392463-51E5-491E-9814-2DA88798254D}",
+        "count" : "1"
+      }, {
+        "item" : "{1D7DD700-8E0F-4C53-92B0-60E1C313CE66}",
+        "count" : "1"
+      }, {
+        "item" : "{33D9A903-3E7E-4653-A626-181C40AA88B3}",
+        "count" : "1"
+      }, {
+        "item" : "{59D6DFDA-3D0C-4D28-BD44-61AFEF904FD1}",
+        "count" : "1"
+      }, {
+        "item" : "{4A3B5FE6-7865-4E97-848A-B6A81B03DEC2}",
+        "count" : "1"
+      }, {
+        "item" : "{A2E5632C-7D6E-4A4E-A2B0-2A5C82249F5F}",
+        "count" : "1"
+      }, {
+        "item" : "{717F1BA4-AF70-475E-8FCF-E6C7B5AF7C17}",
+        "count" : "1"
+      }, {
+        "item" : "{66D368F0-4E0B-4832-A38A-7D78BA71CDE1}",
+        "count" : "1"
+      }, {
+        "item" : "{48BFD59B-691B-4BF0-A08D-42FA6A943EC8}",
+        "count" : "1"
+      }, {
+        "item" : "{FA9B679D-A69D-46EE-8991-0145F5A01BFC}",
+        "count" : "1"
+      } ],
+      "smallest" : "{01648FF4-BBB4-4155-B928-9EC1CA6A9B7E}",
+      "count" : "103",
+      "cardinality" : "103"
+    },
+    "format" : { }
+  }, {
+    "id" : 602287264,
+    "name" : "created_user",
+    "dataTypeName" : "text",
+    "fieldName" : "created_user",
+    "position" : 20,
+    "renderTypeName" : "text",
+    "tableColumnId" : 155719178,
+    "cachedContents" : {
+      "non_null" : "0",
+      "null" : "103",
+      "count" : "103",
+      "cardinality" : "0"
+    },
+    "format" : { }
+  }, {
+    "id" : 602287265,
+    "name" : "created_date",
+    "dataTypeName" : "date",
+    "fieldName" : "created_date",
+    "position" : 21,
+    "renderTypeName" : "date",
+    "tableColumnId" : 155719179,
+    "cachedContents" : {
+      "non_null" : "0",
+      "null" : "103",
+      "count" : "103",
+      "cardinality" : "0"
+    },
+    "format" : { }
+  }, {
+    "id" : 602287266,
+    "name" : "last_edited_user",
+    "dataTypeName" : "text",
+    "fieldName" : "last_edited_user",
+    "position" : 22,
+    "renderTypeName" : "text",
+    "tableColumnId" : 155719180,
+    "cachedContents" : {
+      "non_null" : "103",
+      "largest" : "masalvadore",
+      "null" : "0",
+      "top" : [ {
+        "item" : "masalvadore",
+        "count" : "103"
+      } ],
+      "smallest" : "masalvadore",
+      "count" : "103",
+      "cardinality" : "1"
+    },
+    "format" : { }
+  }, {
+    "id" : 602287267,
+    "name" : "last_edited_date",
+    "dataTypeName" : "date",
+    "fieldName" : "last_edited_date",
+    "position" : 23,
+    "renderTypeName" : "date",
+    "tableColumnId" : 155719181,
+    "cachedContents" : {
+      "non_null" : "103",
+      "largest" : "2024-11-22T22:28:50.000Z",
+      "null" : "0",
+      "top" : [ {
+        "item" : "2024-11-22T22:25:04.000Z",
+        "count" : "44"
+      }, {
+        "item" : "2024-11-22T22:28:36.000Z",
+        "count" : "1"
+      }, {
+        "item" : "2024-11-22T22:28:29.000Z",
+        "count" : "1"
+      }, {
+        "item" : "2024-11-22T22:26:50.000Z",
+        "count" : "1"
+      }, {
+        "item" : "2024-11-22T22:27:39.000Z",
+        "count" : "1"
+      }, {
+        "item" : "2024-11-22T22:28:34.000Z",
+        "count" : "1"
+      }, {
+        "item" : "2024-11-22T22:27:37.000Z",
+        "count" : "1"
+      }, {
+        "item" : "2024-11-22T22:27:08.000Z",
+        "count" : "1"
+      }, {
+        "item" : "2024-11-22T22:26:42.000Z",
+        "count" : "1"
+      }, {
+        "item" : "2024-11-22T22:27:12.000Z",
+        "count" : "1"
+      }, {
+        "item" : "2024-11-22T22:28:03.000Z",
+        "count" : "1"
+      }, {
+        "item" : "2024-11-22T22:28:47.000Z",
+        "count" : "1"
+      }, {
+        "item" : "2024-11-22T22:27:10.000Z",
+        "count" : "1"
+      }, {
+        "item" : "2024-11-22T22:27:53.000Z",
+        "count" : "1"
+      }, {
+        "item" : "2024-11-22T22:27:06.000Z",
+        "count" : "1"
+      }, {
+        "item" : "2024-11-22T22:27:52.000Z",
+        "count" : "1"
+      }, {
+        "item" : "2024-11-22T22:28:27.000Z",
+        "count" : "1"
+      }, {
+        "item" : "2024-11-22T22:26:36.000Z",
+        "count" : "1"
+      }, {
+        "item" : "2024-11-22T22:26:55.000Z",
+        "count" : "1"
+      }, {
+        "item" : "2024-11-22T22:28:13.000Z",
+        "count" : "1"
+      } ],
+      "smallest" : "2024-11-22T22:25:04.000Z",
+      "count" : "103",
+      "cardinality" : "60"
+    },
+    "format" : { }
+  } ],
+  "grants" : [ {
+    "inherited" : false,
+    "type" : "viewer",
+    "flags" : [ "public" ]
+  } ],
+  "license" : {
+    "name" : "Creative Commons 1.0 Universal (Public Domain Dedication)",
+    "logoUrl" : "images/licenses/ccZero.png",
+    "termsLink" : "http://creativecommons.org/publicdomain/zero/1.0/legalcode"
+  },
+  "metadata" : {
+    "custom_fields" : {
+      "Common Core" : {
+        "Contact Email" : "GIS@nola.gov",
+        "Public Access Level" : "public"
+      },
+      "Source Information" : {
+        "Source Department" : "Public Works (DPW)",
+        "Frequency of Data Change" : "As needed"
+      }
+    },
+    "availableDisplayTypes" : [ "table", "fatrow", "page" ]
+  },
+  "owner" : {
+    "id" : "guap-8ddq",
+    "displayName" : "City of New Orleans GIS Department",
+    "profileImageUrlLarge" : "/api/users/guap-8ddq/profile_images/LARGE",
+    "profileImageUrlMedium" : "/api/users/guap-8ddq/profile_images/THUMB",
+    "profileImageUrlSmall" : "/api/users/guap-8ddq/profile_images/TINY",
+    "screenName" : "City of New Orleans GIS Department",
+    "type" : "interactive",
+    "flags" : [ "acceptedEula", "mayBeStoriesCoOwner" ]
+  },
+  "query" : { },
+  "rights" : [ "read" ],
+  "tableAuthor" : {
+    "id" : "guap-8ddq",
+    "displayName" : "City of New Orleans GIS Department",
+    "profileImageUrlLarge" : "/api/users/guap-8ddq/profile_images/LARGE",
+    "profileImageUrlMedium" : "/api/users/guap-8ddq/profile_images/THUMB",
+    "profileImageUrlSmall" : "/api/users/guap-8ddq/profile_images/TINY",
+    "screenName" : "City of New Orleans GIS Department",
+    "type" : "interactive",
+    "flags" : [ "acceptedEula", "mayBeStoriesCoOwner" ]
+  },
+  "tags" : [ "traffic camera", "traffic", "public works" ],
+  "flags" : [ "default", "ownerMayBeContacted", "restorable", "restorePossibleForType" ]
+}

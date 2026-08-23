@@ -682,6 +682,8 @@ Do not assume a federal agency has an API.
 
 Find actual machine-readable/public sources.
 
+**New lead, added 2026-08-24 per `docs/research/PHASE1-SOURCE-VERIFICATION.md` §26:** U.S. Forest Service wildfire-detection cameras are **not USFS's own infrastructure**. Research this session found they are operated by university partners under contract: the ALERTWildfire/ALERTWest network (University of Oregon, University of Nevada Reno, UC San Diego) and the separate ALERTCalifornia network (UC San Diego, "1,200+ cameras" claimed by the operator, not independently verified). Not verified further this session — a single guessed API endpoint (`api.alertcalifornia.org/api/cameras`) returned a real HTTP 403, not chased with more guessing. If pursued in a future session: (1) do not attribute this data to USFS in provenance — the correct operator is the university consortium; (2) find the actual public API/data documentation rather than guessing paths; (3) independently re-derive the claimed camera count per `MacEvil.md` §9, the same discipline applied to every other aggregator this project has checked.
+
 ---
 
 # 16. NOAA / NWS
