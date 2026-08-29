@@ -9,7 +9,7 @@ spec_status: in-progress
 capabilities:
   traffic_cameras: researching
   traffic_conditions: confirmed
-  weather: unspecified
+  weather: confirmed
   scanners: confirmed
   alpr_flock: researching
   other: confirmed
@@ -40,7 +40,7 @@ research dossier it derives from - treat that as evidence and leave it as writte
 | --- | --- | --- | --- | --- | --- |
 | 1.1 | [Traffic cameras](#11-traffic-cameras) | `researching` | none established | - | Two discovery mechanisms returned nothing; dossier claim deliberately not promoted. |
 | 1.2 | [Traffic conditions and incidents](#12-traffic-conditions-and-incidents) | `confirmed` | WisDOT 511WI WZDx | Yes - GeoJSON | 4,413 events, **CC0 1.0** declared in-payload. |
-| 1.3 | [Weather and road weather](#13-weather-and-road-weather) | `unspecified` | - | - | Not researched this pass. |
+| 1.3 | [Weather and road weather](#13-weather-and-road-weather) | `confirmed` | WisDOT road conditions + USGS atmospheric | Yes - ArcGIS REST / RDB | **1,175** road segments + **25** atmospheric sites. NWS blocked by `robots.txt`. |
 | 1.4 | [Scanners and public-safety radio](#14-scanners-and-public-safety-radio) | `confirmed` | FCC ULS (federal, public domain) | Yes - bulk ZIP | Source verified reachable; **no records extracted** (419 MB not downloaded). |
 | 1.5 | [ALPR / Flock camera locations](#15-alpr--flock-camera-locations) | `researching` | AB576 / AB300 legislature (docs.legis.wisconsin.gov) | No - HTML | Legislation confirmed; **zero locations or counts disclosed**. |
 | 1.6 | [Other public sources](#16-other-public-sources) | `confirmed` | USGS Water Services + WDNR GIS | Yes - RDB / ArcGIS REST | **215** active real-time stream gauges, coordinates + declared accuracy. Public domain. |
@@ -95,19 +95,19 @@ RWIS/atmospheric sensors, road-surface conditions, NWS and state weather feeds.
 
 | Field | Value |
 | --- | --- |
-| Status | `unspecified` |
-| Operator / agency |  |
-| Public system |  |
-| Machine-readable endpoint(s) |  |
-| Auth model |  |
-| Media available |  |
-| Record count |  |
-| Geographic coverage |  |
-| Update cadence |  |
-| Terms / licence |  |
-| ATLAS adapter |  |
-| Last verified |  |
-| Notes | Not researched in the 2026-08-29 pass. `unspecified` here means "nobody has looked yet," not "nothing exists" - see §2 for leads, which are unverified. |
+| Status | `confirmed` |
+| Operator / agency | Wisconsin DOT (road conditions, published via an Iowa DOT-hosted aggregation); USGS (atmospheric sites) |
+| Public system | Midwest Winter Road Conditions FeatureServer; USGS Water Services (NWIS) |
+| Machine-readable endpoint(s) | `https://services.arcgis.com/8lRhdTsQyJpO52F1/arcgis/rest/services/Midwest_Winter_Road_Conditions_View/FeatureServer/0/query`; `https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=wi&siteType=AT&siteStatus=active` |
+| Auth model | None for either. **NWS `api.weather.gov` was NOT fetched** - its `robots.txt` is `Disallow: /` for all agents. |
+| Media available | n/a - structured records |
+| Record count | **1,175** WisDOT road segments (complete, not paged - `exceededTransferLimit` absent) + **25** USGS atmospheric sites |
+| Geographic coverage | Statewide. Road segments as WGS84 polylines; atmospheric sites as points with datum + declared accuracy. |
+| Update cadence | Road conditions carry `REPORT_UPDATED`/`REPORT_CREATED`; cadence not established. USGS sites are an inventory, not a stream. |
+| Terms / licence | Road conditions: **UNKNOWN** - `copyrightText` empty, and Wisconsin's data is re-hosted by Iowa DOT, so whose terms govern is genuinely unclear. USGS: **public domain**. |
+| ATLAS adapter | None built |
+| Last verified | 2026-08-29 |
+| Notes | Evidence: [`data/states/wisconsin/sensor-observations/wisdot-road-conditions/SOURCE-RECORD.md`](data/states/wisconsin/sensor-observations/wisdot-road-conditions/SOURCE-RECORD.md) and [`data/states/wisconsin/sensor-observations/usgs-water-services/SOURCE-RECORD.md`](data/states/wisconsin/sensor-observations/usgs-water-services/SOURCE-RECORD.md). **All 1,175 segments currently report `ROAD_CONDITION = 0`** - consistent with an off-season winter product fetched in August, but the code table was not retrieved, so **`0` has no verified meaning**. Do not treat it as "clear roads." WisDOT is 1 of 8 state DOTs in this service, so it is a ready-made multi-state source. Records link back to `511wi.gov`, so a first-party Wisconsin feed likely exists and would be preferable - but must be found via documentation, not URL guessing. |
 
 ### 1.4 Scanners and public-safety radio
 

@@ -20,6 +20,7 @@ The two axes are orthogonal, and this record is a clean demonstration of that. *
 | Endpoint | HTTP status | Bytes | SHA-256 | Saved as |
 |---|---|---|---|---|
 | `https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=wi&siteType=ST&hasDataTypeCd=iv&siteStatus=active` | 200 | 25,628 | `52d9d5ba53fdd276ed0b2ab735b3956e5eb4ad73c94af791bbecab0e53ec3de6` | `data/2026-08-29/sites-wi-active-iv.rdb` |
+| `https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=wi&siteType=AT&siteStatus=active` | 200 | 4,013 | `40b50b4c7c2c7835bac26c80720f49b05123ac85e7c5710e8a8ee2f58d72947f` | `data/2026-08-29/sites-wi-atmospheric.rdb` |
 
 ## Content verification (parsed, not assumed)
 
@@ -35,6 +36,12 @@ Genuine operational data, not placeholder: real named watercourses, coordinates 
 
 Wisconsin began this session with **zero** independently verified sources. This is its third, after the WisDOT WZDx feed and the FCC ULS national record — and it is the first Wisconsin source that delivers **real, per-state, coordinate-bearing records** rather than an endpoint whose payload was left undownloaded. 215 gauges with declared coordinate accuracy is genuinely ingestible data.
 
+## Atmospheric sites (added 2026-08-29, capability §1.3)
+
+A second query against the same API with `siteType=AT` returned **25 active atmospheric sites in Wisconsin** — precipitation stations and similar. Same RDB shape, same public-domain licence, same per-row coordinate/datum/accuracy provenance. First record: `USGS | 424425088133001 | FOX RIVER PRECIPITATION STN AT ROCHESTER, WI | AT | 42.74119444 | -88.2245 | NAD83 | 769 ft NAVD88`.
+
+**These 25 sites answer capability §1.3 (weather), while the 215 stream gauges answer §1.6 (other).** One source, one API, two capabilities — the split is by subject, not by endpoint, and the counts must not be added together or used interchangeably.
+
 ## Scope limits
 
 - This is the **site inventory**, not the measurements. No discharge or gauge-height values were fetched.
@@ -44,4 +51,4 @@ Wisconsin began this session with **zero** independently verified sources. This 
 ## Open items
 
 1. Fetch instantaneous values (`/nwis/iv/`) if a live hydrology layer is ever wanted; the site inventory alone is static reference data.
-2. Re-run without `siteType=ST` to see Wisconsin's lake/reservoir gauge coverage, which this query deliberately excluded.
+2. ~~Re-run without `siteType=ST`~~ **Partly addressed 2026-08-29 (later same day):** the **atmospheric** site type (`siteType=AT`) was queried and returned **25 active Wisconsin sites** — precipitation and related stations, e.g. `FOX RIVER PRECIPITATION STN AT ROCHESTER, WI` at `42.74119444, -88.2245` (NAD83), each carrying the same coordinate/datum/accuracy provenance as the stream sites. These 25 are counted under capability **§1.3 (weather)**, *not* §1.6, since precipitation is weather; the 215 stream gauges stay under §1.6. **Still outstanding:** lake/reservoir, groundwater and spring site types remain unqueried, so Wisconsin's full USGS coverage is still not established.
