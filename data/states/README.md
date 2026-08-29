@@ -32,9 +32,10 @@ Note that `project_atlas_state_data/` is **not tracked in this repository** - it
 checkout - so the `provenance.imported_from` paths are a record of where each record came from, not
 a link you can follow from here. These records are the tracked copy.
 
-The dossiers cite and quote third-party sources heavily. The repository README sets out three
-distinct licence statuses (code, doctrine documents, third-party data under `sources/`); which of
-those covers this directory has not been decided yet.
+**Read [`NOTICE.md`](NOTICE.md) before relying on anything in section 2 of these records.** Two
+things are unresolved: which of the repository's three licence statuses covers this directory, and
+the fact that no dossier finding has been independently verified by the project - a dossier marking
+an endpoint `CONFIRMED` means the researcher found documentation for it, nothing more.
 
 ## Frontmatter schema
 
