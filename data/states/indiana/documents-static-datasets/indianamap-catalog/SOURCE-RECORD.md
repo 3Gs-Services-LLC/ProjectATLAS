@@ -28,8 +28,25 @@ A token scan of the full catalog response found **zero** occurrences of `camera`
 
 **The camera negative is corroborating, not disappointing.** Indiana's cameras come through the Castle Rock CARS platform (`data/states/indiana/media-streams/indot-cars-hub/`, 746 cameras counted). Finding none in the state's *general* GIS estate — after already finding none in the ArcGIS Online catalog — means Indiana's camera coverage is not sitting in some obvious official place this project failed to look. Two independent negatives make the CARS path look like the whole picture rather than a lucky first hit.
 
-The folder names `IDHS` (Indiana Department of Homeland Security) and `Incidents` are plausible future sources for §1.2 and §1.6. **No claim is made about their contents** — neither was opened.
+The folder names `IDHS` (Indiana Department of Homeland Security) and `Incidents` looked like plausible sources for §1.2 and §1.6. **Both were opened on 2026-08-29 — see the folder-descent section below.** `Incidents` holds one historical 2023 storm assessment; `IDHS` timed out twice and remains unretrieved.
+
+## Folder descent, 2026-08-29 — closes the "never descended" open item
+
+Four folders were requested directly. Results, saved under `folders-2026-08-29/`:
+
+| Folder | HTTP | Services | Contents |
+|---|---|---|---|
+| `Incidents` | 200 | **1** | `NWS20230626assessments` — a one-off National Weather Service storm assessment dated 2023-06-26 |
+| `DNR` | 200 | **9** | Flood-insurance report tooling (`CreateINFIPReport*`), `Ecology_Ecoregions`, `NaturalRegions_DNR_NP_IN`, `ChandlerMine_Online_tpkx`, `str900_all` |
+| `IDEM` | 200 | **0** | Empty |
+| `IDHS` | **000** | — | **Timed out twice** (40s and 60s). Not retrieved. |
+
+**Findings:**
+
+1. **No live weather or hazard feed.** `Incidents` sounded promising for §1.2/§1.3 and turned out to hold a single **historical** 2023 storm assessment — not a feed, not current, not a source. Recorded so the folder name doesn't mislead a future session into re-checking it.
+2. **The `DNR` folder visibly contains test artifacts** — `test4`, `TESTTTTTTCreateINFIPReportPROD20250502`, and three near-duplicate `CreateINFIPReport` variants dated TEST/PROD. Any future adapter enumerating this server must not treat every advertised service as production data.
+3. **`IDHS` (Indiana Department of Homeland Security) remains unretrieved.** Two timeouts is a real failure, not a negative result — it is the one folder most likely to hold emergency/hazard layers, and it is still unknown. **UNKNOWN, not none-found.**
 
 ## Scope limits
 
-Only the **root** catalog was fetched. The 11 folders were **not** descended into, so this record does not establish what any individual service contains — only what the server advertises at its top level. Descending each folder is a real, bounded next step, and is the obvious way to test whether `IDHS`/`Incidents` hold anything ATLAS wants.
+Seven of the 11 folders (`DOR_Utilities`, `Geocode`, `Hosted`, `IndianaIndoors`, `IOT_Visits`, `Test`, `Utilities`) were **not** requested, and no individual service inside any folder was opened — so nothing here establishes what any single service contains.

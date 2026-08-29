@@ -1,0 +1,39 @@
+#
+#
+# US Geological Survey
+# retrieved: 2026-08-29 12:28:13 -04:00	(sdas01)
+#
+# The Site File stores location and general information about groundwater,
+# surface water, and meteorological sites
+# for sites in USA.
+#
+# File-format description:  http://help.waterdata.usgs.gov/faq/about-tab-delimited-output
+# Automated-retrieval info: http://waterservices.usgs.gov/rest/Site-Service.html
+#
+# Contact:   gs-w_support_nwisweb@usgs.gov
+# Warning: A site search criterion has been used for which the data may be unavailable.
+#
+# The following selected fields are included in this output:
+#
+#  agency_cd       -- Agency
+#  site_no         -- Site identification number
+#  station_nm      -- Site name
+#  site_tp_cd      -- Site type
+#  dec_lat_va      -- Decimal latitude
+#  dec_long_va     -- Decimal longitude
+#  coord_acy_cd    -- Latitude-longitude accuracy
+#  dec_coord_datum_cd -- Decimal Latitude-longitude datum
+#  alt_va          -- Altitude of Gage/land surface
+#  alt_acy_va      -- Altitude accuracy
+#  alt_datum_cd    -- Altitude datum
+#  huc_cd          -- Hydrologic unit code
+#
+agency_cd	site_no	station_nm	site_tp_cd	dec_lat_va	dec_long_va	coord_acy_cd	dec_coord_datum_cd	alt_va	alt_acy_va	alt_datum_cd	huc_cd
+5s	15s	50s	7s	16s	16s	1s	10s	8s	3s	10s	16s
+USGS	411228084541703	MET STATION WEST OF BULL RAPIDS RD NR HARLAN, IN	AT	41.20780556	-84.9048333	F	NAD83				04100005
+USGS	412349086423701	CRNS Atmospheric Station near Hanna IN	AT	41.39694444	-86.7102778	S	NAD83	674	1.6	NAVD88	07120001
+USGS	412354086421003	KANKAKEE WEATHER STATION NEAR HANNA, IN	AT	41.39858889	-86.70303889	R	NAD83	 675.63	.06	NAVD88	07120001
+USGS	413026087213601	TAFT PRECIP STATION	AT	41.50416667	-87.36388889	R	NAD83				04040001
+USGS	413218087151701	HOBART PRECIP STATION	AT	41.5358333	-87.2555556	R	NAD83				04040001
+USGS	413709087231602	PINE STATION NP MET STATION NEAR GARY, IN	AT	41.619083	-87.387694	S	NAD83	590.0	1.0	NAVD88	040400010604
+USGS	413853087290401	MET STATION ON CDF AT EAST CHICAGO, IN	AT	41.64805556	-87.4844444	5	NAD83	 515	 10	NGVD29	04040001

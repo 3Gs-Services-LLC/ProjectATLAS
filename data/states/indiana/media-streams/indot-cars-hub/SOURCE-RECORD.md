@@ -48,6 +48,25 @@ All files saved under `C:\Websites\ProjectATLAS\sources\indot-cars-hub\`.
 
 `cctv.xml` opens with a real device record — `device-id 21689`, name `1-069-226-2-2 SR 9:554/109/SCATTERFIELD RD` — which is a genuine INDOT route/mile-marker naming convention, not placeholder text. `feu-t.xml` opens with a message header identifying `Indiana DOT` as sender/organization. This is consistent with, and appears to be the same underlying feed family as, the CCTV XML referenced in the earlier handoff memo (`feeds/cctv.xml`, ~740 inventory items, `device-id`/`device-name`/`geo-location` fields) — this session did not independently recount the 740 figure from this specific download, so treat that exact count as **UNVERIFIED-this-session** until an adapter actually parses it.
 
+## `feu-w` subject RESOLVED 2026-08-29: it is road weather (RWIS)
+
+This record previously listed `/data/feu-w.xml` as `401 Unauthorized` with its subject unstated, and `indiana.md` §1.3 carried the caveat "subject unconfirmed." **That is now resolved — from evidence already inside this record, with no new fetch.**
+
+`schemas/FEU-w.xsd` (257,147 bytes, already hashed above) was parsed. Across 385 distinct element/type names it defines:
+
+- `DataRoadWeather`, `road-weather`, `weather-condition`
+- `EssAirTemperature`, `EssSurfaceTemperature`, `EssPavementTemperature`, `EssDewpointTemp`, `EssMinTemp`
+- `EssPrecipRate`, `snowfall-accum-rate`, `EssRoadwaySnowDepth`, `EssAdjacentSnowDepth`
+- `EssVisibility`, `EssRelativeHumidity`, `EssAtmosphericPressure`
+- `EssAvgWindDirection`, `EssMaxWindGustSpeed`, `wind-speed`, `wind-gust-speed`
+- `EssSurfaceSalinity`, `surface-freeze-point`, `pavement-condition`, `surface-conditions`
+
+The `Ess` prefix is the ITS/NTCIP-1204 convention for **Environmental Sensor Station** objects. This is unambiguously a **statewide road-weather (RWIS) feed**.
+
+**Evidence grade: VERIFIED** for the subject. The *data* remains **AUTHENTICATION_REQUIRED** — `feu-w.xml` returns 401 and no credential was supplied, guessed, or sought. Credentials for `feu-m`/`feu-w` are already tracked as **GitHub Issue #1**; this finding tells the operator what that issue is actually worth: statewide road-weather sensor data, not an unknown quantity.
+
+**No record count is claimed.** The schema says what the feed *would* contain; nothing has been retrieved.
+
 ## Open items for Phase 1/Phase 7 (INDOT adapter)
 
 1. ~~Parse `cctv.xml` against `CCTV.xsd` and confirm the ~740-item count from the handoff memo against this fresh download.~~ **Count resolved 2026-08-29: 746.** A direct element count over this record's own hashed `data/2026-08-22/cctv.xml` found **746 `<inventory-item>` elements and 746 unique `device-id` values** (746 each of `device-updated`, `device-name`, and `still-images`, confirming one complete record per item rather than a ragged parse). The handoff memo's "~740" was approximately right; the exact figure for this download is 746. **Still outstanding:** this was an element count, not schema validation against `CCTV.xsd` — that half of the item remains open.

@@ -9,9 +9,9 @@ spec_status: in-progress
 capabilities:
   traffic_cameras: confirmed
   traffic_conditions: confirmed
-  weather: researching
+  weather: confirmed
   scanners: confirmed
-  alpr_flock: researching
+  alpr_flock: none-found
   other: confirmed
 provenance:
   imported_from: project_atlas_state_data/Indiana.txt
@@ -40,9 +40,9 @@ research dossier it derives from - treat that as evidence and leave it as writte
 | --- | --- | --- | --- | --- | --- |
 | 1.1 | [Traffic cameras](#11-traffic-cameras) | `confirmed` | INDOT via Castle Rock CARS-Hub | Yes - XML | 746 cameras counted 2026-08-29 from hashed `cctv.xml`. **Licence UNKNOWN.** |
 | 1.2 | [Traffic conditions and incidents](#12-traffic-conditions-and-incidents) | `confirmed` | INDOT WZDx + CARS-Hub FEU | Yes - GeoJSON/XML | WZDx is CC0; CARS-Hub FEU licence UNKNOWN. |
-| 1.3 | [Weather and road weather](#13-weather-and-road-weather) | `researching` | none established | - | No RWIS layer found via ArcGIS; a CARS-Hub feed is credential-gated, subject unconfirmed. |
+| 1.3 | [Weather and road weather](#13-weather-and-road-weather) | `confirmed` | USGS atmospheric (open) + INDOT CARS-Hub RWIS (gated) | Yes - RDB / XML | **7** open sites. **`feu-w` VERIFIED as statewide RWIS**, credential-gated (Issue #1). |
 | 1.4 | [Scanners and public-safety radio](#14-scanners-and-public-safety-radio) | `confirmed` | FCC ULS (federal, public domain) | Yes - bulk ZIP | Source verified reachable; **no records extracted** (419 MB not downloaded). |
-| 1.5 | [ALPR / Flock camera locations](#15-alpr--flock-camera-locations) | `researching` | IIFC + ISP policy documents (in.gov) | No - PDF | Policy confirmed; **zero locations or counts disclosed**. |
+| 1.5 | [ALPR / Flock camera locations](#15-alpr--flock-camera-locations) | `none-found` | IIFC + ISP policy documents (in.gov) | No - PDF | Zero locations across all readable channels. HEA 1150 + IMPD unreadable - gaps, not findings. |
 | 1.6 | [Other public sources](#16-other-public-sources) | `confirmed` | USGS Water Services + IndianaMap GIS | Yes - RDB / ArcGIS REST | **246** active real-time stream gauges, coordinates + declared accuracy. Public domain. |
 
 Status vocabulary: `unspecified` &middot; `researching` &middot; `none-found` &middot; `confirmed` &middot; `credential-gated` &middot; `blocked` &middot; `excluded` &middot; `live`.
@@ -95,19 +95,19 @@ RWIS/atmospheric sensors, road-surface conditions, NWS and state weather feeds.
 
 | Field | Value |
 | --- | --- |
-| Status | `researching` |
-| Operator / agency | Not established |
-| Public system | Not established |
-| Machine-readable endpoint(s) | None verified |
-| Auth model | n/a |
-| Media available | n/a |
-| Record count | n/a |
-| Geographic coverage | n/a |
-| Update cadence | n/a |
-| Terms / licence | n/a |
+| Status | `confirmed` |
+| Operator / agency | USGS (open); INDOT via Castle Rock CARS-Hub (credential-gated RWIS) |
+| Public system | USGS Water Services (NWIS); CARS-Hub `feu-w` road-weather feed |
+| Machine-readable endpoint(s) | `https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=in&siteType=AT&siteStatus=active` (open); `inhub.carsprogram.org/data/feu-w.xml` (**401**) |
+| Auth model | USGS: none. CARS-Hub `feu-w`: **AUTHENTICATION_REQUIRED** - 401, no credential supplied, guessed or sought. Tracked as Issue #1. |
+| Media available | n/a - sensor records |
+| Record count | **7** open USGS atmospheric sites. **CARS-Hub RWIS record count UNKNOWN** - nothing retrieved. |
+| Geographic coverage | USGS sites statewide with datum + declared accuracy. RWIS coverage unknown. |
+| Update cadence | USGS: inventory, not a stream. RWIS: unknown. |
+| Terms / licence | USGS: **public domain**. CARS-Hub: **UNKNOWN** - treat as restrictive per `MacEvil.md` §12. |
 | ATLAS adapter | None built |
-| Last verified | 2026-08-29 (negative) |
-| Notes | ArcGIS discovery returned no Indiana RWIS/road-weather service ([`data/states/indiana/media-streams/indot-arcgis-negative/SOURCE-RECORD.md`](data/states/indiana/media-streams/indot-arcgis-negative/SOURCE-RECORD.md)). CARS-Hub `/data/feu-w.xml` returns 401; its subject is **not** confirmed to be weather and was not assumed - credentials tracked at Issue #1. `gisdata.in.gov` was not enumerated. |
+| Last verified | 2026-08-29 |
+| Notes | **`feu-w` subject resolved from evidence already in this repo** - parsing the public `FEU-w.xsd` (no new fetch) found `DataRoadWeather`, `EssAirTemperature`, `EssSurfaceTemperature`, `EssPavementTemperature`, `EssPrecipRate`, `EssVisibility`, `EssRoadwaySnowDepth`, `surface-freeze-point`. The `Ess` prefix is NTCIP-1204 Environmental Sensor Station, so this is **VERIFIED as statewide RWIS** - superseding this row's previous "subject unconfirmed" caveat. Evidence: [`data/states/indiana/sensor-observations/usgs-water-services/SOURCE-RECORD.md`](data/states/indiana/sensor-observations/usgs-water-services/SOURCE-RECORD.md) and [`data/states/indiana/media-streams/indot-cars-hub/SOURCE-RECORD.md`](data/states/indiana/media-streams/indot-cars-hub/SOURCE-RECORD.md). Indiana is **not** a publisher in the Midwest road-conditions service that covers Wisconsin (8 DOTs, Indiana absent - confirmed from hashed evidence). IndianaMap holds no live weather: its `Incidents` folder contains a single historical 2023 NWS storm assessment ([`data/states/indiana/documents-static-datasets/indianamap-catalog/SOURCE-RECORD.md`](data/states/indiana/documents-static-datasets/indianamap-catalog/SOURCE-RECORD.md)). Indiana's 7 atmospheric sites are notably thinner than Wisconsin's 25 - a real source difference, identical query. |
 
 ### 1.4 Scanners and public-safety radio
 
@@ -135,19 +135,19 @@ Camera **locations only** - never their read data. Transparency portals, registr
 
 | Field | Value |
 | --- | --- |
-| Status | `researching` |
-| Operator / agency | Indiana Intelligence Fusion Center (IIFC); Indiana State Police (ISP) |
-| Public system | Published policy documents on `in.gov` - no registry or portal |
-| Machine-readable endpoint(s) | **None.** Three PDFs, fetched and text-extracted. |
-| Auth model | None. `robots.txt` read first; `/iifc/files/` and `/isp/files/` both permitted. |
+| Status | `none-found` |
+| Operator / agency | IIFC and ISP publish policy; no agency publishes locations |
+| Public system | Published governance documents only - no registry, portal or inventory |
+| Machine-readable endpoint(s) | **None.** ArcGIS catalog search returned 0 matches; IndianaMap holds no ALPR layer. |
+| Auth model | n/a |
 | Media available | n/a - governance documents only. **Never plate reads.** |
-| Record count | **0 locations, 0 counts.** 19+17+2 pages parsed; no lat/long, no deployment location, no device count. ArcGIS catalog search returned 0 matches. |
+| Record count | **0 locations, 0 counts** across every official channel that could be read. |
 | Geographic coverage | n/a - nothing geolocated to record |
 | Update cadence | Static documents (2019, 2022) |
 | Terms / licence | **UNKNOWN** - not stated; treat as restrictive per `MacEvil.md` §12 |
 | ATLAS adapter | None built |
 | Last verified | 2026-08-29 |
-| Notes | Evidence: [`data/states/indiana/documents-static-datasets/indiana-alpr-policy/SOURCE-RECORD.md`](data/states/indiana/documents-static-datasets/indiana-alpr-policy/SOURCE-RECORD.md). Indiana operates ALPR under written policy but publishes **no locations** - so §4's `JURISDICTION_ONLY` fallback has nothing to attach to, and no coordinate was invented. No crowdsourced source used; §4 excludes them and §2 cites several. Passive-only: no outreach made or suggested. |
+| Notes | Evidence: [`data/states/indiana/documents-static-datasets/indiana-alpr-policy/SOURCE-RECORD.md`](data/states/indiana/documents-static-datasets/indiana-alpr-policy/SOURCE-RECORD.md). Three state policies parsed (19+17+2 pages): **zero** locations or counts. **Two gaps, not negatives, and both are recorded as such:** HEA 1150 (2026, "Local regulation") is **VERIFIED enacted** via the Governor's Bill Watch, but its ALPR content is **HYPOTHESIS only** - the enrolled PDF is unreachable because `iga.in.gov` is a client-rendered SPA; and **IMPD's policy index could not be enumerated** for the same reason, so Indiana's largest city was never checked the way Milwaukee was. `none-found` means no *readable* official source publishes locations - **not** that Indiana lacks ALPR. No crowdsourced source used; no outreach made, drafted or suggested (§4 passive-only). |
 
 ### 1.6 Other public sources
 

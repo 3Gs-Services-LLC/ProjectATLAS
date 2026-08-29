@@ -20,6 +20,7 @@ The two axes are orthogonal, and this record is a clean demonstration of that. *
 | Endpoint | HTTP status | Bytes | SHA-256 | Saved as |
 |---|---|---|---|---|
 | `https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=in&siteType=ST&hasDataTypeCd=iv&siteStatus=active` | 200 | 28,639 | `2d5804f834d37e0c25076aab280aa97cce99e67f58e717cdeaf4d10e7a92f0b7` | `data/2026-08-29/sites-in-active-iv.rdb` |
+| `https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=in&siteType=AT&siteStatus=active` | 200 | 2,049 | `a05acd8afcb8f08e1577008b1d8cc02b46033442a597caa9e0b28bf6488b9a12` | `data/2026-08-29/sites-in-atmospheric.rdb` |
 
 ## Content verification (parsed, not assumed)
 
@@ -30,6 +31,14 @@ Columns include `agency_cd`, `site_no`, `station_nm`, `site_tp_cd`, `dec_lat_va`
 First record: `USGS | 03274650 | WHITEWATER RIVER NEAR ECONOMY, IN | ST | 40.0041988 | -85.1154894 | NAD83 | 1065.58 ft NAVD88`
 
 Genuine operational data, not placeholder: real named watercourses, coordinates inside Indiana's bounding box, NAD83/NAVD88 datums, real HUC basin codes.
+
+## Atmospheric sites (added 2026-08-29, capability §1.3)
+
+A second query against the same API with `siteType=AT` returned **7 active atmospheric sites in Indiana** — met and precipitation stations. Same RDB shape, same public-domain licence, same per-row coordinate/datum/accuracy provenance. Examples: `MET STATION WEST OF BULL RAPIDS RD NR HARLAN, IN` (`41.20780556, -84.9048333`, NAD83) and `KANKAKEE WEATHER STATION NEAR HANNA, IN` (`41.39858889, -86.70303889`).
+
+**These 7 sites answer capability §1.3 (weather); the 246 stream gauges answer §1.6 (other).** One source, one API, two capabilities — split by subject, not endpoint. **Do not add the counts together.**
+
+**Indiana has notably thinner USGS atmospheric coverage than Wisconsin** — 7 sites against Wisconsin's 25. That is a real difference in the source, not a difference in how hard this project looked: identical query, identical parameters, same day.
 
 ## Scope limits
 
