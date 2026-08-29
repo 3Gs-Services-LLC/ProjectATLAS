@@ -7,7 +7,7 @@
 
 - **Provider:** Indiana DOT, published via the Castle Rock CARS platform (feed self-identifies publisher as `"INDOTCastleRock"`, contact `Ed Cox <ECOX@indot.in.gov>`)
 - **Agency/jurisdiction:** Indiana DOT
-- **Platform:** Castle Rock CARS — the same underlying platform as `sources/indot-cars-hub/` (§5A of `projectatlas.md`) and the 511IN GraphQL/HLS path (§5B), confirmed by the shared `carsprogram.org` domain family. This is a **third, distinct** integration path — see `projectatlas.md` §5D.
+- **Platform:** Castle Rock CARS — the same underlying platform as `data/states/indiana/media-streams/indot-cars-hub/` (§5A of `projectatlas.md`) and the 511IN GraphQL/HLS path (§5B), confirmed by the shared `carsprogram.org` domain family. This is a **third, distinct** integration path — see `projectatlas.md` §5D.
 - **Official URL:** `https://in.carsprogram.org/carsapi_v1/api/wzdx`
 - **Registry entry:** `https://datahub.transportation.gov/resource/69qe-yiui.json` (WZDx Feed Registry, filtered to `state=indiana`)
 - **Specification:** WZDx — feed self-reports version `4.0`; the federal registry lists Indiana's entry as version `4.1`. Real, minor discrepancy, not resolved either way in this record.
