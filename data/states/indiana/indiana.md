@@ -10,8 +10,8 @@ capabilities:
   traffic_cameras: confirmed
   traffic_conditions: confirmed
   weather: researching
-  scanners: unspecified
-  alpr_flock: unspecified
+  scanners: confirmed
+  alpr_flock: researching
   other: unspecified
 provenance:
   imported_from: project_atlas_state_data/Indiana.txt
@@ -41,8 +41,8 @@ research dossier it derives from - treat that as evidence and leave it as writte
 | 1.1 | [Traffic cameras](#11-traffic-cameras) | `confirmed` | INDOT via Castle Rock CARS-Hub | Yes - XML | 746 cameras counted 2026-08-29 from hashed `cctv.xml`. **Licence UNKNOWN.** |
 | 1.2 | [Traffic conditions and incidents](#12-traffic-conditions-and-incidents) | `confirmed` | INDOT WZDx + CARS-Hub FEU | Yes - GeoJSON/XML | WZDx is CC0; CARS-Hub FEU licence UNKNOWN. |
 | 1.3 | [Weather and road weather](#13-weather-and-road-weather) | `researching` | none established | - | No RWIS layer found via ArcGIS; a CARS-Hub feed is credential-gated, subject unconfirmed. |
-| 1.4 | [Scanners and public-safety radio](#14-scanners-and-public-safety-radio) | `unspecified` | - | - | Not researched this pass. |
-| 1.5 | [ALPR / Flock camera locations](#15-alpr--flock-camera-locations) | `unspecified` | - | - | Not researched this pass. Official channels only. |
+| 1.4 | [Scanners and public-safety radio](#14-scanners-and-public-safety-radio) | `confirmed` | FCC ULS (federal, public domain) | Yes - bulk ZIP | Source verified reachable; **no records extracted** (419 MB not downloaded). |
+| 1.5 | [ALPR / Flock camera locations](#15-alpr--flock-camera-locations) | `researching` | IIFC + ISP policy documents (in.gov) | No - PDF | Policy confirmed; **zero locations or counts disclosed**. |
 | 1.6 | [Other public sources](#16-other-public-sources) | `unspecified` | - | - | Not researched this pass. |
 
 Status vocabulary: `unspecified` &middot; `researching` &middot; `none-found` &middot; `confirmed` &middot; `credential-gated` &middot; `blocked` &middot; `excluded` &middot; `live`.
@@ -115,19 +115,19 @@ Statewide radio system, Broadcastify/RadioReference feeds, public CAD/dispatch.
 
 | Field | Value |
 | --- | --- |
-| Status | `unspecified` |
-| Operator / agency |  |
-| Public system |  |
-| Machine-readable endpoint(s) |  |
-| Auth model |  |
-| Media available |  |
-| Record count |  |
-| Geographic coverage |  |
-| Update cadence |  |
-| Terms / licence |  |
-| ATLAS adapter |  |
-| Last verified |  |
-| Notes | Not researched in the 2026-08-29 pass. `unspecified` here means "nobody has looked yet," not "nothing exists" - see §2 for leads, which are unverified. |
+| Status | `confirmed` |
+| Operator / agency | Federal Communications Commission (FCC) |
+| Public system | Universal Licensing System (ULS) bulk download |
+| Machine-readable endpoint(s) | `https://data.fcc.gov/download/pub/uls/complete/` - `l_LMpriv.zip` (Land Mobile Private) is the public-safety archive |
+| Auth model | None. `robots.txt` read first; disallows only `PiplBot`. License View API is unusable (301 -> `www.fcc.gov` -> 403 WAF); **no UA spoofing attempted**. |
+| Media available | n/a - licence records, not media. Scanner *audio* is a separate, unresolved question. |
+| Record count | **Not established.** 419,411,523-byte archive deliberately not downloaded; verified by `HEAD` + 4-byte range (`PK`) only. |
+| Geographic coverage | National, includes this state - but no per-state extraction performed |
+| Update cadence | Archive `Last-Modified` 2026-08-23; FCC publishes daily/weekly transaction files |
+| Terms / licence | US federal government work - **public domain** |
+| ATLAS adapter | None built |
+| Last verified | 2026-08-29 |
+| Notes | Evidence: [`sources/fcc-uls/SOURCE-RECORD.md`](sources/fcc-uls/SOURCE-RECORD.md). National source, filed under `sources/` like other federal sources. **Broadcastify and RadioReference were deliberately not fetched** - commercial ToS, not official channels - despite being cited heavily in §2. |
 
 ### 1.5 ALPR / Flock camera locations
 
@@ -135,19 +135,19 @@ Camera **locations only** - never their read data. Transparency portals, registr
 
 | Field | Value |
 | --- | --- |
-| Status | `unspecified` |
-| Operator / agency |  |
-| Public system |  |
-| Machine-readable endpoint(s) |  |
-| Auth model |  |
-| Media available |  |
-| Record count |  |
-| Geographic coverage |  |
-| Update cadence |  |
-| Terms / licence |  |
-| ATLAS adapter |  |
-| Last verified |  |
-| Notes | Not researched in the 2026-08-29 pass. `unspecified` here means "nobody has looked yet," not "nothing exists" - see §2 for leads, which are unverified. |
+| Status | `researching` |
+| Operator / agency | Indiana Intelligence Fusion Center (IIFC); Indiana State Police (ISP) |
+| Public system | Published policy documents on `in.gov` - no registry or portal |
+| Machine-readable endpoint(s) | **None.** Three PDFs, fetched and text-extracted. |
+| Auth model | None. `robots.txt` read first; `/iifc/files/` and `/isp/files/` both permitted. |
+| Media available | n/a - governance documents only. **Never plate reads.** |
+| Record count | **0 locations, 0 counts.** 19+17+2 pages parsed; no lat/long, no deployment location, no device count. ArcGIS catalog search returned 0 matches. |
+| Geographic coverage | n/a - nothing geolocated to record |
+| Update cadence | Static documents (2019, 2022) |
+| Terms / licence | **UNKNOWN** - not stated; treat as restrictive per `MacEvil.md` §12 |
+| ATLAS adapter | None built |
+| Last verified | 2026-08-29 |
+| Notes | Evidence: [`data/states/indiana/documents-static-datasets/indiana-alpr-policy/SOURCE-RECORD.md`](data/states/indiana/documents-static-datasets/indiana-alpr-policy/SOURCE-RECORD.md). Indiana operates ALPR under written policy but publishes **no locations** - so §4's `JURISDICTION_ONLY` fallback has nothing to attach to, and no coordinate was invented. No crowdsourced source used; §4 excludes them and §2 cites several. Passive-only: no outreach made or suggested. |
 
 ### 1.6 Other public sources
 

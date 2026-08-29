@@ -10,8 +10,8 @@ capabilities:
   traffic_cameras: researching
   traffic_conditions: confirmed
   weather: unspecified
-  scanners: unspecified
-  alpr_flock: unspecified
+  scanners: confirmed
+  alpr_flock: researching
   other: unspecified
 provenance:
   imported_from: project_atlas_state_data/Wisconsin.txt
@@ -41,8 +41,8 @@ research dossier it derives from - treat that as evidence and leave it as writte
 | 1.1 | [Traffic cameras](#11-traffic-cameras) | `researching` | none established | - | Two discovery mechanisms returned nothing; dossier claim deliberately not promoted. |
 | 1.2 | [Traffic conditions and incidents](#12-traffic-conditions-and-incidents) | `confirmed` | WisDOT 511WI WZDx | Yes - GeoJSON | 4,413 events, **CC0 1.0** declared in-payload. |
 | 1.3 | [Weather and road weather](#13-weather-and-road-weather) | `unspecified` | - | - | Not researched this pass. |
-| 1.4 | [Scanners and public-safety radio](#14-scanners-and-public-safety-radio) | `unspecified` | - | - | Not researched this pass. |
-| 1.5 | [ALPR / Flock camera locations](#15-alpr--flock-camera-locations) | `unspecified` | - | - | Not researched this pass. Official channels only. |
+| 1.4 | [Scanners and public-safety radio](#14-scanners-and-public-safety-radio) | `confirmed` | FCC ULS (federal, public domain) | Yes - bulk ZIP | Source verified reachable; **no records extracted** (419 MB not downloaded). |
+| 1.5 | [ALPR / Flock camera locations](#15-alpr--flock-camera-locations) | `researching` | AB576 / AB300 legislature (docs.legis.wisconsin.gov) | No - HTML | Legislation confirmed; **zero locations or counts disclosed**. |
 | 1.6 | [Other public sources](#16-other-public-sources) | `unspecified` | - | - | Not researched this pass. |
 
 Status vocabulary: `unspecified` &middot; `researching` &middot; `none-found` &middot; `confirmed` &middot; `credential-gated` &middot; `blocked` &middot; `excluded` &middot; `live`.
@@ -115,19 +115,19 @@ Statewide radio system, Broadcastify/RadioReference feeds, public CAD/dispatch.
 
 | Field | Value |
 | --- | --- |
-| Status | `unspecified` |
-| Operator / agency |  |
-| Public system |  |
-| Machine-readable endpoint(s) |  |
-| Auth model |  |
-| Media available |  |
-| Record count |  |
-| Geographic coverage |  |
-| Update cadence |  |
-| Terms / licence |  |
-| ATLAS adapter |  |
-| Last verified |  |
-| Notes | Not researched in the 2026-08-29 pass. `unspecified` here means "nobody has looked yet," not "nothing exists" - see §2 for leads, which are unverified. |
+| Status | `confirmed` |
+| Operator / agency | Federal Communications Commission (FCC) |
+| Public system | Universal Licensing System (ULS) bulk download |
+| Machine-readable endpoint(s) | `https://data.fcc.gov/download/pub/uls/complete/` - `l_LMpriv.zip` (Land Mobile Private) is the public-safety archive |
+| Auth model | None. `robots.txt` read first; disallows only `PiplBot`. License View API is unusable (301 -> `www.fcc.gov` -> 403 WAF); **no UA spoofing attempted**. |
+| Media available | n/a - licence records, not media. Scanner *audio* is a separate, unresolved question. |
+| Record count | **Not established.** 419,411,523-byte archive deliberately not downloaded; verified by `HEAD` + 4-byte range (`PK`) only. |
+| Geographic coverage | National, includes this state - but no per-state extraction performed |
+| Update cadence | Archive `Last-Modified` 2026-08-23; FCC publishes daily/weekly transaction files |
+| Terms / licence | US federal government work - **public domain** |
+| ATLAS adapter | None built |
+| Last verified | 2026-08-29 |
+| Notes | Evidence: [`sources/fcc-uls/SOURCE-RECORD.md`](sources/fcc-uls/SOURCE-RECORD.md). National source, filed under `sources/` like other federal sources. **Broadcastify and RadioReference were deliberately not fetched** - commercial ToS, not official channels - despite being cited heavily in §2. |
 
 ### 1.5 ALPR / Flock camera locations
 
@@ -135,19 +135,19 @@ Camera **locations only** - never their read data. Transparency portals, registr
 
 | Field | Value |
 | --- | --- |
-| Status | `unspecified` |
-| Operator / agency |  |
-| Public system |  |
-| Machine-readable endpoint(s) |  |
-| Auth model |  |
-| Media available |  |
-| Record count |  |
-| Geographic coverage |  |
-| Update cadence |  |
-| Terms / licence |  |
-| ATLAS adapter |  |
-| Last verified |  |
-| Notes | Not researched in the 2026-08-29 pass. `unspecified` here means "nobody has looked yet," not "nothing exists" - see §2 for leads, which are unverified. |
+| Status | `researching` |
+| Operator / agency | Wisconsin State Legislature (LRB); DOJ named as administrator in AB300 |
+| Public system | Legislative document service - no registry or portal |
+| Machine-readable endpoint(s) | **None.** Two bill texts, fetched and parsed. |
+| Auth model | None. `robots.txt` read first; `/2025/related/proposals/` permitted. |
+| Media available | n/a - legislative text only. **Never plate reads.** |
+| Record count | **0 locations, 0 counts.** ArcGIS catalog search returned 0 matches. |
+| Geographic coverage | n/a - nothing geolocated to record |
+| Update cadence | Static; both are 2025 proposals, enactment **not** checked |
+| Terms / licence | **UNKNOWN** - not stated; treat as restrictive per `MacEvil.md` §12 |
+| ATLAS adapter | None built |
+| Last verified | 2026-08-29 |
+| Notes | Evidence: [`data/states/wisconsin/documents-static-datasets/wisconsin-alpr-legislation/SOURCE-RECORD.md`](data/states/wisconsin/documents-static-datasets/wisconsin-alpr-legislation/SOURCE-RECORD.md). AB576 would restrict ALPR; AB300 would fund it via DOJ grants - a grant-award list would be a citable procurement record, but it is a lead, not pursued (passive-only, §9). WI State Patrol's ALPR policy **not fetched**: `wsp.wi.gov/robots.txt` returns 401, so permission is unknown - treated as restrictive. |
 
 ### 1.6 Other public sources
 
