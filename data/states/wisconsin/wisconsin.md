@@ -7,11 +7,11 @@ research_date: 2026-08-28
 research_date_source: stated
 spec_status: in-progress
 capabilities:
-  traffic_cameras: researching
+  traffic_cameras: credential-gated
   traffic_conditions: confirmed
   weather: confirmed
   scanners: confirmed
-  alpr_flock: researching
+  alpr_flock: none-found
   other: confirmed
 provenance:
   imported_from: project_atlas_state_data/Wisconsin.txt
@@ -38,11 +38,11 @@ research dossier it derives from - treat that as evidence and leave it as writte
 
 | # | Capability | Status | Primary public source | Machine-readable | Notes |
 | --- | --- | --- | --- | --- | --- |
-| 1.1 | [Traffic cameras](#11-traffic-cameras) | `researching` | none established | - | Two discovery mechanisms returned nothing; dossier claim deliberately not promoted. |
+| 1.1 | [Traffic cameras](#11-traffic-cameras) | `credential-gated` | WisDOT 511WI REST API | Yes - documented | Officially documented; **needs a developer key + account**. No key held. |
 | 1.2 | [Traffic conditions and incidents](#12-traffic-conditions-and-incidents) | `confirmed` | WisDOT 511WI WZDx | Yes - GeoJSON | 4,413 events, **CC0 1.0** declared in-payload. |
 | 1.3 | [Weather and road weather](#13-weather-and-road-weather) | `confirmed` | WisDOT road conditions + USGS atmospheric | Yes - ArcGIS REST / RDB | **1,175** road segments + **25** atmospheric sites. NWS blocked by `robots.txt`. |
 | 1.4 | [Scanners and public-safety radio](#14-scanners-and-public-safety-radio) | `confirmed` | FCC ULS (federal, public domain) | Yes - bulk ZIP | Source verified reachable; **no records extracted** (419 MB not downloaded). |
-| 1.5 | [ALPR / Flock camera locations](#15-alpr--flock-camera-locations) | `researching` | AB576 / AB300 legislature (docs.legis.wisconsin.gov) | No - HTML | Legislation confirmed; **zero locations or counts disclosed**. |
+| 1.5 | [ALPR / Flock camera locations](#15-alpr--flock-camera-locations) | `none-found` | Legislature + Milwaukee PD SOP (governance only) | No | **Both bills failed 3/23/2026.** Zero locations across every official channel. |
 | 1.6 | [Other public sources](#16-other-public-sources) | `confirmed` | USGS Water Services + WDNR GIS | Yes - RDB / ArcGIS REST | **215** active real-time stream gauges, coordinates + declared accuracy. Public domain. |
 
 Status vocabulary: `unspecified` &middot; `researching` &middot; `none-found` &middot; `confirmed` &middot; `credential-gated` &middot; `blocked` &middot; `excluded` &middot; `live`.
@@ -55,19 +55,19 @@ Public DOT/agency CCTV: camera inventory, snapshot URLs, HLS/MJPEG streams.
 
 | Field | Value |
 | --- | --- |
-| Status | `researching` |
-| Operator / agency | WisDOT (presumed; not established) |
-| Public system | 511WI (`511wi.gov`) - confirmed to exist, camera endpoint not found |
-| Machine-readable endpoint(s) | **None verified.** No sibling `/api/` path was probed - guessing endpoints is forbidden by §4. |
-| Auth model | Unknown |
-| Media available | Unknown |
-| Record count | Unknown |
-| Geographic coverage | Unknown |
+| Status | `credential-gated` |
+| Operator / agency | Wisconsin DOT (WisDOT) |
+| Public system | 511WI (`511wi.gov`) - the same system already confirmed for §1.2 |
+| Machine-readable endpoint(s) | Documented REST API exposing **Cameras**, Message Signs, Truck Parking, Winter Road Conditions, Events, Alerts, Travel Time. Exact request form **not** established - an unauthenticated call to the search-suggested URL returned 404, not 401. |
+| Auth model | **Developer key required**, and a registered account is required to obtain one. Throttled to 10 calls / 60s. Quoted verbatim from the fetched documentation. |
+| Media available | Camera imagery/video per the documentation; **not** independently observed - no key held. |
+| Record count | **Unknown.** No camera has been retrieved. Do not infer a count from §2. |
+| Geographic coverage | Statewide (documented); unverified |
 | Update cadence | Unknown |
-| Terms / licence | Unknown |
+| Terms / licence | **UNKNOWN.** No terms page located. A key-issuing process normally carries an access agreement that would govern redistribution - **that agreement has not been read.** |
 | ATLAS adapter | None built |
-| Last verified | 2026-08-29 (negative) |
-| Notes | ArcGIS search (297 matches) and WisDOT's own 40-service `agohub` catalog contain no camera layer; the root catalog reset twice, so that host is not exhaustively swept. Evidence: [`data/states/wisconsin/media-streams/wisdot-arcgis-negative/SOURCE-RECORD.md`](data/states/wisconsin/media-streams/wisdot-arcgis-negative/SOURCE-RECORD.md). §2 asserts a statewide camera network - **not used as a basis for this status**, per `NOTICE.md`. |
+| Last verified | 2026-08-29 |
+| Notes | Evidence: [`data/states/wisconsin/media-streams/wisdot-511-camera-api/SOURCE-RECORD.md`](data/states/wisconsin/media-streams/wisdot-511-camera-api/SOURCE-RECORD.md). Found via **official WisDOT developer documentation** - the exact route the earlier negative record ([`data/states/wisconsin/media-streams/wisdot-arcgis-negative/SOURCE-RECORD.md`](data/states/wisconsin/media-streams/wisdot-arcgis-negative/SOURCE-RECORD.md)) specified, and explicitly **not** by guessing `511wi.gov/api/*` paths. `robots.txt` read first; `/developers/`, `/help/` and `/api/` are all permitted. **No account created, no key requested** - belongs in the `needs-outreach` queue with Issues #1 and #8. The public `/cctv` viewer was **not** scraped: harvesting it would circumvent a deliberate access control (§4). |
 
 ### 1.2 Traffic conditions and incidents
 
@@ -135,19 +135,19 @@ Camera **locations only** - never their read data. Transparency portals, registr
 
 | Field | Value |
 | --- | --- |
-| Status | `researching` |
-| Operator / agency | Wisconsin State Legislature (LRB); DOJ named as administrator in AB300 |
-| Public system | Legislative document service - no registry or portal |
-| Machine-readable endpoint(s) | **None.** Two bill texts, fetched and parsed. |
-| Auth model | None. `robots.txt` read first; `/2025/related/proposals/` permitted. |
-| Media available | n/a - legislative text only. **Never plate reads.** |
-| Record count | **0 locations, 0 counts.** ArcGIS catalog search returned 0 matches. |
+| Status | `none-found` |
+| Operator / agency | n/a - no publishing agency identified |
+| Public system | None. Governance is published; locations are not. |
+| Machine-readable endpoint(s) | **None.** ArcGIS catalog search returned 0 matches. |
+| Auth model | n/a |
+| Media available | n/a - governance documents only. **Never plate reads.** |
+| Record count | **0 locations, 0 counts** across every official channel checked. |
 | Geographic coverage | n/a - nothing geolocated to record |
-| Update cadence | Static; both are 2025 proposals, enactment **not** checked |
-| Terms / licence | **UNKNOWN** - not stated; treat as restrictive per `MacEvil.md` §12 |
+| Update cadence | n/a |
+| Terms / licence | **UNKNOWN** for the governance documents; treat as restrictive per `MacEvil.md` §12 |
 | ATLAS adapter | None built |
 | Last verified | 2026-08-29 |
-| Notes | Evidence: [`data/states/wisconsin/documents-static-datasets/wisconsin-alpr-legislation/SOURCE-RECORD.md`](data/states/wisconsin/documents-static-datasets/wisconsin-alpr-legislation/SOURCE-RECORD.md). AB576 would restrict ALPR; AB300 would fund it via DOJ grants - a grant-award list would be a citable procurement record, but it is a lead, not pursued (passive-only, §9). WI State Patrol's ALPR policy **not fetched**: `wsp.wi.gov/robots.txt` returns 401, so permission is unknown - treated as restrictive. |
+| Notes | Evidence: [`data/states/wisconsin/documents-static-datasets/wisconsin-alpr-legislation/SOURCE-RECORD.md`](data/states/wisconsin/documents-static-datasets/wisconsin-alpr-legislation/SOURCE-RECORD.md). **Both 2025 ALPR bills failed to pass (3/23/2026)** - verified from the legislature's own history pages - so AB300's DOJ grant programme was never created and **no award list exists**; that lead is closed, not merely unpursued. Milwaukee PD SOP 735 parsed (15 pages): real policy, **zero** locations or counts, same as Indiana. **Newspaper-reported Madison/Dane County camera counts were seen and deliberately rejected** - press coverage is not an official channel under §4. `none-found` means no *official source publishes locations*, **not** that Wisconsin lacks ALPR - it plainly has it. Per §4 passive-only, that is a valid terminal state; no outreach made or suggested. |
 
 ### 1.6 Other public sources
 

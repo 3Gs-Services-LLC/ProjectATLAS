@@ -1,0 +1,1239 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="shortcut icon" href="/Content/WI/images/favicon/favicon.ico?v=2025.03.11">
+    <link rel="icon" sizes="16x16 32x32 64x64" href="/Content/WI/images/favicon/favicon.ico?v=2025.03.11">
+    <link rel="icon" type="image/png" sizes="196x196" href="/Content/WI/images/favicon/favicon-192.png?v=2025.03.11">
+    <link rel="icon" type="image/png" sizes="160x160" href="/Content/WI/images/favicon/favicon-160.png?v=2025.03.11">
+    <link rel="icon" type="image/png" sizes="96x96" href="/Content/WI/images/favicon/favicon-96.png?v=2025.03.11">
+    <link rel="icon" type="image/png" sizes="64x64" href="/Content/WI/images/favicon/favicon-64.png?v=2025.03.11">
+    <link rel="icon" type="image/png" sizes="32x32" href="/Content/WI/images/favicon/favicon-32.png?v=2025.03.11">
+    <link rel="icon" type="image/png" sizes="16x16" href="/Content/WI/images/favicon/favicon-16.png?v=2025.03.11">
+    <link rel="apple-touch-icon" href="/Content/WI/images/favicon/favicon-57.png?v=2025.03.11">
+    <link rel="apple-touch-icon" sizes="114x114" href="/Content/WI/images/favicon/favicon-114.png?v=2025.03.11">
+    <link rel="apple-touch-icon" sizes="72x72" href="/Content/WI/images/favicon/favicon-72.png?v=2025.03.11">
+    <link rel="apple-touch-icon" sizes="144x144" href="/Content/WI/images/favicon/favicon-144.png?v=2025.03.11">
+    <link rel="apple-touch-icon" sizes="60x60" href="/Content/WI/images/favicon/favicon-60.png?v=2025.03.11">
+    <link rel="apple-touch-icon" sizes="120x120" href="/Content/WI/images/favicon/favicon-120.png?v=2025.03.11">
+    <link rel="apple-touch-icon" sizes="76x76" href="/Content/WI/images/favicon/favicon-76.png?v=2025.03.11">
+    <link rel="apple-touch-icon" sizes="152x152" href="/Content/WI/images/favicon/favicon-152.png?v=2025.03.11">
+    <link rel="apple-touch-icon" sizes="180x180" href="/Content/WI/images/favicon/favicon-180.png?v=2025.03.11">
+
+    <link rel="preload" as="font" href="/Content/fontawesome/webfonts/fa-regular-400.woff2" type="font/woff2" crossorigin />
+    <link rel="preload" as="font" href="/Content/fontawesome/webfonts/fa-brands-400.woff2" type="font/woff2" crossorigin />
+    <link rel="preload" as="font" href="/Content/fontawesome/webfonts/fa-solid-900.woff2" type="font/woff2" crossorigin />
+
+<link href='/Content/introjs?v=n-nFf0hL6YIrZxKf0YgF7V8CsnEErO252JiVetjutQY1' type='text/css' rel='stylesheet'/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <meta name="msapplication-TileImage" content="/Content/WI/images/favicon/favicon-144.png?v=2025.03.11">
+    <meta name="msapplication-config" content="/Content/WI/images/favicon/browserconfig.xml">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="canonical" href="http://511wi.gov/developers/doc" />
+
+
+
+        <meta property="og:url" content="511wi.gov" />
+        <meta property="og:type" content="Website" />
+        <meta property="og:title" content="511WI" />
+        <meta property="og:description" content="" />
+        <meta property="og:image" content="https://511wi.gov/Content/WI/images/favicon/favicon-310.png?v=2025.03.11" />
+
+        <meta name="twitter:card" content="summary">
+
+
+    <title>
+        Wisconsin API Documentation | 511WI
+    </title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" media="print" onload="this.media='all'" />
+    <link href='/bundles/maincss?v=g9eR_nuOwDjRwz2z2lxnBYUAod9VgglKj83bhLH595o1' type='text/css' rel='stylesheet'/>
+
+
+
+
+    
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GP0H11H7M9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-GP0H11H7M9');        
+    </script>
+
+<script>
+    // Track event in Google Analytics 4
+    // Custom Parameter needs to be unique when you add to the GA4 (website) > Property settings > Data display > Custom definitions
+    // Dev defined - map_type_changed with event_label; map_layer_enabled with layer_id
+    const gaEventType = {
+        mapTypeChanged: 'map_type_changed',
+        mapLayerEnabled: 'map_layer_enabled'
+    };
+
+    const gaEventConfig = {
+        [gaEventType.mapTypeChanged]: {
+            customPara: 'event_label',
+            eventCategory: 'Map Interaction'
+        },
+        [gaEventType.mapLayerEnabled]: {
+            customPara: 'layer_id',
+            eventCategory: 'Map Legend Layer'
+        }
+    };
+
+    function setGATracking(event, customParameterValue) {
+        const config = gaEventConfig[event];
+        if (!config) {
+            console.warn(`Unknown event: ${event}`);
+            return; // Exit early if event not found
+        }
+
+        if (typeof gtag === 'function') {
+            gtag('event', event, {
+                event_category: config.eventCategory,
+                [config.customPara]: customParameterValue
+            });
+        }
+    }
+</script>
+
+
+
+    
+
+</head>
+<body class="mobileFirst">
+    <div id="page">
+        <div class="modal fade modal-vertical-centered" tabindex="-1" role="dialog" id="imageModal">
+    <div class="modal-dialog img-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4 id="fullscreen-img-title">Loading...</h4>   
+                <p id="fullscreen-img-extra" style="display:none;"></p>
+                <p id="fullscreen-img-desc"></p>
+                <div class="fullscreen-camera-slider-for">
+                </div>
+                <div class="fullscreen-img-div-single">
+                    <img id="fullScreenImg" class="fullScreenImg" src=""  alt=""/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="close" data-close="true" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+        <div role="banner" class="topBanner">
+            <noscript>
+                <span class="label label-warning">JavaScript is disabled on your browser and this site won&#39;t work properly without JavaScript enabled!</span>
+            </noscript>
+            <a href="#content" class="sr-only sr-only-focusable" title="Content" style="color:#fff;" tabindex="1">Skip to main content</a>
+            <div class="printSiteHeader">511WI</div>
+
+            
+
+<div class="truckerModeIndicator">
+    <div>
+        <i class="far fa-truck-moving" aria-hidden="true"></i> Trucker Mode
+    </div>
+</div>
+            
+
+<nav class="navbar navbar-inverse topBannerFixed" aria-label="menu">
+    <div class="container-fluid">
+        <div class="row navBar">
+            <div class="navbar-header">
+                
+                <div class="navbar-toggle collapsed menuLogin">
+                    <ul class="nav navbar-nav">
+    <li class="dropdown menu-login" role="none">
+            <a href="#" class="dropdown-toggle" target="_self" data-toggle="dropdown" data-hover="dropdown" role="menuitem" aria-expanded="false" id="userProfileIcon" data-testid="userProfileIcon" aria-label="User Account">
+                <i class="far fa-user-circle userIcon" aria-hidden="true"></i>
+            </a>
+            <ul class="dropdown-menu" role="menu">     
+
+                <li role="menuitem"><a href="/my511/register" id="mobileRegisterLink">Sign Up<span class='hideForAccessibility'> for an account.</span></a></li>
+                <li role="none"><a href="#" id="mobileLoginBtn" data-testid="mobileLoginBtn" role="menuitem" data-toggle="modal" data-target="#loginModalDialog">Log In</a></li>
+            </ul>
+    </li>
+</ul>
+                </div>
+
+                <a class="navbar-toggle collapsed" href="#menu">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                
+
+    <a class="site-logo" href="/" target="_self">
+        <span class='hideForAccessibility'>511 Wisconsin Website in new tab</span>
+    </a>
+    <a class="site-logo2" href="http://wisconsindot.gov/Pages/home.aspx" target="_blank">
+        <span class='hideForAccessibility'>Official website of the Wisconsin Government</span>
+    </a>
+    <span class="travelInfoRight">
+        <span>
+            Traveler information:
+        </span>
+        <span>
+            Call 511 or
+        </span>
+        <span>
+            (866) 511-9472
+        </span>
+    </span>
+
+            </div>
+
+            <div class="collapse navbar-collapse navbar-right">
+
+
+
+
+<div class="menu-width">
+    <ul class="nav navbar-nav main-menu" role="menubar">
+                        <li class="only511" role="none">
+                            <a data-testid="menu-Map-Inde-Map" href="/map" target="_self" title="Map Menu" role="menuitem">Map</a>
+                        </li>
+                            <li class="dropdown only511" role="none">
+                                <a data-testid="menu-List-Traf" href="/" class="dropdown-toggle" target="_self" title="Traffic Menu" data-toggle="dropdown" data-hover="dropdown" role="menuitem" aria-expanded="false">
+                                    Traffic <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu" style="column-count: 1 ">
+                                                    <li role="none">
+                    <a data-testid="sub-List-ET-TL" class="" href="/list/events/traffic" target="_self" title="Traffic - Traffic Events List" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Traffic Events List</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-List-WR-WR" class="" href="/list/wazereports" target="_self" title="Traffic - Waze Reports" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Waze Reports</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-List-MS-MSL" class="" href="/messagesigns" target="_self" title="Traffic - Message Signs List" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Message Signs List</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-List-Cctv-CL" class="" href="/cctv" target="_self" title="Traffic - Cameras List" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Cameras List</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-List-TT-TTL" class="" href="/traveltimes" target="_self" title="Traffic - Travel Times List" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Travel Times List</a>
+                </li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown only511" role="none">
+                                <a data-testid="menu-My51-My51" href="/" class="dropdown-toggle" target="_self" title="My 511WI Menu" data-toggle="dropdown" data-hover="dropdown" role="menuitem" aria-expanded="false">
+                                    My 511WI <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu" style="column-count: 1 ">
+                                                    <li role="none">
+                    <a data-testid="sub-My51-Inde-MRAA" class="" href="/my511" target="_self" title="My 511WI - My Routes &amp; Notifications" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">My Routes &amp; Notifications</a>
+                </li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown only511" role="none">
+                                <a data-testid="menu-TS" href="/" class="dropdown-toggle" target="_self" title="Travel Services Menu" data-toggle="dropdown" data-hover="dropdown" role="menuitem" aria-expanded="false">
+                                    Travel Services <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu" style="column-count: 1 ">
+                                                    <li role="none">
+                    <a data-testid="sub-MOT" class="" href="/TravelLinks#modesoftravel" target="_self" title="Travel Services - Modes of Travel" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Modes of Travel</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-TA" class="" href="/TravelLinks#travelassistance" target="_self" title="Travel Services - Travel Assistance" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Travel Assistance</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-CI" class="" href="/TravelLinks#constructioninformation" target="_self" title="Travel Services - Construction Information" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Construction Information</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-Weat" class="" href="/TravelLinks#weather" target="_self" title="Travel Services - Weather" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Weather</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-SAEI" class="" href="/TravelLinks#safetyandemergencyinformation" target="_self" title="Travel Services - Safety and Emergency Information" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Safety and Emergency Information</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-MEAT" class="" href="/TravelLinks#majoreventsandtourism" target="_self" title="Travel Services - Major Events and Tourism" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Major Events and Tourism</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-OOS" class="" href="/TravelLinks#outofstate" target="_self" title="Travel Services - Out of State" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Out of State</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-NW" class="" href="/TravelLinks#neighboring511websites" target="_self" title="Travel Services - Neighboring 511 Websites" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Neighboring 511 Websites</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-Ride" class="" href="http://wisconsindot.gov/Pages/travel/road/rideshare/default.aspx" target="_blank" title="Travel Services - Rideshare" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Rideshare</a>
+                </li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown only511" role="none">
+                                <a data-testid="menu-TI" href="/" class="dropdown-toggle" target="_self" title="Trucker Information Menu" data-toggle="dropdown" data-hover="dropdown" role="menuitem" aria-expanded="false">
+                                    Trucker Information <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu" style="column-count: 1 ">
+                                                    <li role="none">
+                    <a data-testid="sub-Map" class="" href="/map?mode=trucker" target="_self" title="Trucker Information - Map" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Map</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-OOP" class="" href="http://wisconsindot.gov/Pages/dmv/com-drv-vehs/mtr-car-trkr/osow-autosys.aspx" target="_blank" title="Trucker Information - Oversize-overweight permits (Wisconsin Only)" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Oversize-overweight permits (Wisconsin Only)</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-7HP" class="" href="https://trust.dot.state.wi.us/hstp/stpProcessSeventyTwoHourPermitPage.do" target="_blank" title="Trucker Information - 72 hour permits" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">72 hour permits</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-UP" class="" href="https://trust.dot.state.wi.us/hstp/htpProcessHuntersPermitPage.do" target="_blank" title="Trucker Information - Unladen permits" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Unladen permits</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-IRPR" class="" href="http://wisconsindot.gov/Pages/dmv/com-drv-vehs/mtr-car-trkr/wiscrs.aspx" target="_blank" title="Trucker Information - IRP and IFTA transactions" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">IRP and IFTA transactions</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-USDOTN" class="" href="http://www.fmcsa.dot.gov/registration/do-i-need-usdot-number" target="_blank" title="Trucker Information - US DOT number" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">US DOT number</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-WINNDOTCBP" class="" href="http://wisconsindot.gov/Pages/dmv/com-drv-vehs/mtr-car-trkr/WINNDOT-permit.aspx" target="_blank" title="Trucker Information - WINNDOT Cross-border Permit Portal" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">WINNDOT Cross-border Permit Portal</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-AR" class="" href="http://wisconsindot.gov/Pages/dmv/com-drv-vehs/mtr-car-trkr/default.aspx" target="_blank" title="Trucker Information - Additional Resources" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Additional Resources</a>
+                </li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown only511" role="none">
+                                <a data-testid="menu-Abou" href="/" class="dropdown-toggle" target="_self" title="About Menu" data-toggle="dropdown" data-hover="dropdown" role="menuitem" aria-expanded="false">
+                                    About <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu" style="column-count: 1 ">
+                                                    <li role="none">
+                    <a data-testid="sub-Help" class="" href="/about/help" target="_self" title="About - Help" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Help</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-FAQ" class="" href="/about/faq" target="_self" title="About - FAQ" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">FAQ</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-PS" class="" href="/about/phone" target="_self" title="About - Phone System" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Phone System</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-Priv" class="" href="/about/privacy" target="_self" title="About - Privacy" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Privacy</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-DR" class="" href="/developers/resources" target="_self" title="About - Developer Resources" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Developer Resources</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-RRH" class="" href="/contact?FeedbackType=Report" target="_self" title="About - Report Road Hazard" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Report Road Hazard</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-MA" class="" href="/about/mobileapp" target="_self" title="About - Mobile Apps" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Mobile Apps</a>
+                </li>
+                <li role="none">
+                    <a data-testid="sub-CU" class="" href="/contact" target="_self" title="About - Contact Us" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Contact Us</a>
+                </li>
+
+                                </ul>
+                            </li>
+                        <li class="only511" role="none">
+                            <a data-testid="menu-CP" href="http://projects.511wi.gov" target="_blank" title="Construction Projects Menu" role="menuitem">Construction Projects</a>
+                        </li>
+    </ul>
+</div>
+                    <div class="secondMenu">
+                        <ul class="nav navbar-nav">
+
+
+
+
+                            
+
+<li class="regionRight">
+    <div id="region-list-label" class="hidden">Open list of regions</div>
+    <a id="currentRegionDropdownText" data-testid="currentRegionDropdownText" href="#" class="dropdown-toggle toggleButtonMenu" data-toggle="dropdown" data-hover="dropdown" aria-expanded="false" aria-controls="regionList" aria-label="All Regions">
+        <span class="regionDisplayName" title="All Regions">All Regions</span><span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" role="menu" id="regionList" aria-labelledby="region-list-label">
+<li role="none">
+                        <a href="/region/All%20Regions" onclick="event.preventDefault(); submitRegionInfo('All Regions', 'ALL', ['44.5', '-90', '8']);" aria-label="Zoom in to All Regions" title="All Regions" role="menuitem">All Regions</a>
+                    </li>
+<li role="none">
+                        <a href="/region/Northwest" onclick="event.preventDefault(); submitRegionInfo('Northwest', 'NW', ['44.866', '-91.402', '11']);" aria-label="Zoom in to Northwest region" title="Northwest" role="menuitem">Northwest</a>
+                    </li>
+<li role="none">
+                        <a href="/region/North%20Central" onclick="event.preventDefault(); submitRegionInfo('North Central', 'NC', ['44.95', '-89.64', '11']);" aria-label="Zoom in to North Central region" title="North Central" role="menuitem">North Central</a>
+                    </li>
+<li role="none">
+                        <a href="/region/Northeast" onclick="event.preventDefault(); submitRegionInfo('Northeast', 'NE', ['44.5', '-88.01', '11']);" aria-label="Zoom in to Northeast region" title="Northeast" role="menuitem">Northeast</a>
+                    </li>
+<li role="none">
+                        <a href="/region/Southwest" onclick="event.preventDefault(); submitRegionInfo('Southwest', 'SW', ['43.096', '-89.323', '11']);" aria-label="Zoom in to Southwest region" title="Southwest" role="menuitem">Southwest</a>
+                    </li>
+<li role="none">
+                        <a href="/region/Southeast" onclick="event.preventDefault(); submitRegionInfo('Southeast', 'SE', ['43.01', '-87.92', '11']);" aria-label="Zoom in to Southeast region" title="Southeast" role="menuitem">Southeast</a>
+                    </li>
+    </ul>
+</li>
+
+                            <li class="loginSection desktop">    <ul class="nav navbar-nav" role="menu">
+        <li role="none"><a href="#" id="login-button" data-testid="loginButton" role="menuitem" data-toggle="modal" data-target="#loginModalDialog">Log In</a></li>
+        <li role="none"><a href="/my511/register" id="registerLink">Sign Up<span class='hideForAccessibility'> for an account.</span></a></li>
+    </ul>
+</li>
+                        </ul>
+                    </div>
+
+                
+                <div class="nonDesktop">
+                    <nav id="menu">
+                        <ul>
+                            
+
+                    <li class="only511" role="none">
+                        <a href="/map" target="_self" title="Map Menu" role="menuitem">Map</a>
+                    </li>
+                        <li class="only511" role="none">
+                            
+                            <span role="menuitem">Traffic</span>
+                            <ul role="menu">
+                                                <li role="none">
+                    <a class="" href="/list/events/traffic" target="_self" title="Traffic - Traffic Events List" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Traffic Events List</a>
+                </li>
+                <li role="none">
+                    <a class="" href="/list/wazereports" target="_self" title="Traffic - Waze Reports" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Waze Reports</a>
+                </li>
+                <li role="none">
+                    <a class="" href="/messagesigns" target="_self" title="Traffic - Message Signs List" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Message Signs List</a>
+                </li>
+                <li role="none">
+                    <a class="" href="/cctv" target="_self" title="Traffic - Cameras List" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Cameras List</a>
+                </li>
+                <li role="none">
+                    <a class="" href="/traveltimes" target="_self" title="Traffic - Travel Times List" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Travel Times List</a>
+                </li>
+
+                            </ul>
+                        </li>
+                        <li class="only511" role="none">
+                            
+                            <span role="menuitem">My 511WI</span>
+                            <ul role="menu">
+                                                <li role="none">
+                    <a class="" href="/my511" target="_self" title="My 511WI - My Routes &amp; Notifications" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">My Routes &amp; Notifications</a>
+                </li>
+
+                            </ul>
+                        </li>
+                        <li class="only511" role="none">
+                            
+                            <span role="menuitem">Travel Services</span>
+                            <ul role="menu">
+                                                <li role="none">
+                    <a class="" href="/TravelLinks#modesoftravel" target="_self" title="Travel Services - Modes of Travel" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Modes of Travel</a>
+                </li>
+                <li role="none">
+                    <a class="" href="/TravelLinks#travelassistance" target="_self" title="Travel Services - Travel Assistance" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Travel Assistance</a>
+                </li>
+                <li role="none">
+                    <a class="" href="/TravelLinks#constructioninformation" target="_self" title="Travel Services - Construction Information" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Construction Information</a>
+                </li>
+                <li role="none">
+                    <a class="" href="/TravelLinks#weather" target="_self" title="Travel Services - Weather" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Weather</a>
+                </li>
+                <li role="none">
+                    <a class="" href="/TravelLinks#safetyandemergencyinformation" target="_self" title="Travel Services - Safety and Emergency Information" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Safety and Emergency Information</a>
+                </li>
+                <li role="none">
+                    <a class="" href="/TravelLinks#majoreventsandtourism" target="_self" title="Travel Services - Major Events and Tourism" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Major Events and Tourism</a>
+                </li>
+                <li role="none">
+                    <a class="" href="/TravelLinks#outofstate" target="_self" title="Travel Services - Out of State" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Out of State</a>
+                </li>
+                <li role="none">
+                    <a class="" href="/TravelLinks#neighboring511websites" target="_self" title="Travel Services - Neighboring 511 Websites" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Neighboring 511 Websites</a>
+                </li>
+                <li role="none">
+                    <a class="" href="http://wisconsindot.gov/Pages/travel/road/rideshare/default.aspx" target="_blank" title="Travel Services - Rideshare" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Rideshare</a>
+                </li>
+
+                            </ul>
+                        </li>
+                        <li class="only511" role="none">
+                            
+                            <span role="menuitem">Trucker Information</span>
+                            <ul role="menu">
+                                                <li role="none">
+                    <a class="" href="/map?mode=trucker" target="_self" title="Trucker Information - Map" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Map</a>
+                </li>
+                <li role="none">
+                    <a class="" href="http://wisconsindot.gov/Pages/dmv/com-drv-vehs/mtr-car-trkr/osow-autosys.aspx" target="_blank" title="Trucker Information - Oversize-overweight permits (Wisconsin Only)" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Oversize-overweight permits (Wisconsin Only)</a>
+                </li>
+                <li role="none">
+                    <a class="" href="https://trust.dot.state.wi.us/hstp/stpProcessSeventyTwoHourPermitPage.do" target="_blank" title="Trucker Information - 72 hour permits" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">72 hour permits</a>
+                </li>
+                <li role="none">
+                    <a class="" href="https://trust.dot.state.wi.us/hstp/htpProcessHuntersPermitPage.do" target="_blank" title="Trucker Information - Unladen permits" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Unladen permits</a>
+                </li>
+                <li role="none">
+                    <a class="" href="http://wisconsindot.gov/Pages/dmv/com-drv-vehs/mtr-car-trkr/wiscrs.aspx" target="_blank" title="Trucker Information - IRP and IFTA transactions" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">IRP and IFTA transactions</a>
+                </li>
+                <li role="none">
+                    <a class="" href="http://www.fmcsa.dot.gov/registration/do-i-need-usdot-number" target="_blank" title="Trucker Information - US DOT number" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">US DOT number</a>
+                </li>
+                <li role="none">
+                    <a class="" href="http://wisconsindot.gov/Pages/dmv/com-drv-vehs/mtr-car-trkr/WINNDOT-permit.aspx" target="_blank" title="Trucker Information - WINNDOT Cross-border Permit Portal" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">WINNDOT Cross-border Permit Portal</a>
+                </li>
+                <li role="none">
+                    <a class="" href="http://wisconsindot.gov/Pages/dmv/com-drv-vehs/mtr-car-trkr/default.aspx" target="_blank" title="Trucker Information - Additional Resources" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Additional Resources</a>
+                </li>
+
+                            </ul>
+                        </li>
+                        <li class="only511" role="none">
+                            
+                            <span role="menuitem">About</span>
+                            <ul role="menu">
+                                                <li role="none">
+                    <a class="" href="/about/help" target="_self" title="About - Help" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Help</a>
+                </li>
+                <li role="none">
+                    <a class="" href="/about/faq" target="_self" title="About - FAQ" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">FAQ</a>
+                </li>
+                <li role="none">
+                    <a class="" href="/about/phone" target="_self" title="About - Phone System" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Phone System</a>
+                </li>
+                <li role="none">
+                    <a class="" href="/about/privacy" target="_self" title="About - Privacy" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Privacy</a>
+                </li>
+                <li role="none">
+                    <a class="" href="/developers/resources" target="_self" title="About - Developer Resources" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Developer Resources</a>
+                </li>
+                <li role="none">
+                    <a class="" href="/contact?FeedbackType=Report" target="_self" title="About - Report Road Hazard" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Report Road Hazard</a>
+                </li>
+                <li role="none">
+                    <a class="" href="/about/mobileapp" target="_self" title="About - Mobile Apps" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Mobile Apps</a>
+                </li>
+                <li role="none">
+                    <a class="" href="/contact" target="_self" title="About - Contact Us" data-toggle="collapse" data-target=".navbar-collapse.in" role="menuitem">Contact Us</a>
+                </li>
+
+                            </ul>
+                        </li>
+                    <li class="only511" role="none">
+                        <a href="http://projects.511wi.gov" target="_blank" title="Construction Projects Menu" role="menuitem">Construction Projects</a>
+                    </li>
+
+
+
+
+                            
+
+
+<li>
+    <span>All Regions</span>
+    <ul id="mobileRegionsPanel" role="menu">
+<li role="none">
+                        <a href="/region/All%20Regions" onclick="submitRegionInfo('All Regions', 'ALL', ['44.5', '-90', '8'], true); " role="menuitem">All Regions</a>
+                    </li>
+<li role="none">
+                        <a href="/region/Northwest" onclick="submitRegionInfo('Northwest', 'NW', ['44.866', '-91.402', '11'], true); " role="menuitem">Northwest</a>
+                    </li>
+<li role="none">
+                        <a href="/region/North%20Central" onclick="submitRegionInfo('North Central', 'NC', ['44.95', '-89.64', '11'], true); " role="menuitem">North Central</a>
+                    </li>
+<li role="none">
+                        <a href="/region/Northeast" onclick="submitRegionInfo('Northeast', 'NE', ['44.5', '-88.01', '11'], true); " role="menuitem">Northeast</a>
+                    </li>
+<li role="none">
+                        <a href="/region/Southwest" onclick="submitRegionInfo('Southwest', 'SW', ['43.096', '-89.323', '11'], true); " role="menuitem">Southwest</a>
+                    </li>
+<li role="none">
+                        <a href="/region/Southeast" onclick="submitRegionInfo('Southeast', 'SE', ['43.01', '-87.92', '11'], true); " role="menuitem">Southeast</a>
+                    </li>
+    </ul>
+</li>                                                    </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="row scrollRow">
+    <div class="divider"></div>
+    <a class="alertHeader" href="/List/Alerts" aria-label="Alerts" title="View alerts list"> <i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Alerts </a>
+    <div id="alertWrapper">
+        <div class="socialSection">
+            <span class='hideForAccessibility'>Connect with us on social media.</span>
+                    <a href="https://twitter.com/511WI" target="_blank">
+                        <img width="12" src="/Content/images/xLogo.svg" alt="Link to X in new window." />
+                    </a>
+                                <a href="https://www.youtube.com/user/wisdot" target="_blank">
+                        <span class="fab fa-youtube" aria-hidden="true"><span class="hideForAccessibility">YouTube</span></span><span class='hideForAccessibility'>Link to YouTube in new window.</span>
+                    </a>
+                            <a href="https://www.facebook.com/WisDOT" target="_blank">
+                    <span class="fab fa-facebook-f" aria-hidden="true"><span class="hideForAccessibility">Facebook</span></span><span class='hideForAccessibility'>Link to Facebook in new window.</span>
+                </a>
+                            <a href="/about/mobileapp" target="_self">
+                    <i class="fas fa-mobile-alt" aria-hidden="true"></i><span class='hideForAccessibility'>Link to Mobile Apps page</span>
+                </a>
+                                            </div>
+        <div id="alertsBox" class="scroller siteWideAlerts">
+            <ul><li id="emptyAlertLi">&nbsp;</li></ul>
+            <span class="tempAlert" hidden></span>
+        </div>
+    </div>
+    <div class="dividerDark mobile"></div>
+    <div class="divider mobile"></div>
+    <div class="socialSectionMobile">
+        <span class='hideForAccessibility'>Connect with us on social media.</span>
+        <a href="https://twitter.com/511WI" target="_blank">
+            <img width="12" src="/Content/images/xLogo.svg" alt="Link to X in new window." />
+        </a>
+                    <a href="https://www.youtube.com/user/wisdot" target="_blank">
+                <span class="fab fa-youtube fa-1x"><span class="hideForAccessibility">YouTube</span></span><span class='hideForAccessibility'>Link to YouTube in new window.</span>
+            </a>
+                    <a href="https://www.facebook.com/WisDOT" target="_blank">
+                <span class="fab fa-facebook-f fa-1x"><span class="hideForAccessibility">Facebook</span></span><span class='hideForAccessibility'>Link to Facebook in new window.</span>
+            </a>
+                    <a href="/about/mobileapp" target="_self">
+                <span class="fa-lg"><i class="far fa-mobile" aria-hidden="true"></i></span><span class='hideForAccessibility'>Link to Mobile Apps page</span>
+            </a>
+                            </div>
+    <div class="divider1 mobile"></div>
+</div>
+
+        </div>
+        <div class="container-fluid mainContainer" role="main">
+            
+            <div class="messageContainer">
+                
+
+            </div>
+            <div id="content">
+
+
+
+
+<div class="row row-centered non-list-page">
+    <div class="col-sm-12 col-md-10 col-lg-8 col-centered">
+        <div class="help-page">
+            <header class="help-page">
+                <h1>API Documentation</h1>
+                <hr />
+            </header>
+            <div class="validation-summary-valid&#32;alert&#32;alert-danger" data-valmsg-summary="true"><ul><li style="display:none"></li>
+</ul></div>
+            <section class="featured" aria-label="Api Documentation">
+                <div class="content-wrapper">
+                    <p>
+                        The REST API provides simple interfaces to most of the data available on the 511WI website. The REST API enables developers to access essential data on the 511WI website including Cameras, Message Signs, Truck Parking, Winter Road Conditions, Events, Alerts, Travel Time. This API enables developers to create mobile traffic apps for Wisconsin.
+                    </p>
+                    <strong>Notes:</strong>
+                    <ul>
+                            <li>Requires a developer key. For most calls, query string &#39;key&#39; parameter is required.</li>
+                        <li>Throttling is enabled. Ten calls every 60 seconds.</li>
+                    </ul>
+                        <div class="well well-sm devApiKeyContainer">
+                            <div class="header">Developer API Key</div>
+  A registered account is needed before you can sign up for a Developer API key.  For new users, <a href="/my511/register" target="_blank">sign up for an account</a>; otherwise <a href="#" role="button" data-toggle="modal" data-target="#loginModalDialog" aria-label="Log In">log in</a> and then you can request for an API key here.  The Developer API key info will display here as well.
+                        </div>
+                </div>
+            </section>
+            <section class="content-wrapper main-content clear-fix" aria-label="Api Resources">
+                <p>The following outlines the resources available via the 511WI API.</p>
+                <table class="table table-striped table-bordered">
+                    <caption>API Documentation</caption>
+                    <thead>
+                        <tr><th>Resource</th><th>Description</th></tr>
+                    </thead>
+                    <tbody>
+                            <tr>
+                                <td class="api-name"><a href="/help/endpoint/cameras">Cameras</a></td>
+                                <td class="api-documentation">
+                                    <p>Returns all cameras.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="api-name"><a href="/help/endpoint/messagesigns">Message Signs</a></td>
+                                <td class="api-documentation">
+                                    <p>Returns all VMS.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="api-name"><a href="/help/endpoint/truckparking">Truck Parking</a></td>
+                                <td class="api-documentation">
+                                    <p>Returns all truck parking.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="api-name"><a href="/help/endpoint/winterroads">Winter Road Conditions</a></td>
+                                <td class="api-documentation">
+                                    <p>Returns current road conditions.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="api-name"><a href="/help/endpoint/event">Events</a></td>
+                                <td class="api-documentation">
+                                    <p>Returns all traffic events.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="api-name"><a href="/help/endpoint/alerts">Alerts</a></td>
+                                <td class="api-documentation">
+                                    <p>Returns all alert notifications.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="api-name"><a href="/help/endpoint/traveltimes">Travel Time</a></td>
+                                <td class="api-documentation">
+                                    <p>Returns all travel times.</p>
+                                </td>
+                            </tr>
+                    </tbody>
+                </table>
+            </section>
+                <section class="content-wrapper main-content clear-fix" aria-label="WZDx">
+                     <h2 class="wzdx-heading">WZDx</h2>
+
+<p>The Work Zone Data Exchange (WZDx) Specification enables infrastructure owners and operators (IOOs) to make harmonized work zone data available for third-party use. The intent is to make travel on public roads safer and more efficient through ubiquitous access to data on work zone activity, and WZDx was developed to improve access to work zone data was one of the top needs identified through the US Department of Transportation (USDOT) Data for Automated Vehicle Integration (DAVI) effort.</p>
+
+<p>Visit the <a class="link" href="https://github.com/usdot-jpo-ode/wzdx" target="_blank"> WZDx Specification </a>for more API documentation.</p>
+                    <p><b>Access the WZDx API: <a href="https://511wi.gov/api/wzdx" target="_blank"><strong>https://511wi.gov/api/wzdx</strong></a></b></p>
+                </section>
+
+
+            
+
+<div id="Legacy_API_Doc" data-atisParent="true">
+        <div id="virtual-35" data-atis="true" class=""><h2 class="wzdx-heading">TPIMS</h2>
+
+<p>The Truck Parking Information Management System (TPIMS) API guidance provides a recommended approach for implementing web services that will facilitate the sharing of truck parking availability data with other users. The data elements and formatting were agreed upon by the eight states participating in the MAASTO TPIMS project and are intended to set a standard for future projects.</p>
+
+<p>Click on the <a href="https://trucksparkhere.com/?page_id=13123" target="_blank">TPIMS website</a> for more API documentation.</p>
+
+<p style="font-weight: bold">Access the TPIMS API:</p>
+
+<ul>
+	<li style="font-weight: bold"><a href="/api/TPIMS_Dynamic" target="_blank">Dynamic Feed</a></li>
+	<li style="font-weight: bold"><a href="/api/TPIMS_Static" target="_blank">Static Feed</a></li>
+</ul>
+<br />
+<i aria-hidden="true" class="fal fa-file-word"></i> <a href="/Cms/GetFile?id=60dc61b7-2bf0-ed11-abd6-06b534637530.133282862079100000" target="_blank">Developers Access Agreement for 511 API</a><br />
+<br />
+&nbsp;</div>
+</div>
+
+
+        </div>
+    </div>
+</div>
+                <button data-testid="emergencyPopupNotificationBtn" class="btn emergencyPopupNotification" data-alert="" tabindex="0">
+                    <i style="padding-right: 5px;" class="far fa-exclamation-triangle"></i> <span class="hideEmergencyAlertText">EMERGENCY ALERT</span>
+                </button>
+            </div>
+            <div class="dividerDark mobile"></div>
+<div class="divider mobile"></div>
+<footer class="row">
+    <div class="col-md-12"> 
+        
+<ul class="nav navbar-nav" role="menu">
+                <li role="none">
+                    <a data-testid="f-Map-Inde-Map" href="/map" target="_self" title="Map Menu" role="menuitem">Map</a>
+                </li>
+                    <li class="" role="none">
+                        <button data-testid="f-btn-List-Traf" data-toggle="collapse" data-target="#Traffic-footer" aria-expanded="false" role="menuitem">
+                            Traffic
+                            <span class="caret"></span>
+                        </button>
+                        <ul id="Traffic-footer" class="subMenu collapse" role="menu">
+                                            <li role="none">
+                    <a data-testid="fSub-List-ET-TL" href="/list/events/traffic" target="_self" title="Traffic - Traffic Events List" role="menuitem">Traffic Events List</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-List-WR-WR" href="/list/wazereports" target="_self" title="Traffic - Waze Reports" role="menuitem">Waze Reports</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-List-MS-MSL" href="/messagesigns" target="_self" title="Traffic - Message Signs List" role="menuitem">Message Signs List</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-List-Cctv-CL" href="/cctv" target="_self" title="Traffic - Cameras List" role="menuitem">Cameras List</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-List-TT-TTL" href="/traveltimes" target="_self" title="Traffic - Travel Times List" role="menuitem">Travel Times List</a>
+                </li>
+
+                        </ul>
+                    </li>
+                    <li class="" role="none">
+                        <button data-testid="f-btn-My51-My51" data-toggle="collapse" data-target="#My511WI-footer" aria-expanded="false" role="menuitem">
+                            My 511WI
+                            <span class="caret"></span>
+                        </button>
+                        <ul id="My511WI-footer" class="subMenu collapse" role="menu">
+                                            <li role="none">
+                    <a data-testid="fSub-My51-Inde-MRAA" href="/my511" target="_self" title="My 511WI - My Routes &amp; Notifications" role="menuitem">My Routes &amp; Notifications</a>
+                </li>
+
+                        </ul>
+                    </li>
+                    <li class="" role="none">
+                        <button data-testid="f-btn-TS" data-toggle="collapse" data-target="#TravelServices-footer" aria-expanded="false" role="menuitem">
+                            Travel Services
+                            <span class="caret"></span>
+                        </button>
+                        <ul id="TravelServices-footer" class="subMenu collapse" role="menu">
+                                            <li role="none">
+                    <a data-testid="fSub-MOT" href="/TravelLinks#modesoftravel" target="_self" title="Travel Services - Modes of Travel" role="menuitem">Modes of Travel</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-TA" href="/TravelLinks#travelassistance" target="_self" title="Travel Services - Travel Assistance" role="menuitem">Travel Assistance</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-CI" href="/TravelLinks#constructioninformation" target="_self" title="Travel Services - Construction Information" role="menuitem">Construction Information</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-Weat" href="/TravelLinks#weather" target="_self" title="Travel Services - Weather" role="menuitem">Weather</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-SAEI" href="/TravelLinks#safetyandemergencyinformation" target="_self" title="Travel Services - Safety and Emergency Information" role="menuitem">Safety and Emergency Information</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-MEAT" href="/TravelLinks#majoreventsandtourism" target="_self" title="Travel Services - Major Events and Tourism" role="menuitem">Major Events and Tourism</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-OOS" href="/TravelLinks#outofstate" target="_self" title="Travel Services - Out of State" role="menuitem">Out of State</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-NW" href="/TravelLinks#neighboring511websites" target="_self" title="Travel Services - Neighboring 511 Websites" role="menuitem">Neighboring 511 Websites</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-Ride" href="http://wisconsindot.gov/Pages/travel/road/rideshare/default.aspx" target="_blank" title="Travel Services - Rideshare" role="menuitem">Rideshare</a>
+                </li>
+
+                        </ul>
+                    </li>
+                    <li class="" role="none">
+                        <button data-testid="f-btn-TI" data-toggle="collapse" data-target="#TruckerInformation-footer" aria-expanded="false" role="menuitem">
+                            Trucker Information
+                            <span class="caret"></span>
+                        </button>
+                        <ul id="TruckerInformation-footer" class="subMenu collapse" role="menu">
+                                            <li role="none">
+                    <a data-testid="fSub-Map" href="/map?mode=trucker" target="_self" title="Trucker Information - Map" role="menuitem">Map</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-OOP" href="http://wisconsindot.gov/Pages/dmv/com-drv-vehs/mtr-car-trkr/osow-autosys.aspx" target="_blank" title="Trucker Information - Oversize-overweight permits (Wisconsin Only)" role="menuitem">Oversize-overweight permits (Wisconsin Only)</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-7HP" href="https://trust.dot.state.wi.us/hstp/stpProcessSeventyTwoHourPermitPage.do" target="_blank" title="Trucker Information - 72 hour permits" role="menuitem">72 hour permits</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-UP" href="https://trust.dot.state.wi.us/hstp/htpProcessHuntersPermitPage.do" target="_blank" title="Trucker Information - Unladen permits" role="menuitem">Unladen permits</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-IRPR" href="http://wisconsindot.gov/Pages/dmv/com-drv-vehs/mtr-car-trkr/wiscrs.aspx" target="_blank" title="Trucker Information - IRP and IFTA transactions" role="menuitem">IRP and IFTA transactions</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-USDOTN" href="http://www.fmcsa.dot.gov/registration/do-i-need-usdot-number" target="_blank" title="Trucker Information - US DOT number" role="menuitem">US DOT number</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-WINNDOTCBP" href="http://wisconsindot.gov/Pages/dmv/com-drv-vehs/mtr-car-trkr/WINNDOT-permit.aspx" target="_blank" title="Trucker Information - WINNDOT Cross-border Permit Portal" role="menuitem">WINNDOT Cross-border Permit Portal</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-AR" href="http://wisconsindot.gov/Pages/dmv/com-drv-vehs/mtr-car-trkr/default.aspx" target="_blank" title="Trucker Information - Additional Resources" role="menuitem">Additional Resources</a>
+                </li>
+
+                        </ul>
+                    </li>
+                    <li class="" role="none">
+                        <button data-testid="f-btn-Abou" data-toggle="collapse" data-target="#About-footer" aria-expanded="false" role="menuitem">
+                            About
+                            <span class="caret"></span>
+                        </button>
+                        <ul id="About-footer" class="subMenu collapse" role="menu">
+                                            <li role="none">
+                    <a data-testid="fSub-Help" href="/about/help" target="_self" title="About - Help" role="menuitem">Help</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-FAQ" href="/about/faq" target="_self" title="About - FAQ" role="menuitem">FAQ</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-PS" href="/about/phone" target="_self" title="About - Phone System" role="menuitem">Phone System</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-Priv" href="/about/privacy" target="_self" title="About - Privacy" role="menuitem">Privacy</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-DR" href="/developers/resources" target="_self" title="About - Developer Resources" role="menuitem">Developer Resources</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-RRH" href="/contact?FeedbackType=Report" target="_self" title="About - Report Road Hazard" role="menuitem">Report Road Hazard</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-MA" href="/about/mobileapp" target="_self" title="About - Mobile Apps" role="menuitem">Mobile Apps</a>
+                </li>
+                <li role="none">
+                    <a data-testid="fSub-CU" href="/contact" target="_self" title="About - Contact Us" role="menuitem">Contact Us</a>
+                </li>
+
+                        </ul>
+                    </li>
+                <li role="none">
+                    <a data-testid="f-CP" href="http://projects.511wi.gov" target="_blank" title="Construction Projects Menu" role="menuitem">Construction Projects</a>
+                </li>
+</ul>
+    </div>
+</footer>
+        </div>
+    </div>
+
+<div id="loginModalDialog" class="modal fade modal-vertical-centered" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                <span class="modal-title">Log In</span>
+            </div>
+            <div class="modal-body">
+                <form id="loginFormmodal" class="form-horizontal">
+                    <input name="__RequestVerificationToken" type="hidden" value="sB0QTRz1AX-4kKiSSDTHI6biXZSdTfe0qrFn1r9oY4_6V0hnXeBU4URDbdK--oNGX9XHdEhts13T6uFM9bqyXhYdlIA1" />
+                    <div id="validationSummarymodal" hidden="hidden" class="alert alert-danger">
+                        <ul><li></li></ul>
+                    </div>
+                    
+
+<div class="form-group">
+    <label class="col-md-12&#32;control-label" for="EmailOrPhonemodal">Email or phone</label>
+    <div class="col-md-12">
+        <input autocomplete="off" autofocus="autofocus" class="form-control" data-val="true" data-val-regex="Email&#32;or&#32;phone&#32;is&#32;required" data-val-regex-pattern="^(([^&lt;&gt;()[\]\\.,;:\s@&quot;]+(\.[^&lt;&gt;()[\]\\.,;:\s@&quot;]+)*)|(&quot;.+&quot;))@((\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$|(^\(?([0-9]{3})\)?[-.&#32;]?([0-9]{3})[-.&#32;]?([0-9]{4}))" data-val-required="Email&#32;or&#32;phone&#32;is&#32;required" id="EmailOrPhonemodal" name="EmailOrPhone" title="Email&#32;or&#32;phone" type="text" value="" />
+        <span aria-atomic="true" aria-live="assertive" class="field-validation-valid&#32;text-danger" data-valmsg-for="EmailOrPhone" data-valmsg-replace="true" role="alert"></span>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-12&#32;control-label" for="Passwordmodal">Password</label>
+    <div class="col-md-12">
+        <input autocomplete="off" class="form-control" data-val="true" data-val-required="Password&#32;is&#32;required" id="Passwordmodal" name="Password" title="Password" type="password" />
+        <span aria-atomic="true" aria-live="assertive" class="field-validation-valid&#32;text-danger" data-valmsg-for="Password" data-valmsg-replace="true" role="alert"></span>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-12">
+        <div class="checkbox">
+            <input class="checkBoxVAlign" data-val="true" data-val-required="The&#32;Remember&#32;me&#32;field&#32;is&#32;required." id="RememberMemodal" name="RememberMe" title="RememberMe" type="checkbox" value="true" /><input name="RememberMe" type="hidden" value="false" />
+            <label class="rememberMePad" for="RememberMemodal">Remember me</label>
+        </div>
+    </div>
+</div>
+
+<input id="returnUrlmodal" name="returnUrl" type="hidden" value="/developers/doc" />
+
+
+<div class="form-group">
+    <div class="col-md-12">
+        <input type="submit" id="logInButtonmodal" data-testid="logInButtonmodal" value="Log in" class="btn btn-info" />
+        <input type="button" id="resendConfirmationEmailmodal" data-testid="resendConfirmationEmailmodal" style="display: none;" class="btn btn-info" value="Resend Confirmation" />
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-12">
+        <div class="checkbox">
+            <a href="/my511/forgotpassword">Forgot password?</a>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="form-group">
+    <div class="col-md-12">
+        <label>New User?</label>
+    </div>
+    <div class="col-md-12">
+        <a class="btn&#32;btn-info&#32;form-control" href="/my511/register">Sign Up</a>
+    </div>
+</div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>    
+
+    <script src="/bundles/jquery?v=Ujyz7nZ63IS9eeFK3UlPaUg75MrOPvXlDsdLTLF4CBw1"></script>
+
+    <script src="/bundles/common?v=4I5ld4sYClh9GmDPuwSnBohazlOd8sYGkRHTSDVxD7U1"></script>
+
+    <script src="/bundles/bootstrap?v=APOw02wyVqp1P_s8bMjb5hZxqXyGzL7yLn4hojw2YjE1"></script>
+
+
+    <script>
+         window.user = {
+            id: '00000000-0000-0000-0000-000000000000'
+        }     
+    </script>
+
+    <script src="/scripts/jsresources/alerts?lang=en&v=2025.03.11"></script>
+<script>
+    $(function () {
+        var isFullScreen = false;
+        if (window.innerWidth <= bp767) {
+            initMobileMenu(); // do not put into window.resize
+        }
+        var isErs = $(".ersLogo").length > 0;
+        if (isErs) {
+
+            $(document).on("FailedToLocateArea", function () {
+                $(".gMapFullscreenMessage").empty();
+                if (isFullScreen) {
+                    var msgBox = '<div class="message" name="message"><div class="alert alert-danger alert-dismissible" role="alert">';
+                    msgBox += '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>';
+                    msgBox += '<div class="media"><div class="media-left"><span class="far fa-exclamation-circle"></span><span class="sr-only">Error</span></div>';
+                    msgBox += '<div class="media-body">Failed to locate area</div></div ></div></div>';
+                    $(".gMapFullscreenMessage").html(msgBox);
+                }
+            });
+
+        } else {
+            if ($("body").hasClass("ersMode")) {
+                $("body").removeClass("ersMode");
+            }
+        }
+
+        layout.reSizeLogo(bp992);
+
+        $(document).bind('webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange', function () {
+            isFullScreen = document.fullScreen ||
+                document.mozFullScreen ||
+                document.webkitIsFullScreen ||
+                document.MSFullscreenChange;
+            var locationBox = $(".ersMode .locateLookupContainer");
+            if (!isFullScreen) {
+                $(".gMapFullscreenMessage").empty();
+                // remove old err msg
+                $(".form-group .message").remove();
+                if (locationBox.length > 0) {
+                    locationBox.css({ "left": "0" });
+                }
+            } else {         
+                if (window.innerWidth <= bp992 && locationBox.length > 0) {
+                        locationBox.css({ "top": "10%" });
+                } else {
+                    locationBox.css({ "top": "0" });
+                }              
+            }
+        });
+
+        layout.setWindowResizeEvent(bp992);
+
+    });
+
+    $(document).on("click", '#addCameraButton', function() {
+        window.AddMyCameraEvent();
+    });
+
+
+</script>
+    
+    <script src="/bundles/jqueryval?v=7PLq779JpfcVbtY5yyhkZ6hW9pPOG_5Buet9Z7unJL01"></script>
+<script src="/scripts/jsresources/loadBlocker?lang=en&v=2025.03.11"></script>
+<script src="/Scripts/loadBlocker.js?v=2025.03.11"></script>
+<script src="/Scripts/isUserLoggedIn.js?v=2025.03.11"></script>
+<script>
+    var hashAttached = false;
+        $(function () {
+            var loginType = 'modal';
+            $("#loginForm" + loginType).submit(function (e) {
+                e.preventDefault();
+                loadBlockerApi.showSpinner('loginForm');
+                //Add # to return url if needed
+                if (window.location.hash && !hashAttached) {
+                    var returnVal = $('#returnUrlmodal').val();
+                    $('#returnUrlmodal').val(returnVal + window.location.hash);
+                    hashAttached = true;
+                }
+
+                $.ajax('/My511/Login', {
+                    data: $("#loginForm" + loginType).serialize(),
+                    type: 'POST',
+                    //we are doing this so that if we are already logged in and get redirected to My511/Index, instead of thinking we received json, the ajax call fails and reloads the page
+                    dataType: 'json',
+                    beforeSend: function (event, xhr, settings, thrownError) {
+                        if (window.isUserLoggedIn(event.responseText)) {
+                            xhr.abort();
+                        }
+                    }
+                }).done(function (data) {
+                    if (!data.success) {
+                        if (data.mfa) {
+                            $(location).attr('href', '/my511/sendcode?returnUrl=' + encodeURIComponent(data.returnUrl) + '&rememberMe=' + data.rememberMe);
+                        }
+                        else {
+                            loadBlockerApi.hideSpinner('loginForm');
+                            $("#validationSummary" + loginType + " > ul > li").text(data.errors);
+                            $("#validationSummary" + loginType).show();
+                            if (data.unconfirmed) {
+                                $("#resendConfirmationEmail" + loginType).show();
+                            }
+                        }
+                    } else {
+                        $("#validationSummary" + loginType).hide();
+                        if (data.returnUrl && data.returnUrl[0] != '#' && data.returnUrl != window.location.pathname + window.location.hash) {
+                            $(location).attr('href', data.returnUrl);
+                        } else {
+                            location.reload();
+                        }
+                    }
+                }).fail(function (event, xhr, settings, thrownError) {
+                    location.reload();
+                });
+            });
+
+            // if already on login page, don't display login modal when clicking on login link
+            $('#loginModalDialog').on('show.bs.modal', function () {
+                var url = document.location.pathname;
+                var name = url.substring(url.lastIndexOf('/') + 1);
+                if (name.toLowerCase() === 'login') {
+                    return false;
+                }
+                return true;
+            });
+
+            $('#loginModalDialog').on('shown.bs.modal', function () {
+                $('#Email').focus();
+            });
+
+            $('#resendConfirmationEmail' + loginType).on('click', function (e) {
+                //prevent default action.
+                e.preventDefault();
+                //our custom ajax error handler for confirmation emails.
+                var ajaxFailConfirmation = new AjaxFail(window.resources['SorryUnkownErrorConfirmationCouldNotBeResent'], bootbox.alert);
+
+                var emailOrPhone = $('#EmailOrPhone'+loginType).val();
+
+                //this should never happen but just in case.
+                if (emailOrPhone) {
+                    $.ajax('/My511/ResendUserConfirmation', { data: { emailOrPhone: emailOrPhone }, type: 'POST' }).done(function(data) {
+                        if (data.errors) bootbox.alert('<i class="fa fa-check-circle" aria-hidden="true"></i> ' + data.errors);
+                        else bootbox.alert('<i class="fa fa-check-circle" aria-hidden="true"></i> The confirmation has been re-sent to {0}.'.replace('{0}', emailOrPhone));
+                    }).fail(ajaxFailConfirmation.ajaxFailPossibleErrorMessageFromServer);
+                }
+
+
+            });
+
+            function iOSversion() {
+                if (/iP(hone|od|ad)/.test(navigator.platform)) {
+                    // supports iOS 2.0 and later: <http://bit.ly/TJjs1V>
+                    var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+                    if (v != null && v.length > 0) {
+                        return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
+                    } else {
+                        return null;
+                    }
+                }
+            }
+
+            if (window.innerWidth <= bp767) {
+                var ver = iOSversion();
+                if (ver != null && ver[0] >= 11) {
+                    $("#loginModalDialog.modal").css("position", "absolute");
+                }
+            }
+        });
+</script>
+
+
+
+<script src="/bundles/alerts?v=ifoI0BQxBAAcwoTXODSmnfU_EUN9Z-ngzNxmLYjE8d41"></script>
+
+    <script src="/bundles/ajaxCms?v=Vv9CNbS7YfSDNIdqHfgIuI8auMK9uX7l33d_RN9LyNo1"></script>
+<script src="/bundles/regionContentFilter?v=seEoj0YnNFlr4-WKzIBqH-yynCbPxNmi57Iy2e53IHU1"></script>
+<script src="/bundles/helpPopup?v=88RlDZfnKPcaItCY8SIgbKy-NlAGu4Lvt2UqNw6hrK81"></script>
+
+    <script>
+    //Creating a global variable which will indicate whether the page is being unloaded or not.
+    var globalVars = { isBeingUnloaded: false, tickerInterval: 4000, dateFormat: 'M/D/YYYY h:mm A', timeFormat: 'h:mm A', canCreateEvents: '' };
+    //Attach the 'beforeunload' event handler on the window object.
+    $(window).bind('beforeunload', function() {
+        //Set the global variable to indicate that the page is being unloaded.
+        globalVars.isBeingUnloaded = true;
+    });
+
+    //For some reason we occasionally fail at parsing : decodeURIComponent(settings.data), return a blob if it doesn't work
+    function tryJsonParse(text) {
+        var result;
+        try {
+            result = JSON.parse('{"' +
+                text
+                .replace(/\+/g, ' ')
+                .replace(/"/g, '\\"')
+                .replace(/&/g, '","')
+                .replace(/=/g, '":"') +
+                '"}');
+        } catch (e) {
+            result = encodeURI(text);
+        }
+        return result;
+    }
+
+    //global ajax error handler.
+    $(document).ajaxError(function(event, xhr, settings, thrownError) {
+        //don't log an error if the page is being unloaded because a user closed the window or click another link.
+        if (globalVars.isBeingUnloaded || thrownError == 'timeout' || xhr.statusText === 'abort' || xhr.status == 0) {
+            return;
+        }
+        if (console) {
+            //sometimes these errors are swallowed and not seen on dev, make sure we show it
+            console.log(settings, thrownError);
+        }
+        var responseText = "html page not included";
+        if (!xhr.responseText) {
+            responseText = "no response";
+        }
+        if (xhr.responseText && xhr.responseText.substring(0, 15) != "<!DOCTYPE html>") responseText = xhr.responseText;
+    });
+
+    $(document).ready(function () {
+        // mobile first
+        var body = $("body");
+        if (window.innerWidth <= bp992 && true == true) {
+
+            if (!body.hasClass("mobileFirst")) {
+                body.addClass("mobileFirst")
+            }
+        } else {
+            if (body.hasClass("mobileFirst")) {
+                body.removeClass("mobileFirst")
+            }
+        }
+
+        // mapPage includes 511 and ERS map
+        var isMapPage = document.querySelector(".mapPage") != null;
+        if (isMapPage) {
+            // using onload so legend renders fully before we trigger normalLegendSet 
+            window.onload = () => {              
+                $(document).trigger("normalLegendSet");               
+            }
+        } else {
+            // needed for other help icon on RCR map, non map page
+            $(document).trigger("normalLegendSet");
+        }    
+    });
+    </script>
+    <script src="/scripts/jsresources/introJs/introJsGuide?lang=en&v=2025.03.11"></script>
+<script src="/bundles/introjs?v=9Yk3ow-vcAAwzXyL6gYcB0gClWF7mQ_ELwH1b1uCgoY1"></script>
+
+
+</body>
+</html>
