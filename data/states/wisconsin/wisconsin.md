@@ -5,10 +5,10 @@ slug: wisconsin
 dossier_number: 49
 research_date: 2026-08-28
 research_date_source: stated
-spec_status: draft
+spec_status: in-progress
 capabilities:
-  traffic_cameras: unspecified
-  traffic_conditions: unspecified
+  traffic_cameras: researching
+  traffic_conditions: confirmed
   weather: unspecified
   scanners: unspecified
   alpr_flock: unspecified
@@ -38,14 +38,16 @@ research dossier it derives from - treat that as evidence and leave it as writte
 
 | # | Capability | Status | Primary public source | Machine-readable | Notes |
 | --- | --- | --- | --- | --- | --- |
-| 1.1 | [Traffic cameras](#11-traffic-cameras) | `unspecified` | | | |
-| 1.2 | [Traffic conditions and incidents](#12-traffic-conditions-and-incidents) | `unspecified` | | | |
-| 1.3 | [Weather and road weather](#13-weather-and-road-weather) | `unspecified` | | | |
-| 1.4 | [Scanners and public-safety radio](#14-scanners-and-public-safety-radio) | `unspecified` | | | |
-| 1.5 | [ALPR / Flock camera locations](#15-alpr--flock-camera-locations) | `unspecified` | | | |
-| 1.6 | [Other public sources](#16-other-public-sources) | `unspecified` | | | |
+| 1.1 | [Traffic cameras](#11-traffic-cameras) | `researching` | none established | - | Two discovery mechanisms returned nothing; dossier claim deliberately not promoted. |
+| 1.2 | [Traffic conditions and incidents](#12-traffic-conditions-and-incidents) | `confirmed` | WisDOT 511WI WZDx | Yes - GeoJSON | 4,413 events, **CC0 1.0** declared in-payload. |
+| 1.3 | [Weather and road weather](#13-weather-and-road-weather) | `unspecified` | - | - | Not researched this pass. |
+| 1.4 | [Scanners and public-safety radio](#14-scanners-and-public-safety-radio) | `unspecified` | - | - | Not researched this pass. |
+| 1.5 | [ALPR / Flock camera locations](#15-alpr--flock-camera-locations) | `unspecified` | - | - | Not researched this pass. Official channels only. |
+| 1.6 | [Other public sources](#16-other-public-sources) | `unspecified` | - | - | Not researched this pass. |
 
 Status vocabulary: `unspecified` &middot; `researching` &middot; `none-found` &middot; `confirmed` &middot; `credential-gated` &middot; `blocked` &middot; `excluded` &middot; `live`.
+
+> Every `confirmed` row above is backed by an independently fetched, byte-counted and SHA-256-hashed `SOURCE-RECORD.md` in this state's own class folders. Nothing here was promoted on the strength of §2's own confidence markings - see `data/states/NOTICE.md`.
 
 ### 1.1 Traffic cameras
 
@@ -53,19 +55,19 @@ Public DOT/agency CCTV: camera inventory, snapshot URLs, HLS/MJPEG streams.
 
 | Field | Value |
 | --- | --- |
-| Status | `unspecified` |
-| Operator / agency |  |
-| Public system |  |
-| Machine-readable endpoint(s) |  |
-| Auth model |  |
-| Media available |  |
-| Record count |  |
-| Geographic coverage |  |
-| Update cadence |  |
-| Terms / licence |  |
-| ATLAS adapter |  |
-| Last verified |  |
-| Notes |  |
+| Status | `researching` |
+| Operator / agency | WisDOT (presumed; not established) |
+| Public system | 511WI (`511wi.gov`) - confirmed to exist, camera endpoint not found |
+| Machine-readable endpoint(s) | **None verified.** No sibling `/api/` path was probed - guessing endpoints is forbidden by §4. |
+| Auth model | Unknown |
+| Media available | Unknown |
+| Record count | Unknown |
+| Geographic coverage | Unknown |
+| Update cadence | Unknown |
+| Terms / licence | Unknown |
+| ATLAS adapter | None built |
+| Last verified | 2026-08-29 (negative) |
+| Notes | ArcGIS search (297 matches) and WisDOT's own 40-service `agohub` catalog contain no camera layer; the root catalog reset twice, so that host is not exhaustively swept. Evidence: [`data/states/wisconsin/media-streams/wisdot-arcgis-negative/SOURCE-RECORD.md`](data/states/wisconsin/media-streams/wisdot-arcgis-negative/SOURCE-RECORD.md). §2 asserts a statewide camera network - **not used as a basis for this status**, per `NOTICE.md`. |
 
 ### 1.2 Traffic conditions and incidents
 
@@ -73,19 +75,19 @@ Incidents, construction and work zones (WZDx), congestion, DMS, road conditions.
 
 | Field | Value |
 | --- | --- |
-| Status | `unspecified` |
-| Operator / agency |  |
-| Public system |  |
-| Machine-readable endpoint(s) |  |
-| Auth model |  |
-| Media available |  |
-| Record count |  |
-| Geographic coverage |  |
-| Update cadence |  |
-| Terms / licence |  |
-| ATLAS adapter |  |
-| Last verified |  |
-| Notes |  |
+| Status | `confirmed` |
+| Operator / agency | Wisconsin DOT (WisDOT) |
+| Public system | 511WI, publisher `Work Zone Manager`, sourced from ATMS-ExtEvent / ATMS-ERM |
+| Machine-readable endpoint(s) | `https://511wi.gov/api/wzdx` |
+| Auth model | None - open, unauthenticated |
+| Media available | n/a - structured events |
+| Record count | **4,413** features (4,159 work-zone, 254 detour), 2026-08-29 |
+| Geographic coverage | Statewide; LineString geometries within Wisconsin's bbox |
+| Update cadence | Payload says 60s; federal registry says 5m - unresolved discrepancy |
+| Terms / licence | **CC0 1.0 Universal**, declared in-payload (`feed_info.license`) |
+| ATLAS adapter | None built |
+| Last verified | 2026-08-29 |
+| Notes | Evidence: [`data/states/wisconsin/events/wisdot-wzdx/SOURCE-RECORD.md`](data/states/wisconsin/events/wisdot-wzdx/SOURCE-RECORD.md). Discovered via the federal WZDx registry, whose bytes are identical to Indiana's 2026-08-22 copy. Version discrepancy (registry 4.1, payload 4.2) unresolved. |
 
 ### 1.3 Weather and road weather
 
@@ -105,7 +107,7 @@ RWIS/atmospheric sensors, road-surface conditions, NWS and state weather feeds.
 | Terms / licence |  |
 | ATLAS adapter |  |
 | Last verified |  |
-| Notes |  |
+| Notes | Not researched in the 2026-08-29 pass. `unspecified` here means "nobody has looked yet," not "nothing exists" - see §2 for leads, which are unverified. |
 
 ### 1.4 Scanners and public-safety radio
 
@@ -125,7 +127,7 @@ Statewide radio system, Broadcastify/RadioReference feeds, public CAD/dispatch.
 | Terms / licence |  |
 | ATLAS adapter |  |
 | Last verified |  |
-| Notes |  |
+| Notes | Not researched in the 2026-08-29 pass. `unspecified` here means "nobody has looked yet," not "nothing exists" - see §2 for leads, which are unverified. |
 
 ### 1.5 ALPR / Flock camera locations
 
@@ -145,7 +147,7 @@ Camera **locations only** - never their read data. Transparency portals, registr
 | Terms / licence |  |
 | ATLAS adapter |  |
 | Last verified |  |
-| Notes |  |
+| Notes | Not researched in the 2026-08-29 pass. `unspecified` here means "nobody has looked yet," not "nothing exists" - see §2 for leads, which are unverified. |
 
 ### 1.6 Other public sources
 
@@ -165,10 +167,9 @@ Park/NPS/BLM webcams, transit, ports, aviation, municipal open data, anything el
 | Terms / licence |  |
 | ATLAS adapter |  |
 | Last verified |  |
-| Notes |  |
+| Notes | Not researched in the 2026-08-29 pass. `unspecified` here means "nobody has looked yet," not "nothing exists" - see §2 for leads, which are unverified. |
 
 ---
-
 ## 2. Source discovery dossier (imported research)
 
 Wisconsin is a **strong transportation-camera and public-radio state**, with an important distinction on ALPR:

@@ -1,0 +1,17 @@
+# Evidence payloads are provenance artifacts. Their bytes must match the SHA-256
+# recorded in the SOURCE-RECORD.md alongside them, so they must never be subject
+# to line-ending conversion.
+#
+# Why this file exists (found 2026-08-29): with no .gitattributes and Windows
+# core.autocrlf active, checked-out evidence did not match its own recorded
+# hashes. Indiana's WZDx registry copy recorded 19,480 bytes / ea7ff56c... but
+# hashed 2e9150b1... on disk at 19,522 bytes, and its cctv.xml recorded 759,718
+# bytes but was 777,626 on disk. The recorded values were correct all along --
+# they match git's stored blob and a fresh fetch -- but anyone verifying a hash
+# against a Windows working copy would have seen a mismatch and reasonably
+# concluded the evidence had been altered.
+sources/**                                 -text
+data/states/*/events/**                    -text
+data/states/*/sensor-observations/**       -text
+data/states/*/media-streams/**             -text
+data/states/*/documents-static-datasets/** -text

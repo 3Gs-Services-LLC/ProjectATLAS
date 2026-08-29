@@ -5,11 +5,11 @@ slug: indiana
 dossier_number: 14
 research_date: 2026-08-28
 research_date_source: stated
-spec_status: draft
+spec_status: in-progress
 capabilities:
-  traffic_cameras: unspecified
-  traffic_conditions: unspecified
-  weather: unspecified
+  traffic_cameras: confirmed
+  traffic_conditions: confirmed
+  weather: researching
   scanners: unspecified
   alpr_flock: unspecified
   other: unspecified
@@ -38,14 +38,16 @@ research dossier it derives from - treat that as evidence and leave it as writte
 
 | # | Capability | Status | Primary public source | Machine-readable | Notes |
 | --- | --- | --- | --- | --- | --- |
-| 1.1 | [Traffic cameras](#11-traffic-cameras) | `unspecified` | | | |
-| 1.2 | [Traffic conditions and incidents](#12-traffic-conditions-and-incidents) | `unspecified` | | | |
-| 1.3 | [Weather and road weather](#13-weather-and-road-weather) | `unspecified` | | | |
-| 1.4 | [Scanners and public-safety radio](#14-scanners-and-public-safety-radio) | `unspecified` | | | |
-| 1.5 | [ALPR / Flock camera locations](#15-alpr--flock-camera-locations) | `unspecified` | | | |
-| 1.6 | [Other public sources](#16-other-public-sources) | `unspecified` | | | |
+| 1.1 | [Traffic cameras](#11-traffic-cameras) | `confirmed` | INDOT via Castle Rock CARS-Hub | Yes - XML | 746 cameras counted 2026-08-29 from hashed `cctv.xml`. **Licence UNKNOWN.** |
+| 1.2 | [Traffic conditions and incidents](#12-traffic-conditions-and-incidents) | `confirmed` | INDOT WZDx + CARS-Hub FEU | Yes - GeoJSON/XML | WZDx is CC0; CARS-Hub FEU licence UNKNOWN. |
+| 1.3 | [Weather and road weather](#13-weather-and-road-weather) | `researching` | none established | - | No RWIS layer found via ArcGIS; a CARS-Hub feed is credential-gated, subject unconfirmed. |
+| 1.4 | [Scanners and public-safety radio](#14-scanners-and-public-safety-radio) | `unspecified` | - | - | Not researched this pass. |
+| 1.5 | [ALPR / Flock camera locations](#15-alpr--flock-camera-locations) | `unspecified` | - | - | Not researched this pass. Official channels only. |
+| 1.6 | [Other public sources](#16-other-public-sources) | `unspecified` | - | - | Not researched this pass. |
 
 Status vocabulary: `unspecified` &middot; `researching` &middot; `none-found` &middot; `confirmed` &middot; `credential-gated` &middot; `blocked` &middot; `excluded` &middot; `live`.
+
+> Every `confirmed` row above is backed by an independently fetched, byte-counted and SHA-256-hashed `SOURCE-RECORD.md` in this state's own class folders. Nothing here was promoted on the strength of §2's own confidence markings - see `data/states/NOTICE.md`.
 
 ### 1.1 Traffic cameras
 
@@ -53,19 +55,19 @@ Public DOT/agency CCTV: camera inventory, snapshot URLs, HLS/MJPEG streams.
 
 | Field | Value |
 | --- | --- |
-| Status | `unspecified` |
-| Operator / agency |  |
-| Public system |  |
-| Machine-readable endpoint(s) |  |
-| Auth model |  |
-| Media available |  |
-| Record count |  |
-| Geographic coverage |  |
-| Update cadence |  |
-| Terms / licence |  |
-| ATLAS adapter |  |
-| Last verified |  |
-| Notes |  |
+| Status | `confirmed` |
+| Operator / agency | Indiana DOT (INDOT) |
+| Public system | CARS-Hub (`inhub.carsprogram.org`), Castle Rock CARS platform |
+| Machine-readable endpoint(s) | `/data/cctv.xml` (schema `/schemas/CCTV.xsd`) |
+| Auth model | None for `cctv.xml` - open, unauthenticated. Sibling feeds `feu-m`/`feu-w` return 401; **not** bypassed. |
+| Media available | Camera inventory with `still-images` per device. Stream URLs not established by this record. |
+| Record count | **746** - counted 2026-08-29 (746 `<inventory-item>`, 746 unique `device-id`) |
+| Geographic coverage | Statewide; device names follow INDOT route/mile-marker convention |
+| Update cadence | Not established |
+| Terms / licence | **UNKNOWN** - no terms/attribution text found. Treat as restrictive per `MacEvil.md` §12. |
+| ATLAS adapter | None built |
+| Last verified | Payload fetched 2026-08-22; recounted 2026-08-29 |
+| Notes | Evidence: [`data/states/indiana/media-streams/indot-cars-hub/SOURCE-RECORD.md`](data/states/indiana/media-streams/indot-cars-hub/SOURCE-RECORD.md). ArcGIS returned no Indiana camera layer, which is the expected result given cameras arrive via CARS - see [`data/states/indiana/media-streams/indot-arcgis-negative/SOURCE-RECORD.md`](data/states/indiana/media-streams/indot-arcgis-negative/SOURCE-RECORD.md). |
 
 ### 1.2 Traffic conditions and incidents
 
@@ -73,19 +75,19 @@ Incidents, construction and work zones (WZDx), congestion, DMS, road conditions.
 
 | Field | Value |
 | --- | --- |
-| Status | `unspecified` |
-| Operator / agency |  |
-| Public system |  |
-| Machine-readable endpoint(s) |  |
-| Auth model |  |
-| Media available |  |
-| Record count |  |
-| Geographic coverage |  |
-| Update cadence |  |
-| Terms / licence |  |
-| ATLAS adapter |  |
-| Last verified |  |
-| Notes |  |
+| Status | `confirmed` |
+| Operator / agency | Indiana DOT (INDOT) |
+| Public system | 511IN / WZDx feed + CARS-Hub FEU feeds |
+| Machine-readable endpoint(s) | `https://in.carsprogram.org/carsapi_v1/api/wzdx`; CARS-Hub `/data/feu-t.xml`, `/data/feu-g.xml`, `/data/waze/cifs.xml` |
+| Auth model | None - all unauthenticated |
+| Media available | n/a - structured events |
+| Record count | 1,411 WZDx `Feature` objects (2026-08-22 fetch) |
+| Geographic coverage | Statewide |
+| Update cadence | Registry lists 5m for the WZDx feed |
+| Terms / licence | WZDx: **CC0 1.0**, declared in-payload. CARS-Hub FEU: **UNKNOWN**. |
+| ATLAS adapter | None built |
+| Last verified | 2026-08-22 |
+| Notes | Evidence: [`data/states/indiana/events/indot-wzdx/SOURCE-RECORD.md`](data/states/indiana/events/indot-wzdx/SOURCE-RECORD.md). Registry/payload version discrepancy (4.1 vs 4.0) unresolved. |
 
 ### 1.3 Weather and road weather
 
@@ -93,19 +95,19 @@ RWIS/atmospheric sensors, road-surface conditions, NWS and state weather feeds.
 
 | Field | Value |
 | --- | --- |
-| Status | `unspecified` |
-| Operator / agency |  |
-| Public system |  |
-| Machine-readable endpoint(s) |  |
-| Auth model |  |
-| Media available |  |
-| Record count |  |
-| Geographic coverage |  |
-| Update cadence |  |
-| Terms / licence |  |
-| ATLAS adapter |  |
-| Last verified |  |
-| Notes |  |
+| Status | `researching` |
+| Operator / agency | Not established |
+| Public system | Not established |
+| Machine-readable endpoint(s) | None verified |
+| Auth model | n/a |
+| Media available | n/a |
+| Record count | n/a |
+| Geographic coverage | n/a |
+| Update cadence | n/a |
+| Terms / licence | n/a |
+| ATLAS adapter | None built |
+| Last verified | 2026-08-29 (negative) |
+| Notes | ArcGIS discovery returned no Indiana RWIS/road-weather service ([`data/states/indiana/media-streams/indot-arcgis-negative/SOURCE-RECORD.md`](data/states/indiana/media-streams/indot-arcgis-negative/SOURCE-RECORD.md)). CARS-Hub `/data/feu-w.xml` returns 401; its subject is **not** confirmed to be weather and was not assumed - credentials tracked at Issue #1. `gisdata.in.gov` was not enumerated. |
 
 ### 1.4 Scanners and public-safety radio
 
@@ -125,7 +127,7 @@ Statewide radio system, Broadcastify/RadioReference feeds, public CAD/dispatch.
 | Terms / licence |  |
 | ATLAS adapter |  |
 | Last verified |  |
-| Notes |  |
+| Notes | Not researched in the 2026-08-29 pass. `unspecified` here means "nobody has looked yet," not "nothing exists" - see §2 for leads, which are unverified. |
 
 ### 1.5 ALPR / Flock camera locations
 
@@ -145,7 +147,7 @@ Camera **locations only** - never their read data. Transparency portals, registr
 | Terms / licence |  |
 | ATLAS adapter |  |
 | Last verified |  |
-| Notes |  |
+| Notes | Not researched in the 2026-08-29 pass. `unspecified` here means "nobody has looked yet," not "nothing exists" - see §2 for leads, which are unverified. |
 
 ### 1.6 Other public sources
 
@@ -165,10 +167,9 @@ Park/NPS/BLM webcams, transit, ports, aviation, municipal open data, anything el
 | Terms / licence |  |
 | ATLAS adapter |  |
 | Last verified |  |
-| Notes |  |
+| Notes | Not researched in the 2026-08-29 pass. `unspecified` here means "nobody has looked yet," not "nothing exists" - see §2 for leads, which are unverified. |
 
 ---
-
 ## 2. Source discovery dossier (imported research)
 
 Indiana is a **very high-value state** for this project. It is particularly important because we can establish several **actual machine-readable government endpoints**, not merely websites that display information.

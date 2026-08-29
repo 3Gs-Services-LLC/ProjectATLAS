@@ -50,7 +50,7 @@ All files saved under `C:\Websites\ProjectATLAS\sources\indot-cars-hub\`.
 
 ## Open items for Phase 1/Phase 7 (INDOT adapter)
 
-1. Parse `cctv.xml` against `CCTV.xsd` and confirm the ~740-item count from the handoff memo against this fresh download.
+1. ~~Parse `cctv.xml` against `CCTV.xsd` and confirm the ~740-item count from the handoff memo against this fresh download.~~ **Count resolved 2026-08-29: 746.** A direct element count over this record's own hashed `data/2026-08-22/cctv.xml` found **746 `<inventory-item>` elements and 746 unique `device-id` values** (746 each of `device-updated`, `device-name`, and `still-images`, confirming one complete record per item rather than a ragged parse). The handoff memo's "~740" was approximately right; the exact figure for this download is 746. **Still outstanding:** this was an element count, not schema validation against `CCTV.xsd` — that half of the item remains open.
 2. `feu-m` and `feu-w` (weather-related FEU feeds, by naming convention) require credentials this project does not currently hold — file as `REQUIRES_CREDENTIALS` in the research queue, not `REJECTED`.
 3. No terms-of-use or redistribution policy was found anywhere on the CARS-Hub site. Per the legal disclaimer in `ATLAS-PROMPT-AMENDMENTS.md` §6, do not treat "no terms found" as "no restrictions" — this needs actual outreach to INDOT/Castle Rock or legal review before any public redistribution of this data, not just technical ingestion for internal development.
 4. Investigate whether this same CARS-Hub pattern (`<state>hub.carsprogram.org` or similar) exists for other Castle Rock-platform states, per the multi-state schema note above.
