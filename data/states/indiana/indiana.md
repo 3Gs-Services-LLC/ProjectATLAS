@@ -12,7 +12,7 @@ capabilities:
   weather: researching
   scanners: confirmed
   alpr_flock: researching
-  other: unspecified
+  other: confirmed
 provenance:
   imported_from: project_atlas_state_data/Indiana.txt
   imported_on: 2026-08-28
@@ -43,7 +43,7 @@ research dossier it derives from - treat that as evidence and leave it as writte
 | 1.3 | [Weather and road weather](#13-weather-and-road-weather) | `researching` | none established | - | No RWIS layer found via ArcGIS; a CARS-Hub feed is credential-gated, subject unconfirmed. |
 | 1.4 | [Scanners and public-safety radio](#14-scanners-and-public-safety-radio) | `confirmed` | FCC ULS (federal, public domain) | Yes - bulk ZIP | Source verified reachable; **no records extracted** (419 MB not downloaded). |
 | 1.5 | [ALPR / Flock camera locations](#15-alpr--flock-camera-locations) | `researching` | IIFC + ISP policy documents (in.gov) | No - PDF | Policy confirmed; **zero locations or counts disclosed**. |
-| 1.6 | [Other public sources](#16-other-public-sources) | `unspecified` | - | - | Not researched this pass. |
+| 1.6 | [Other public sources](#16-other-public-sources) | `confirmed` | USGS Water Services + IndianaMap GIS | Yes - RDB / ArcGIS REST | **246** active real-time stream gauges, coordinates + declared accuracy. Public domain. |
 
 Status vocabulary: `unspecified` &middot; `researching` &middot; `none-found` &middot; `confirmed` &middot; `credential-gated` &middot; `blocked` &middot; `excluded` &middot; `live`.
 
@@ -155,19 +155,19 @@ Park/NPS/BLM webcams, transit, ports, aviation, municipal open data, anything el
 
 | Field | Value |
 | --- | --- |
-| Status | `unspecified` |
-| Operator / agency |  |
-| Public system |  |
-| Machine-readable endpoint(s) |  |
-| Auth model |  |
-| Media available |  |
-| Record count |  |
-| Geographic coverage |  |
-| Update cadence |  |
-| Terms / licence |  |
-| ATLAS adapter |  |
-| Last verified |  |
-| Notes | Not researched in the 2026-08-29 pass. `unspecified` here means "nobody has looked yet," not "nothing exists" - see §2 for leads, which are unverified. |
+| Status | `confirmed` |
+| Operator / agency | U.S. Geological Survey (federal); State of Indiana / IndianaMap (state GIS) |
+| Public system | USGS Water Services (NWIS); `gisdata.in.gov` ArcGIS Server 11.5 |
+| Machine-readable endpoint(s) | `https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=in&siteType=ST&hasDataTypeCd=iv&siteStatus=active`; `https://gisdata.in.gov/server/rest/services?f=json` |
+| Auth model | None for either. `robots.txt` checked first on both hosts; neither declares directives. |
+| Media available | n/a - structured records and a service catalog |
+| Record count | **246** active real-time stream-gauge sites (parsed from the hashed RDB). IndianaMap: 11 folders, 72 root services advertised. |
+| Geographic coverage | Statewide. Every gauge row carries lat/long with a stated datum (NAD83) and a publisher-declared accuracy code. |
+| Update cadence | USGS activates/retires sites continuously; the count is as-of 2026-08-29 |
+| Terms / licence | USGS: **public domain** (US federal work). IndianaMap: **UNKNOWN** - per-service `licenseInfo` not inspected; treat as restrictive. |
+| ATLAS adapter | None built |
+| Last verified | 2026-08-29 |
+| Notes | Evidence: [`data/states/indiana/sensor-observations/usgs-water-services/SOURCE-RECORD.md`](data/states/indiana/sensor-observations/usgs-water-services/SOURCE-RECORD.md) and [`data/states/indiana/documents-static-datasets/indianamap-catalog/SOURCE-RECORD.md`](data/states/indiana/documents-static-datasets/indianamap-catalog/SOURCE-RECORD.md). Gauge evidence sits in `sensor-observations/` while answering this subject row - the class and subject axes are orthogonal by design. Query is **streams only**; groundwater, lake and atmospheric sites were excluded and are not in the 246. IndianaMap enumeration closed a §9 open item and returned **zero** camera/CCTV/webcam/traffic tokens, corroborating that Indiana's cameras come via CARS. |
 
 ---
 ## 2. Source discovery dossier (imported research)

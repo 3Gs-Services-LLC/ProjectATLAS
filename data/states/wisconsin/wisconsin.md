@@ -12,7 +12,7 @@ capabilities:
   weather: unspecified
   scanners: confirmed
   alpr_flock: researching
-  other: unspecified
+  other: confirmed
 provenance:
   imported_from: project_atlas_state_data/Wisconsin.txt
   imported_on: 2026-08-28
@@ -43,7 +43,7 @@ research dossier it derives from - treat that as evidence and leave it as writte
 | 1.3 | [Weather and road weather](#13-weather-and-road-weather) | `unspecified` | - | - | Not researched this pass. |
 | 1.4 | [Scanners and public-safety radio](#14-scanners-and-public-safety-radio) | `confirmed` | FCC ULS (federal, public domain) | Yes - bulk ZIP | Source verified reachable; **no records extracted** (419 MB not downloaded). |
 | 1.5 | [ALPR / Flock camera locations](#15-alpr--flock-camera-locations) | `researching` | AB576 / AB300 legislature (docs.legis.wisconsin.gov) | No - HTML | Legislation confirmed; **zero locations or counts disclosed**. |
-| 1.6 | [Other public sources](#16-other-public-sources) | `unspecified` | - | - | Not researched this pass. |
+| 1.6 | [Other public sources](#16-other-public-sources) | `confirmed` | USGS Water Services + WDNR GIS | Yes - RDB / ArcGIS REST | **215** active real-time stream gauges, coordinates + declared accuracy. Public domain. |
 
 Status vocabulary: `unspecified` &middot; `researching` &middot; `none-found` &middot; `confirmed` &middot; `credential-gated` &middot; `blocked` &middot; `excluded` &middot; `live`.
 
@@ -155,19 +155,19 @@ Park/NPS/BLM webcams, transit, ports, aviation, municipal open data, anything el
 
 | Field | Value |
 | --- | --- |
-| Status | `unspecified` |
-| Operator / agency |  |
-| Public system |  |
-| Machine-readable endpoint(s) |  |
-| Auth model |  |
-| Media available |  |
-| Record count |  |
-| Geographic coverage |  |
-| Update cadence |  |
-| Terms / licence |  |
-| ATLAS adapter |  |
-| Last verified |  |
-| Notes | Not researched in the 2026-08-29 pass. `unspecified` here means "nobody has looked yet," not "nothing exists" - see §2 for leads, which are unverified. |
+| Status | `confirmed` |
+| Operator / agency | U.S. Geological Survey (federal); Wisconsin DNR (state GIS) |
+| Public system | USGS Water Services (NWIS); `dnrmaps.wi.gov` ArcGIS Server 11.3 |
+| Machine-readable endpoint(s) | `https://waterservices.usgs.gov/nwis/site/?format=rdb&stateCd=wi&siteType=ST&hasDataTypeCd=iv&siteStatus=active`; `https://dnrmaps.wi.gov/arcgis/rest/services?f=json` |
+| Auth model | None for either. `robots.txt` checked first on both hosts; neither exists (404), so no directives apply. |
+| Media available | n/a - structured records and a service catalog |
+| Record count | **215** active real-time stream-gauge sites (parsed from the hashed RDB). WDNR: 26 folders, 0 root services advertised. |
+| Geographic coverage | Statewide. Every gauge row carries lat/long with a stated datum (NAD83) and a publisher-declared accuracy code. |
+| Update cadence | USGS activates/retires sites continuously; the count is as-of 2026-08-29 |
+| Terms / licence | USGS: **public domain** (US federal work). WDNR: **UNKNOWN** - per-service `licenseInfo` not inspected; treat as restrictive. |
+| ATLAS adapter | None built |
+| Last verified | 2026-08-29 |
+| Notes | Evidence: [`data/states/wisconsin/sensor-observations/usgs-water-services/SOURCE-RECORD.md`](data/states/wisconsin/sensor-observations/usgs-water-services/SOURCE-RECORD.md) and [`data/states/wisconsin/documents-static-datasets/wisconsin-dnr-gis/SOURCE-RECORD.md`](data/states/wisconsin/documents-static-datasets/wisconsin-dnr-gis/SOURCE-RECORD.md). **Wisconsin's first source yielding real per-state coordinate-bearing records** - the WZDx feed aside, its other sources so far are endpoints whose payloads were not downloaded. Query is **streams only**, a real limitation for a lake state. WDNR's zero-camera token scan is a **weak** negative (26 folders unopened) and must not be cited as a camera negative. Wisconsin has further official GIS estates (DHS, DPI, SAGIC) that were **not** fetched. |
 
 ---
 ## 2. Source discovery dossier (imported research)
